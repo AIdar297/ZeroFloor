@@ -1,0 +1,210 @@
+<UserControl x:Class="ZeroFloor.Views.Controls.RingLockOverlayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="1080" d:DesignWidth="1920"
+             Visibility="{Binding ActiveRingLock, Converter={StaticResource NullToVisibilityConverter}}"
+             Focusable="True">
+    <UserControl.Resources>
+        <!-- Насечка кольца: обычная — тусклая сталь, паз (IsNotch) — светящийся янтарь. -->
+        <Style x:Key="RingTabStyle" TargetType="Border">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Background" Value="#2A313C"/>
+            <Setter Property="BorderBrush" Value="#4A5566"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="{Binding Angle}"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsNotch}" Value="True">
+                    <Setter Property="Background" Value="{StaticResource MgAccentGradient}"/>
+                    <Setter Property="BorderBrush" Value="#FFE2A8"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="#F2B347" Opacity="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ModeButton" TargetType="Button" BasedOn="{StaticResource MgGhostButton}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="18,14"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource MgScrim}" DataContext="{Binding ActiveRingLock}">
+        <Border Style="{StaticResource MgCard}" Padding="44,36,44,32">
+            <StackPanel>
+                <TextBlock Text="ГЛАВА 3 · ПАНЕЛЬ ЛИФТОВОГО УЗЛА" Style="{StaticResource MgEyebrow}"/>
+                <TextBlock Text="Калибровка обходчика" Style="{StaticResource MgTitle}"/>
+                <TextBlock Style="{StaticResource MgBody}" Margin="0,8,0,0" MaxWidth="1100" HorizontalAlignment="Left"
+                           Text="Совместите паз внутреннего кольца с пазом внешнего напротив контрольной метки — три раза подряд. Ошибка не отменяет взлом, но приближает патруль."/>
+                <Border Style="{StaticResource MgDivider}" Margin="0,20"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="280"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="280"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Левая колонка: патруль и тактика -->
+                    <StackPanel VerticalAlignment="Center" Margin="0,0,24,0">
+                        <Border Style="{StaticResource MgInsetPanel}" Margin="0,0,0,18">
+                            <StackPanel>
+                                <Grid>
+                                    <TextBlock Text="ПАТРУЛЬ" Style="{StaticResource MgLabel}"/>
+                                    <TextBlock Text="● на подходе" Style="{StaticResource MgLabel}" Foreground="#FF8A7A" HorizontalAlignment="Right"/>
+                                </Grid>
+                                <TextBlock Text="Дистанция до обходчика" Style="{StaticResource MgHint}" Margin="0,6,0,10"/>
+                                <Grid Height="10">
+                                    <Border Style="{StaticResource MgTrack}"/>
+                                    <Border CornerRadius="5" HorizontalAlignment="Left" Background="{StaticResource MgRed}"
+                                            Width="{Binding PatrolProximity, Converter={StaticResource FractionToWidthConverter}, ConverterParameter=234}">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="14" ShadowDepth="0" Color="#FF5A4A" Opacity="0.8"/>
+                                        </Border.Effect>
+                                    </Border>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Visibility="{Binding IsModeSelected, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                            <TextBlock Text="ВЫБЕРИТЕ ТАКТИКУ" Style="{StaticResource MgLabel}" Margin="0,0,0,10"/>
+                            <Button Style="{StaticResource ModeButton}" Command="{Binding SelectRiskCommand}">
+                                <StackPanel>
+                                    <TextBlock Text="Рискнуть" FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource MgText}"/>
+                                    <TextBlock Text="кольцо быстрее, окно короче" FontSize="13" FontWeight="Normal" Foreground="{StaticResource MgMuted}"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Style="{StaticResource ModeButton}" Command="{Binding SelectWaitCommand}">
+                                <StackPanel>
+                                    <TextBlock Text="Выждать" FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource MgText}"/>
+                                    <TextBlock Text="кольцо медленнее, окно шире" FontSize="13" FontWeight="Normal" Foreground="{StaticResource MgMuted}"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Циферблат 640×640: центр 320, радиусы 230/150 — координаты насечек из ViewModel -->
+                    <Canvas Grid.Column="1" Width="640" Height="640">
+                        <Ellipse Width="600" Height="600" Canvas.Left="20" Canvas.Top="20">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#1C232E" Offset="0"/>
+                                    <GradientStop Color="#121820" Offset="0.75"/>
+                                    <GradientStop Color="#0A0D12" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                            <Ellipse.Effect>
+                                <DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.8"/>
+                            </Ellipse.Effect>
+                        </Ellipse>
+                        <Ellipse Width="600" Height="600" Canvas.Left="20" Canvas.Top="20" Stroke="#22FFFFFF" StrokeThickness="1"/>
+                        <Ellipse Width="460" Height="460" Canvas.Left="90" Canvas.Top="90" Stroke="#0FFFFFFF" StrokeThickness="34"/>
+                        <Ellipse Width="460" Height="460" Canvas.Left="90" Canvas.Top="90" Stroke="#2AFFFFFF" StrokeThickness="1" StrokeDashArray="2 6"/>
+                        <Ellipse Width="300" Height="300" Canvas.Left="170" Canvas.Top="170" Stroke="#14FFFFFF" StrokeThickness="30"/>
+                        <Ellipse Width="300" Height="300" Canvas.Left="170" Canvas.Top="170" Stroke="#2AFFFFFF" StrokeThickness="1" StrokeDashArray="2 6"/>
+                        <Ellipse Width="200" Height="200" Canvas.Left="220" Canvas.Top="220">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#232B37" Offset="0"/>
+                                    <GradientStop Color="#151B24" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse Width="200" Height="200" Canvas.Left="220" Canvas.Top="220" Stroke="#33F2B347" StrokeThickness="1"/>
+
+                        <ItemsControl ItemsSource="{Binding OuterTabs}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate><Canvas/></ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                    <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource RingTabStyle}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl ItemsSource="{Binding InnerTabs}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate><Canvas/></ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                    <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource RingTabStyle}" Width="16" Height="16" Margin="2" CornerRadius="8"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- контрольная метка (перескакивает, см. RingLockViewModel.TargetMarkerX/Y) -->
+                        <Grid Canvas.Left="{Binding TargetMarkerX}" Canvas.Top="{Binding TargetMarkerY}" Width="22" Height="22">
+                            <Ellipse Fill="#F2B347">
+                                <Ellipse.Effect>
+                                    <DropShadowEffect BlurRadius="24" ShadowDepth="0" Color="#F2B347" Opacity="1"/>
+                                </Ellipse.Effect>
+                            </Ellipse>
+                            <Ellipse Width="8" Height="8" Fill="#1A1206"/>
+                        </Grid>
+
+                        <StackPanel Canvas.Left="235" Canvas.Top="262" Width="170">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
+                                <Button x:Name="RotateLeftButton" Content="⟲" Style="{StaticResource MgRoundButton}" Margin="0,0,14,0"/>
+                                <Button x:Name="RotateRightButton" Content="⟳" Style="{StaticResource MgRoundButton}"/>
+                            </StackPanel>
+                            <Button Content="Зафиксировать" Style="{StaticResource MgPrimaryButton}" FontSize="15" Padding="16,10"
+                                    Command="{Binding ConfirmCommand}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Canvas>
+
+                    <!-- Правая колонка: прогресс и управление -->
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="24,0,0,0">
+                        <Border Style="{StaticResource MgInsetPanel}" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="СОВМЕЩЕНИЯ ПОДРЯД" Style="{StaticResource MgLabel}"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                    <TextBlock Text="{Binding Streak}" FontFamily="{StaticResource MgFont}" FontSize="64" FontWeight="Bold" Foreground="{StaticResource MgAccent}"/>
+                                    <TextBlock FontFamily="{StaticResource MgFont}" FontSize="28" Foreground="{StaticResource MgFaint}" VerticalAlignment="Bottom" Margin="8,0,0,12">
+                                        <Run Text="/ "/><Run Text="{Binding RequiredStreak, Mode=OneWay}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Text="УПРАВЛЕНИЕ" Style="{StaticResource MgLabel}" Margin="0,0,0,10"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="←" Style="{StaticResource MgKeyText}"/></Border>
+                            <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="→" Style="{StaticResource MgKeyText}"/></Border>
+                            <TextBlock Text="вращать кольцо" Style="{StaticResource MgHint}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="Пробел" Style="{StaticResource MgKeyText}"/></Border>
+                            <TextBlock Text="зафиксировать" Style="{StaticResource MgHint}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

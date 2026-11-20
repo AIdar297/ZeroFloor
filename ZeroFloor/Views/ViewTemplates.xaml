@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:ZeroFloor.ViewModels"
+                    xmlns:views="clr-namespace:ZeroFloor.Views">
+
+    <!-- Навигация ViewModel-first: ShellView подставляет View по типу текущей ViewModel. -->
+
+    <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">
+        <views:MainMenuView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:NovelViewModel}">
+        <views:NovelView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SaveLoadViewModel}">
+        <views:SaveLoadView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+        <views:SettingsView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:GalleryViewModel}">
+        <views:GalleryView/>
+    </DataTemplate>
+
+</ResourceDictionary>

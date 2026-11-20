@@ -1,0 +1,207 @@
+<UserControl x:Class="ZeroFloor.Views.Controls.CodeAssemblyOverlayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="1080" d:DesignWidth="1920"
+             Visibility="{Binding ActiveCodeAssembly, Converter={StaticResource NullToVisibilityConverter}}"
+             Focusable="True">
+    <UserControl.Resources>
+        <!-- Фрагмент в пуле: моноширинная плашка, выбранный — светится янтарём. -->
+        <Style x:Key="FragmentButton" TargetType="Button">
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Chrome" Background="#16FFFFFF" BorderBrush="#33FFFFFF" BorderThickness="1" CornerRadius="10" Padding="16,11">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#99F2B347"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Chrome" Property="Background" Value="{StaticResource MgAccentSoft}"/>
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="{StaticResource MgAccent}"/>
+                                <Setter TargetName="Chrome" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="#F2B347" Opacity="0.7"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Строка записи: пустая — красноватые помехи, восстановленная — зелёная. -->
+        <Style x:Key="SlotBorder" TargetType="Border">
+            <Setter Property="Background" Value="#14FF5A4A"/>
+            <Setter Property="BorderBrush" Value="#44FF5A4A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsFilled}" Value="True">
+                    <Setter Property="Background" Value="#1F4FD1A6"/>
+                    <Setter Property="BorderBrush" Value="#AA4FD1A6"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="StatusStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource MgFont}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#FF8A7A"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding StatusIsGood}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource MgGreen}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource MgScrim}" DataContext="{Binding ActiveCodeAssembly}">
+        <Border Style="{StaticResource MgCard}" Width="1180" Padding="44,36,44,32">
+            <StackPanel>
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="ГЛАВА 8 · ЛИЧНЫЙ ФАЙЛ «ТЕХНИК ОРЛОВ»" Style="{StaticResource MgEyebrow}"/>
+                        <TextBlock Text="Сборка разрушенного кода" Style="{StaticResource MgTitle}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!-- целостность записи (распад) -->
+                        <Border Style="{StaticResource MgInsetPanel}" Padding="18,10" Margin="0,0,12,0"
+                                Visibility="{Binding HasDecay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel>
+                                <TextBlock Text="ЦЕЛОСТНОСТЬ" Style="{StaticResource MgLabel}"/>
+                                <TextBlock Text="{Binding RecordIntegrity, StringFormat={}{0:P0}}" FontFamily="{StaticResource MgFont}" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource MgCyan}"/>
+                            </StackPanel>
+                        </Border>
+                        <!-- серия -->
+                        <Border Style="{StaticResource MgInsetPanel}" Padding="18,10" Margin="0,0,12,0">
+                            <StackPanel>
+                                <TextBlock Text="СЕРИЯ" Style="{StaticResource MgLabel}"/>
+                                <TextBlock FontFamily="{StaticResource MgFont}" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource MgAccent}">
+                                    <Run Text="×"/><Run Text="{Binding Combo, Mode=OneWay}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <!-- ошибки -->
+                        <Border Style="{StaticResource MgInsetPanel}" Padding="18,10">
+                            <StackPanel>
+                                <TextBlock Text="ОШИБКИ" Style="{StaticResource MgLabel}"/>
+                                <TextBlock FontFamily="{StaticResource MgFont}" FontSize="24" FontWeight="SemiBold" Foreground="#FF8A7A">
+                                    <Run Text="{Binding ErrorCount, Mode=OneWay}"/><Run Text=" / " Foreground="{StaticResource MgFaint}"/><Run Text="{Binding MaxErrors, Mode=OneWay}" Foreground="{StaticResource MgFaint}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <TextBlock Style="{StaticResource MgBody}" Margin="0,8,0,0" MaxWidth="700" HorizontalAlignment="Left"
+                           Text="Протокол очистки гасит запись буква за буквой. Подберите к каждой строке верный фрагмент — среди восстановленных есть подделки, а буфер время от времени перемешивается. Ошибка стоит времени, быстрые точные попадания его возвращают."/>
+
+                <!-- время до очистки + сообщение о последнем событии -->
+                <Grid Margin="0,20,0,6">
+                    <TextBlock Text="ДО ОЧИСТКИ ЗАПИСИ" Style="{StaticResource MgLabel}"/>
+                    <TextBlock x:Name="StatusLine" Text="{Binding StatusText}" Style="{StaticResource StatusStyle}" HorizontalAlignment="Center" Opacity="0" Margin="0,-4,0,0"/>
+                    <TextBlock Style="{StaticResource MgLabel}" Foreground="{StaticResource MgText}" HorizontalAlignment="Right"
+                               Text="{Binding RemainingSeconds, StringFormat={}{0:0} с}"/>
+                </Grid>
+                <Grid Height="8" Margin="0,0,0,22">
+                    <Border Style="{StaticResource MgTrack}" CornerRadius="4"/>
+                    <Border CornerRadius="4" HorizontalAlignment="Left"
+                            Width="{Binding TimeFraction, Converter={StaticResource FractionToWidthConverter}, ConverterParameter=1090}">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF5A4A" Offset="0"/>
+                                <GradientStop Color="#F2B347" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="14" ShadowDepth="0" Color="#F2B347" Opacity="0.6"/>
+                        </Border.Effect>
+                    </Border>
+                </Grid>
+
+                <!-- испорченная запись -->
+                <Border Style="{StaticResource MgInsetPanel}" Padding="18">
+                    <StackPanel>
+                        <TextBlock Text="ЗАПИСЬ ТЕРМИНАЛА · ПОВРЕЖДЕНА" Style="{StaticResource MgLabel}" Margin="6,0,0,10"/>
+                        <ItemsControl ItemsSource="{Binding Slots}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding DataContext.PlaceAtSlotCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}" Cursor="Hand" Margin="0,5">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <ContentPresenter/>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Border Style="{StaticResource SlotBorder}" Padding="18,10,18,8">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="&gt;_" FontFamily="{StaticResource MgMono}" FontSize="16" Foreground="{StaticResource MgFaint}" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Hint}" FontFamily="{StaticResource MgMono}" FontSize="18" Foreground="#FF9A8C" VerticalAlignment="Center"
+                                                               Visibility="{Binding IsFilled, Converter={StaticResource InverseBoolToVisibilityConverter}}"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding FilledText}" FontFamily="{StaticResource MgMono}" FontSize="18" Foreground="#9FF5D4" VerticalAlignment="Center"
+                                                               Visibility="{Binding IsFilled, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                                    <TextBlock Grid.Column="2" Text="✓ ВОССТАНОВЛЕНО" Style="{StaticResource MgLabel}" Foreground="{StaticResource MgGreen}" VerticalAlignment="Center"
+                                                               Visibility="{Binding IsFilled, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                                    <TextBlock Grid.Column="2" Style="{StaticResource MgLabel}" Foreground="#AAFF5A4A" VerticalAlignment="Center"
+                                                               Visibility="{Binding IsFilled, Converter={StaticResource InverseBoolToVisibilityConverter}}"
+                                                               Text="{Binding Integrity, StringFormat='ЧИТАЕТСЯ {0:P0}'}"/>
+                                                </Grid>
+                                                <!-- полоска распада строки -->
+                                                <Grid Height="3" Margin="40,8,0,0" Visibility="{Binding IsFilled, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                                                    <Border Background="#22FF5A4A" CornerRadius="1.5"/>
+                                                    <Border Background="#FF7A6A" CornerRadius="1.5" HorizontalAlignment="Left"
+                                                            Width="{Binding Integrity, Converter={StaticResource FractionToWidthConverter}, ConverterParameter=980}"/>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Border>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- пул фрагментов -->
+                <Grid Margin="0,22,0,8">
+                    <TextBlock Text="ВОССТАНОВЛЕННЫЕ ФРАГМЕНТЫ" Style="{StaticResource MgLabel}"/>
+                    <TextBlock Text="⚠ среди них есть подделки" Style="{StaticResource MgLabel}" Foreground="#FF8A7A" HorizontalAlignment="Right"
+                               Visibility="{Binding HasDecoys, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                </Grid>
+                <ItemsControl x:Name="FragmentPool" ItemsSource="{Binding Fragments}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Margin="-6,0"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource FragmentButton}" Tag="{Binding}"
+                                    Command="{Binding DataContext.SelectFragmentCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}">
+                                <TextBlock Text="{Binding Text}" FontFamily="{StaticResource MgMono}" FontSize="15" Foreground="{StaticResource MgText}"/>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

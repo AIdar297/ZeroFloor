@@ -1,0 +1,168 @@
+[
+  {
+    "sceneId": "CH12_FINALE_C",
+    "title": "Глава 12.C. Финал — «Новый Смотритель» (END_02_SUCCESSOR)",
+    "background": "keeper_post",
+    "music": "mus_watcher_calm",
+    "ambience": "amb_core_cathedral",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_C_D001",
+        "speaker": "narrator",
+        "text": "Отец физически отключается от контура, который держал девять лет — снимает служебный браслет, кладёт его на пульт с жестом, в котором читается облегчение пополам с грустью, — и смотрит, как сын занимает его место за тем же пультом, в том же кресле, перед теми же мониторами.",
+        "nextNodeId": "CH12_FINALE_C_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_D002",
+        "speaker": "orlov_senior",
+        "text": "(sad) Теперь ты понимаешь, почему я молчал.",
+        "nextNodeId": "CH12_FINALE_C_D003_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_D003_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12C_FORGAVE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "forgave_father",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_C_D004_FORGAVE"
+          },
+          {
+            "choiceId": "C12C_NOT_FORGAVE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "forgave_father",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_C_D004_NOT_FORGAVE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_C_D004_FORGAVE",
+        "speaker": "max_orlov",
+        "text": "(sad) Понимаю. И прощаю тебя за это молчание — наконец, после всего. Но я не обещаю, что смогу молчать так долго, как молчал ты. Это не в моей природе, и, думаю, никогда не было.",
+        "nextNodeId": "CH12_FINALE_C_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_D004_NOT_FORGAVE",
+        "speaker": "max_orlov",
+        "text": "(angry) Понимаю — и всё равно не собираюсь молчать так же, как ты. Я найду способ быть здесь иначе, даже если мне понадобятся годы, чтобы его найти.",
+        "nextNodeId": "CH12_FINALE_C_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_D005",
+        "speaker": "orlov_senior",
+        "text": "(worried) Не обещай. Просто помни, что каждое слово, которое ты скажешь вслух здесь, будет стоить кому-то чего-то — иногда тебе, иногда тем, кого ты пытаешься защитить. Это единственный урок, который я могу тебе оставить, уходя.",
+        "nextSceneId": "CH12_FINALE_C_EPILOGUE"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH12_FINALE_C_EPILOGUE",
+    "title": "Глава 12.C. Финал — Эпилоговые карточки",
+    "background": "ending_c_successor",
+    "music": "mus_finale_successor",
+    "ambience": "amb_core_cathedral",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_D001",
+        "speaker": "narrator",
+        "text": "Карточка 1. Виктор либо принимает нового тайного регулятора с подозрением, выжидая, чтобы увидеть первые реальные изменения, либо открыто выступает против, уходя в подпольную оппозицию уже против самого Макса, считая любую тайную власть предательством идеи Корней.",
+        "nextNodeId": "CH12_FINALE_C_EPILOGUE_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_D002",
+        "speaker": "narrator",
+        "text": "Карточка 2. Вессель остаётся публичным лицом Короны, теперь уже послушно выполняя решения, которые тайно спускает Макс — ирония, не ускользающая от неё, пусть она никогда не произносит это вслух.",
+        "nextNodeId": "CH12_FINALE_C_EPILOGUE_D003"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_D003",
+        "speaker": "narrator",
+        "text": "Карточка 3. Соня становится единственным доверенным техническим партнёром Макса, зная правду целиком — пожалуй, единственный человек в его новой жизни, с кем не нужно притворяться.",
+        "nextNodeId": "CH12_FINALE_C_EPILOGUE_D004"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_D004",
+        "speaker": "narrator",
+        "text": "Карточка 4. Леонид либо разоблачает перемену, если враждебен к новому порядку, либо становится мостом между Максом и Короной, тихо помогая там, где официальные каналы слишком заметны.",
+        "nextNodeId": "CH12_FINALE_C_EPILOGUE_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_D005",
+        "speaker": "narrator",
+        "text": "Карточка 5. Аня не используется как ключ, получает доступ к лечению на 85-м этаже как практический побочный эффект новых полномочий Макса — физически здорова, наконец избавлена от многолетней боли, но делит Макса с его невидимой обязанностью, с работой, о которой он не может рассказать даже ей. Отношения напряжены, открытый финал по сердечной линии — ни разрыв, ни счастливый конец, а что-то настоящее и неопределённое между ними.",
+        "nextNodeId": "CH12_FINALE_C_EPILOGUE_D006"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_D006",
+        "speaker": "narrator",
+        "text": "Карточка 6. Цифры в Низах постепенно, тайно смягчаются — лучше, но медленно и без прозрачности, незаметно для тех, кого это касается больше всего. Имя Макса Орлова официально исчезает из записей башни, стирается тем же способом, каким стёрли имя его отца девять лет назад. Он сам стал невидимым — не потому что его забыли, а потому что так требует работа, которую он теперь делает.",
+        "nextNodeId": "CH12_FINALE_C_EPILOGUE_PRESS_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_PRESS_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12C_EPILOGUE_WITH_JOURNALIST",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_C_EPILOGUE_PRESS"
+          },
+          {
+            "choiceId": "C12C_EPILOGUE_WITHOUT_JOURNALIST",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_C_TONE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_C_EPILOGUE_PRESS",
+        "speaker": "narrator",
+        "text": "Статья журналиста о диагностическом шарде осталась единственным публичным следом того, что когда-то было найдено — Макс, разумеется, никогда её не комментирует.",
+        "nextNodeId": "CH12_FINALE_C_TONE"
+      },
+      {
+        "nodeId": "CH12_FINALE_C_TONE",
+        "speaker": "max_orlov",
+        "text": "Выбор 12 — тон финальной реплики (флейвор, не ставит флагов).",
+        "choices": [
+          {
+            "choiceId": "C12C_TONE_PUBLIC_STATEMENT",
+            "text": "Публичное заявление",
+            "endingId": "END_02_SUCCESSOR"
+          },
+          {
+            "choiceId": "C12C_TONE_SILENT_DEPARTURE",
+            "text": "Молчаливый уход",
+            "endingId": "END_02_SUCCESSOR"
+          },
+          {
+            "choiceId": "C12C_TONE_KEEPER_ORDER",
+            "text": "Приказ как новый Смотритель",
+            "endingId": "END_02_SUCCESSOR"
+          }
+        ]
+      }
+    ]
+  }
+]

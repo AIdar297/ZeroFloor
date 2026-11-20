@@ -1,0 +1,272 @@
+[
+  {
+    "sceneId": "CH07_MEDALLION",
+    "title": "Глава 7. «Медальон» — Квартира Ани",
+    "background": "ania_apartment",
+    "music": "mus_apartment_intimate",
+    "ambience": "amb_apartment_quiet",
+    "nodes": [
+      {
+        "nodeId": "CH07_MEDALLION_D001",
+        "speaker": "narrator",
+        "text": "Тесная комната, заставленная справочниками и обрывками техдокументации, которые Аня собирает «для интереса», хотя на деле — чтобы понимать систему, которая держит её в заложниках собственного тела. На столе — больничный браслет учёта процедур, снятый и брошенный, будто она устала смотреть на цифры, которые всё равно ничего не объясняют. На шее у неё — старый медальон-кулон, который она никогда не снимает, даже во сне, судя по тому, как привычно её пальцы тянутся к нему, стоит разговору свернуть не туда.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "ania_levitskaya",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH07_MEDALLION_D002"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_D002",
+        "speaker": "ania_levitskaya",
+        "text": "Явился, герой шахт. Я слышала, ты устроил переполох на весь этаж ради моего рейтинга. Тётка Клавдия до сих пор рассказывает это как военную байку — «а Макс-то как рванул, как будто сам горел».",
+        "nextNodeId": "CH07_MEDALLION_D003"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_D003",
+        "speaker": "max_orlov",
+        "text": "Стоило. Как ты?",
+        "nextNodeId": "CH07_MEDALLION_D004"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_D004",
+        "speaker": "ania_levitskaya",
+        "text": "(нарочито весело) Жива. Технически. Статистически — тоже жива, если верить медицинским терминам, которые ничего не лечат, а только красиво называют то, что со мной происходит. У меня теперь официальный диагноз из четырёх латинских слов, которые ничего не значат, кроме того, что никто не знает, что со мной на самом деле.",
+        "choices": [
+          {
+            "choiceId": "C07_TREE_A",
+            "text": "Что сказал врач на этот раз?",
+            "nextNodeId": "CH07_MEDALLION_D005_A_DOCTOR"
+          },
+          {
+            "choiceId": "C07_TREE_B",
+            "text": "Расскажи мне, что ты скрываешь",
+            "nextNodeId": "CH07_MEDALLION_D005_B_HIDING"
+          },
+          {
+            "choiceId": "C07_TREE_C",
+            "text": "Просто посиди со мной, не обязательно говорить",
+            "nextNodeId": "CH07_MEDALLION_D005_C_SIT"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH07_MEDALLION_D005_A_DOCTOR",
+        "speaker": "ania_levitskaya",
+        "text": "Врач на моём этаже развёл руками в третий раз за год. «Ваш случай не подпадает под стандартный протокол». Чудесная фраза. Значит, со мной что-то, чего даже не существует в их справочниках — а я ведь читала эти справочники, Макс, от корки до корки, от скуки, и там правда ничего похожего нет.",
+        "nextSceneId": "CH07_MEDALLION_02"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_D005_B_HIDING",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C07_B1_CHILDHOOD",
+            "text": "Это как-то связано с детством?",
+            "nextNodeId": "CH07_MEDALLION_D006_B_REACTION"
+          },
+          {
+            "choiceId": "C07_B1_CHIP",
+            "text": "Это из-за чипа?",
+            "nextNodeId": "CH07_MEDALLION_D006_B_REACTION"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH07_MEDALLION_D006_B_REACTION",
+        "speaker": "ania_levitskaya",
+        "text": "Ты слишком наблюдательный для техника лифтовых шахт, знаешь? …Ладно. Не всё сразу, но кое-что скажу.",
+        "nextSceneId": "CH07_MEDALLION_03"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_D005_C_SIT",
+        "speaker": "narrator",
+        "text": "Макс молча садится рядом, не требуя объяснений. Аня прислоняется к его плечу на секунду дольше, чем требуется для простого жеста дружбы — хотя ни один из них вслух этого не называет.",
+        "nextSceneId": "CH07_MEDALLION_02"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH07_MEDALLION_02",
+    "title": "Глава 7. «Медальон» — Эмпатическая реакция",
+    "background": "ania_apartment",
+    "music": "mus_apartment_intimate",
+    "ambience": "amb_apartment_quiet",
+    "nodes": [
+      {
+        "nodeId": "CH07_MEDALLION_02_D001",
+        "speaker": "narrator",
+        "text": "Деталь первая: руки Ани едва заметно дрожат.",
+        "choices": [
+          {
+            "choiceId": "C07_NOTE_SHAKING_HANDS",
+            "text": "Обратить внимание",
+            "nextNodeId": "CH07_MEDALLION_02_D002_NOTE_HANDS"
+          },
+          {
+            "choiceId": "C07_IGNORE_SHAKING_HANDS",
+            "text": "Не отвлекаться",
+            "nextNodeId": "CH07_MEDALLION_02_D002_IGNORE_HANDS"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH07_MEDALLION_02_D002_NOTE_HANDS",
+        "speaker": "narrator",
+        "text": "Макс мягко берёт её ладони в свои. «Ты дрожишь». Аня отводит взгляд, но не убирает рук, позволяя этому короткому моменту слабости существовать хотя бы при нём.",
+        "nextNodeId": "CH07_MEDALLION_02_D003"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_02_D002_IGNORE_HANDS",
+        "speaker": "narrator",
+        "text": "Разговор идёт дальше без этой детали, хотя дрожь не исчезает — просто остаётся незамеченной вслух.",
+        "nextNodeId": "CH07_MEDALLION_02_D003"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_02_D003",
+        "speaker": "narrator",
+        "text": "Деталь вторая: быстро спрятанный медальон.",
+        "choices": [
+          {
+            "choiceId": "C07_NOTE_MEDALLION",
+            "text": "Обратить внимание",
+            "nextNodeId": "CH07_MEDALLION_02_D004_NOTE_MEDALLION"
+          },
+          {
+            "choiceId": "C07_IGNORE_MEDALLION",
+            "text": "Не отвлекаться",
+            "nextNodeId": "CH07_MEDALLION_02_D004_IGNORE_MEDALLION"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH07_MEDALLION_02_D004_NOTE_MEDALLION",
+        "speaker": "narrator",
+        "text": "Макс замечает, как Аня резко прячет медальон под воротник, стоит ему задержать на нём взгляд дольше секунды. «Что это у тебя?» — «Старая вещь. От мамы». Голос звучит слишком быстро для правды, слишком отрепетированно для ответа, который она якобы даёт впервые.",
+        "nextSceneId": "CH07_MEDALLION_03"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_02_D004_IGNORE_MEDALLION",
+        "speaker": "narrator",
+        "text": "Медальон остаётся незамеченным до следующей сцены, хотя Аня всё равно непроизвольно касается его рукой несколько раз за разговор.",
+        "nextSceneId": "CH07_MEDALLION_03"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH07_MEDALLION_03",
+    "title": "Глава 7. «Медальон» — Программа «раннее калибрование здоровья»",
+    "background": "ania_apartment",
+    "music": "mus_apartment_intimate",
+    "ambience": "amb_apartment_quiet",
+    "nodes": [
+      {
+        "nodeId": "CH07_MEDALLION_03_D001",
+        "speaker": "ania_levitskaya",
+        "text": "Ладно. Хочешь — расскажу часть, не всё, но часть. В детстве я попала в программу. «Раннее калибрование здоровья», бесплатная диагностика для детей Низов — звучало как подарок, настоящий, редкий подарок для семей, у которых не было денег даже на обычного врача. Нас обследовал один и тот же врач все шесть лет, каждый месяц, с инструментами, которые выглядели слишком сложными для простой диагностики.",
+        "nextNodeId": "CH07_MEDALLION_03_D002"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_03_D002",
+        "speaker": "max_orlov",
+        "text": "Шесть лет? Это не диагностика, это целая программа наблюдения.",
+        "nextNodeId": "CH07_MEDALLION_03_D003"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_03_D003",
+        "speaker": "ania_levitskaya",
+        "text": "Я тоже так думаю теперь, оглядываясь назад. Доктор Крайнев — так его звали. Терпеливый, внимательный, всегда разговаривал с нами, детьми, как со взрослыми, что тогда казалось уважением, а сейчас кажется чем-то другим. Потом программа просто исчезла. Как и он. Как будто её стёрли вместе с ним из всех записей сразу.",
+        "nextNodeId": "CH07_MEDALLION_03_D004"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_03_D004",
+        "speaker": "max_orlov",
+        "text": "Крайнев? Никогда не слышал этого имени в Низах, ни разу за всю жизнь, а я, кажется, знаю здесь каждого, кто хоть как-то связан с медициной.",
+        "nextNodeId": "CH07_MEDALLION_03_D005"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_03_D005",
+        "speaker": "ania_levitskaya",
+        "text": "Я тоже не слышала — потом. Он просто исчез из записей, как и вся программа. И где-то с тех пор у меня начались эти… эпизоды. Врачи называют их по-разному каждый раз, будто сами не уверены, что это такое.",
+        "nextSceneId": "CH07_MEDALLION_04"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH07_MEDALLION_04",
+    "title": "Глава 7. «Медальон» — Выбор 7",
+    "background": "ania_apartment",
+    "music": "mus_apartment_intimate",
+    "ambience": "amb_apartment_quiet",
+    "nodes": [
+      {
+        "nodeId": "CH07_MEDALLION_04_D001",
+        "speaker": "narrator",
+        "text": "Можно надавить сейчас — или дать ей время самой рассказать остальное.",
+        "choices": [
+          {
+            "choiceId": "C07_DEMAND_TRUTH_NOW",
+            "text": "Настаивать на полной правде немедленно",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -5
+              }
+            ],
+            "nextNodeId": "CH07_MEDALLION_04_D002_DEMAND"
+          },
+          {
+            "choiceId": "C07_GIVE_HER_TIME",
+            "text": "Дать ей время",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              }
+            ],
+            "nextNodeId": "CH07_MEDALLION_04_D002_TIME"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH07_MEDALLION_04_D002_DEMAND",
+        "speaker": "max_orlov",
+        "text": "Аня, скажи мне всё, сейчас. Я устал собирать тебя по кусочкам каждый раз, когда ты решаешь, что готова.",
+        "nextNodeId": "CH07_MEDALLION_04_D003_DEMAND"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_04_D003_DEMAND",
+        "speaker": "narrator",
+        "text": "Она вздрагивает — и говорит больше, чем готова была, чувствуя себя загнанной в угол, а не выслушанной, и это оставляет в разговоре привкус, который не исчезает до конца вечера.",
+        "nextSceneId": "CH08_WATCHERS_ARCHIVE"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_04_D002_TIME",
+        "speaker": "max_orlov",
+        "text": "Расскажешь, когда будешь готова. Я никуда не тороплюсь — по крайней мере, не в этом.",
+        "nextNodeId": "CH07_MEDALLION_04_D003_TIME"
+      },
+      {
+        "nodeId": "CH07_MEDALLION_04_D003_TIME",
+        "speaker": "narrator",
+        "text": "Аня смотрит на него так, будто он только что подарил ей что-то более редкое, чем лекарство — право решать темп собственной боли самой.",
+        "nextSceneId": "CH08_WATCHERS_ARCHIVE"
+      }
+    ]
+  }
+]

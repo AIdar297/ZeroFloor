@@ -1,0 +1,71 @@
+<UserControl x:Class="ZeroFloor.Views.Controls.ChoiceListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="1080" d:DesignWidth="1920"
+             Visibility="{Binding IsChoiceVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+    <UserControl.Resources>
+        <!-- Вариант выбора: стеклянная карточка; выделенный (клавиатурой) или под мышью —
+             янтарная рамка, свечение и стрелка-маркер. -->
+        <Style x:Key="ChoiceCard" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" CornerRadius="16" BorderThickness="1" BorderBrush="#2EFFFFFF" Padding="22,16" Background="#E0101620">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="Marker" Text="▸" FontSize="20" Foreground="{StaticResource MgAccent}" Margin="0,0,14,0" VerticalAlignment="Center" Opacity="0.25"/>
+                                <ContentPresenter Grid.Column="1" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource MgAccent}"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#F01A1A16"/>
+                                <Setter TargetName="Marker" Property="Opacity" Value="1"/>
+                                <Setter TargetName="Bd" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="26" ShadowDepth="0" Color="#F2B347" Opacity="0.45"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#AAF2B347"/>
+                                <Setter TargetName="Marker" Property="Opacity" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,270" Width="900">
+        <Border HorizontalAlignment="Center" Margin="0,0,0,14" Background="#D90B0F15" BorderBrush="#33F2B347" BorderThickness="1" CornerRadius="12" Padding="16,6">
+            <TextBlock Text="ВАШ ВЫБОР" Style="{StaticResource MgEyebrow}"/>
+        </Border>
+        <ItemsControl ItemsSource="{Binding Choices}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource ChoiceCard}" Command="{Binding ConfirmCommand}">
+                        <TextBlock Text="{Binding Text}" FontFamily="{StaticResource MgTextFont}" FontSize="20" Foreground="#F0F3F7" TextWrapping="Wrap"/>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Border HorizontalAlignment="Center" Margin="0,4,0,0" Background="#D90B0F15" CornerRadius="12" Padding="12,6">
+        <StackPanel Orientation="Horizontal">
+            <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="↑ ↓" Style="{StaticResource MgKeyText}"/></Border>
+            <TextBlock Text="выбрать" Style="{StaticResource MgHint}" Margin="0,0,16,0"/>
+            <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="Enter" Style="{StaticResource MgKeyText}"/></Border>
+            <TextBlock Text="подтвердить" Style="{StaticResource MgHint}"/>
+        </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

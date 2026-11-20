@@ -1,0 +1,183 @@
+[
+  {
+    "sceneId": "CH11A_CROWN_RECEPTION",
+    "title": "Глава 11.A. «Побег наверх» — Коридоры Короны",
+    "background": "crown_corridors",
+    "music": "mus_crown_cold",
+    "ambience": "amb_crown_airy",
+    "nodes": [
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_D001",
+        "speaker": "narrator",
+        "text": "Шахта экспресс-лифта поднимает Макса в Корону — официально, по приглашению Вессель. Никакого ядра, никакого взлома: сделка не требует технической инфраструктуры, только присутствия и подтверждения согласия Ани. Светлые коридоры, непривычно чистый воздух без привкуса машинного масла, патрули демонстративно отступают, завидев бейдж, который теперь читается системой иначе, чем вчера.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Center",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH11A_CROWN_RECEPTION_D002"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_D002",
+        "speaker": "narrator",
+        "text": "Макс здесь уже «свой» — никто не проверяет его бейдж, никто не задаёт вопросов, которые задавали бы ему ещё вчера на этом же этаже. Ощущение настолько непривычное, что почти физически неприятное, как одежда не по размеру.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_D003"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_D003",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Так вот что чувствуют те, кто рождается здесь. Отсутствие трения. Отсутствие вопросов. Я прожил двадцать семь лет, ощущая мир как череду препятствий, а теперь препятствия просто расступаются, будто их никогда и не было.",
+        "nextSceneId": "CH11A_CROWN_RECEPTION_02"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH11A_CROWN_RECEPTION_02",
+    "title": "Глава 11.A. «Побег наверх» — Приёмная Короны",
+    "background": "crown_reception",
+    "music": "mus_crown_cold",
+    "ambience": "amb_crown_airy",
+    "nodes": [
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D001",
+        "speaker": "leonid_arsenev_kron",
+        "text": "А вот и наш новый образец успеха системы. Добро пожаловать в клуб, Орлов. Шампанское не предлагаю — не поймёте вкуса с непривычки, да и, если честно, оно здесь довольно посредственное, несмотря на цену.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "leonid_arsenev_kron",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D002"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D002",
+        "speaker": "max_orlov",
+        "text": "Я не за шампанским пришёл.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D003"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D003",
+        "speaker": "leonid_arsenev_kron",
+        "text": "(soft) Знаю. Никто сюда не поднимается за шампанским в первый раз — все приходят за чем-то куда более важным: за безопасностью, за лечением, за шансом для кого-то, кого любят. Шампанское приходит потом, вместе со вкусом компромисса, который со временем перестаёт казаться горьким.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D004"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D004",
+        "speaker": "max_orlov",
+        "text": "Ты говоришь так, будто уже прошёл через это сам.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D005"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D005",
+        "speaker": "leonid_arsenev_kron",
+        "text": "(worried) В каком-то смысле — каждый день своей жизни. Я родился с компромиссом, встроенным в фамилию. Разница между нами в том, что ты хотя бы помнишь момент, когда его принял. Я не помню — он был всегда.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D006"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D006",
+        "speaker": "irina_wessel",
+        "text": "Подпись здесь, техник Орлов. Ваш профиль и профиль Ани Левицкой переходят в категорию неотменяемого доступа — штатная, узкая корректировка в пределах допуска. Формальность — две минуты, не больше.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D007"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D007",
+        "speaker": "narrator",
+        "text": "«Последнее искушение» — текстовый выбор:",
+        "choices": [
+          {
+            "choiceId": "C11A_LAST_TEMPTATION_HESITATE",
+            "text": "Отказаться в последний момент",
+            "nextNodeId": "CH11A_CROWN_RECEPTION_02_D008_HESITATE"
+          },
+          {
+            "choiceId": "C11A_LAST_TEMPTATION_CONFIRM",
+            "text": "Подтвердить решение",
+            "nextNodeId": "CH11A_CROWN_RECEPTION_02_D008_CONFIRM"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D008_HESITATE",
+        "speaker": "narrator",
+        "text": "Макс на секунду отводит руку от документа, глядя на собственное отражение в полированной поверхности стола — отражение человека, которого он сам едва узнаёт. «…Нет. Я подписываю». Леонид наблюдает с неподдельным интересом — будто ждал именно этого колебания, будто сам когда-то его переживал.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D009"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D008_CONFIRM",
+        "speaker": "narrator",
+        "text": "Макс подписывает сразу, без театра, без лишних секунд на сомнения, которые он себе больше не позволяет.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D009"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D009",
+        "speaker": "narrator",
+        "text": "(Отец физически не появляется — единственная концовка, где Макс так и не сталкивается с правдой об отце лицом к лицу.)",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D010"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D010",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог, tired) Отец где-то там, за этими же стенами, возможно, в паре этажей отсюда. Я знаю это теперь — Вессель сказала прямо. И всё равно не иду искать его. Может быть, потому что боюсь того, что увижу. Может быть, потому что сделка не оставляет на это времени. А может быть, потому что часть меня знает: если я пойду к нему сейчас, подписанный документ в моих руках покажется мне совсем другим.",
+        "nextNodeId": "CH11A_CROWN_RECEPTION_02_D011"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D011",
+        "speaker": "narrator",
+        "text": "Аня стоит у панорамного окна, глядя вниз, на Низы, с которых её только что официально, навсегда подняли.",
+        "choices": [
+          {
+            "choiceId": "C11A_TELL_ANIA_TRUTH",
+            "text": "Сказать Ане правду о цене сделки",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "told_ania_truth",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH11A_CROWN_RECEPTION_02_D012_TRUTH"
+          },
+          {
+            "choiceId": "C11A_SOFTEN_TRUTH",
+            "text": "Смягчить",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "told_ania_truth",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH11A_CROWN_RECEPTION_02_D012_SOFTEN"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D012_TRUTH",
+        "speaker": "narrator",
+        "text": "Макс рассказывает Ане всё — про Виктора, про Корни, про то, кого он сдал ради этого подъёма, про улики, переданные Вессель. Она слушает молча, с лицом, которое ничего не прощает заранее, но и не отворачивается.",
+        "nextSceneId": "CH12_FINALE_A"
+      },
+      {
+        "nodeId": "CH11A_CROWN_RECEPTION_02_D012_SOFTEN",
+        "speaker": "narrator",
+        "text": "Макс говорит только то, что нужно для спокойствия Ани — что сделка была честной, что никто особо не пострадал. Полная правда останется между ним и зеркалом, тяжёлым грузом, который он теперь будет носить один.",
+        "nextSceneId": "CH12_FINALE_A"
+      }
+    ]
+  }
+]

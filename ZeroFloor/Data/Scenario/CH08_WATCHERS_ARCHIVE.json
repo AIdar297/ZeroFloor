@@ -1,0 +1,459 @@
+[
+  {
+    "sceneId": "CH08_WATCHERS_ARCHIVE",
+    "title": "Глава 8. «Архив Смотрителей» — Проникновение",
+    "background": "keepers_archive",
+    "music": "mus_archive_mystery",
+    "ambience": "amb_archive_drone",
+    "nodes": [
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_D001",
+        "speaker": "narrator",
+        "text": "По наводке анонимного информатора Корней — позже выяснится, что это Соня Рейс — Макс и Виктор проникают в заброшенный архив Смотрителей. Пыльные терминалы в рядах, покрытые таким слоем пыли, что видно, сколько лет сюда никто официально не заходил. Камеры старого образца вращаются по предсказуемому паттерну, слишком медленно для современных систем безопасности — будто это место забыли обновить вместе со всем остальным.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "viktor_savchuk",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_D002"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_D002",
+        "speaker": "narrator",
+        "text": "Макс выучил паттерн вращения камер по двум циклам — наблюдал несколько минут у входа, считая секунды про себя, — теперь он движется в такт, будто танцует с машиной, которая не знает, что её изучили.",
+        "minigameCue": {
+          "kind": "ArchiveStealth3D",
+          "episode3D": {
+            "routeChoiceIds": {},
+            "commitRouteOnEntry": false,
+            "outcomeEffects": {
+              "CLEAN": [
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch8_archive_result",
+                  "value": "CLEAN"
+                },
+                {
+                  "type": "addStat",
+                  "key": "K",
+                  "value": 3
+                }
+              ],
+              "SPOTTED": [
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch8_archive_result",
+                  "value": "SPOTTED"
+                },
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch8_archive_alert",
+                  "value": true
+                },
+                {
+                  "type": "addStat",
+                  "key": "L",
+                  "value": -5
+                }
+              ]
+            }
+          }
+        },
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_D003"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_D003",
+        "speaker": "viktor_savchuk",
+        "text": "Информатор сказал, что здесь — досье тех, кто имел доступ к контуру рейтинга. Включая, возможно, моё собственное — приятная мысль, да? Найти архив собственных грехов.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_D004"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_D004",
+        "speaker": "max_orlov",
+        "text": "Ты как будто не особенно переживаешь об этом.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_D005"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_D005",
+        "speaker": "viktor_savchuk",
+        "text": "Переживаю больше, чем показываю. Просто давно научился не показывать — Корням нужен лидер, а не человек, который трясётся перед собственным прошлым.",
+        "nextSceneId": "CH08_WATCHERS_ARCHIVE_02"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH08_WATCHERS_ARCHIVE_02",
+    "title": "Глава 8. «Архив Смотрителей» — Архивный терминал, Выбор 8",
+    "background": "archive_terminal",
+    "music": "mus_archive_mystery",
+    "ambience": "amb_archive_drone",
+    "nodes": [
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D001",
+        "speaker": "narrator",
+        "text": "Интерактивная доска с фрагментами разорванных записей — физические обрывки, вшитые в старую систему хранения ещё до того, как архив перевели на цифру, да так и бросили на середине перевода.",
+        "minigameCue": {
+          "kind": "DossierAssembly",
+          "dossierAssembly": {
+            "dossiers": [
+              {
+                "title": "ВИКТОР САВЧУК",
+                "slotLabels": [
+                  "Должность",
+                  "Разработка",
+                  "Внедрение",
+                  "Статус"
+                ]
+              },
+              {
+                "title": "СОНЯ РЕЙС",
+                "slotLabels": [
+                  "Должность",
+                  "Отметка",
+                  "Участие",
+                  "Дата отметки"
+                ]
+              }
+            ],
+            "fragments": [
+              {
+                "dossier": 0,
+                "slot": 0,
+                "text": "Инженер второго уровня"
+              },
+              {
+                "dossier": 0,
+                "slot": 1,
+                "text": "Автор кода «коэффициент стабилизации»"
+              },
+              {
+                "dossier": 0,
+                "slot": 2,
+                "text": "Внедрён 11 лет назад"
+              },
+              {
+                "dossier": 0,
+                "slot": 3,
+                "text": "Вышел из проекта самовольно, документация утрачена"
+              },
+              {
+                "dossier": 1,
+                "slot": 0,
+                "text": "Аналитик-калибровщик"
+              },
+              {
+                "dossier": 1,
+                "slot": 1,
+                "text": "…второй контур. Ручное управление."
+              },
+              {
+                "dossier": 1,
+                "slot": 2,
+                "text": "Соавтор — не внесён в основной список"
+              },
+              {
+                "dossier": 1,
+                "slot": 3,
+                "text": "Совпадает с периодом работы Виктора в проекте"
+              }
+            ],
+            "timeLimitSeconds": 75,
+            "maxMistakes": 4,
+            "successFraction": 0.75,
+            "successChoiceId": "C08_MATCH_FRAGMENTS",
+            "failureChoiceId": "C08_GUESS_RANDOMLY",
+            "successEffects": [
+              {
+                "type": "setFlag",
+                "key": "mg_ch8_dossier_result",
+                "value": "FULL"
+              },
+              {
+                "type": "addStat",
+                "key": "R",
+                "value": 3
+              }
+            ],
+            "failureEffects": [
+              {
+                "type": "setFlag",
+                "key": "mg_ch8_dossier_result",
+                "value": "PARTIAL"
+              }
+            ]
+          }
+        },
+        "choices": [
+          {
+            "choiceId": "C08_MATCH_FRAGMENTS",
+            "text": "Сопоставить фрагменты по смыслу",
+            "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D002_MATCH"
+          },
+          {
+            "choiceId": "C08_GUESS_RANDOMLY",
+            "text": "Действовать наугад",
+            "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D002_GUESS"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D002_MATCH",
+        "speaker": "narrator",
+        "text": "Макс методично сравнивает обрывки по содержанию, а не по форме — ищет совпадающие термины, даты, подписи, а не просто пытается подогнать рваные края друг к другу. Два досье открываются полностью, строка за строкой.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D003"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D002_GUESS",
+        "speaker": "narrator",
+        "text": "Макс тычет наугад, теряя терпение быстрее, чем следовало бы — пара фрагментов встаёт на место случайно, но полной картины нет; досье открываются частично, с провалами там, где должны быть ключевые детали.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D003"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D003",
+        "speaker": "narrator",
+        "text": "Досье 1 — Виктор Савчук. Инженер второго уровня. Автор кода «коэффициент стабилизации», внедрён 11 лет назад. Статус: «вышел из проекта самовольно, документация утрачена» — канцелярский эвфемизм для «украдена им самим вместе с единомышленниками».",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D004"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D004",
+        "speaker": "narrator",
+        "text": "Досье 2 — Соня Рейс. Аналитик-калибровщик. Отметка в углу файла, стёртая почти полностью, но читаемая под нужным углом света: «…второй контур. Ручное управление. Соавтор — не внесён в основной список». Дата рядом с отметкой совпадает с периодом, когда Виктор ещё работал в проекте.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D005"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D005",
+        "speaker": "viktor_savchuk",
+        "text": "(worried) Соня — не рядовой аналитик. Она соавтор чего-то, о чём мы с ней даже не говорили прямо все эти годы, что она подкидывает нам наводки. Я считал её мелким информатором на нашей стороне, а она, похоже, играет в собственную, куда более долгую партию.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D006"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D006",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Информатор, который сам оказывается частью той же системы манипуляции, что мы пытаемся разоблачить. Любопытно, насколько глубоко это уходит, и кто ещё в этой истории не тот, за кого себя выдаёт.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D007"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D007",
+        "speaker": "viktor_savchuk",
+        "text": "Я должен это обдумать. Если Соня действительно архитектор второго контура, значит, она не просто помогает нам — она, вероятно, ведёт собственную игру, в которой мы с тобой лишь фигуры.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D008"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D008",
+        "speaker": "narrator",
+        "text": "Выбор 8. Доверие внутри «Корней» против личной лояльности человеку, который его привёл в это движение.",
+        "choices": [
+          {
+            "choiceId": "C08_EXPOSE_VIKTOR_PUBLICLY",
+            "text": "Разоблачить Виктора публично при остальных Корнях",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "K",
+                "value": -15
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              },
+              {
+                "type": "setFlag",
+                "key": "viktor_exposed_publicly",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D009_EXPOSE"
+          },
+          {
+            "choiceId": "C08_KEEP_SECRET",
+            "text": "Сохранить тайну между собой",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "viktor_exposed_publicly",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH08_WATCHERS_ARCHIVE_02_D009_SECRET"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D009_EXPOSE",
+        "speaker": "narrator",
+        "text": "Макс решает, что доверие внутри движения важнее личной лояльности одному человеку, даже такому харизматичному, как Виктор. Весть расходится быстро — часть Корней смотрит на своего лидера иначе, перешёптывается у стен штаба на 47-м этаже. Риск раскола реален, и Виктор это понимает в ту же секунду, как видит первые взгляды.",
+        "nextSceneId": "CH08_WATCHERS_ARCHIVE_03"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_02_D009_SECRET",
+        "speaker": "narrator",
+        "text": "Макс молчит, решая, что личная история Виктора — не повод для публичного суда, особенно учитывая, сколько раз сам Виктор рисковал ради движения с тех пор. Виктор замечает это молчание и запоминает его — Макс теперь держит рычаг, о котором Виктор знает, что он у него есть, и это меняет баланс между ними навсегда, пусть и незаметно для остальных.",
+        "nextSceneId": "CH08_WATCHERS_ARCHIVE_03"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH08_WATCHERS_ARCHIVE_03",
+    "title": "Глава 8. «Архив Смотрителей» — Побочное событие 3: файл отца",
+    "background": "archive_terminal",
+    "music": "mus_archive_mystery",
+    "ambience": "amb_archive_drone",
+    "nodes": [
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D001",
+        "speaker": "narrator",
+        "text": "На отдельном терминале в углу, явно не связанном с основной базой данных, — личный файл: «Техник Орлов. Уровень допуска аннулирован». Фотография — молодой мужчина лет тридцати с чертами, которые Макс узнаёт мгновенно, потому что видит их каждое утро в зеркале, только моложе. Дата — девять лет назад.",
+        "choices": [
+          {
+            "choiceId": "C08_OPEN_FATHER_FILE",
+            "text": "Открыть файл",
+            "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D001B_ASSEMBLE"
+          },
+          {
+            "choiceId": "C08_LEAVE_FILE_ALONE",
+            "text": "Не трогать",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "father_file_found",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D002_LEAVE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D001B_ASSEMBLE",
+        "speaker": "narrator",
+        "text": "Терминал откликается на обращение к файлу тревожным сигналом — защитный протокол Архива засёк нештатный доступ и начинает плановую очистку записи. У Макса остаются считанные секунды, чтобы собрать читаемый текст из рассыпавшихся на экране фрагментов кода, прежде чем система уничтожит данные сама.",
+        "minigameCue": {
+          "kind": "CodeAssembly",
+          "codeAssembly": {
+            "pairs": [
+              {
+                "cleanText": "СМОТРИТЕЛЬ: С. В. ОРЛОВ",
+                "corruptedHint": "СМ●ТР●ТЕЛЬ: С. ●. ОР●●В"
+              },
+              {
+                "cleanText": "ДОПУСК АННУЛИРОВАН",
+                "corruptedHint": "Д●ПУ●К АНН●Л●РОВАН"
+              },
+              {
+                "cleanText": "ПРЕЕМНИК ПОДТВЕРЖДЁН",
+                "corruptedHint": "ПРЕ●МН●К ПОД●ВЕРЖДЁН"
+              },
+              {
+                "cleanText": "ДАТА ЗАПИСИ: МИНУС 9 ЛЕТ",
+                "corruptedHint": "Д●ТА З●ПИСИ: МИН●С ● ЛЕТ"
+              },
+              {
+                "cleanText": "ОСНОВАНИЕ: КРОВНОЕ РОДСТВО",
+                "corruptedHint": "ОСН●ВАНИЕ: КР●ВНОЕ Р●ДСТВО"
+              }
+            ],
+            "timeLimitSeconds": 45,
+            "maxErrors": 3,
+            "hardModeFlag": "mg_ch8_archive_alert",
+            "hardTimeLimitSeconds": 32,
+            "hardMaxErrors": 2,
+            "decoys": [
+              "СМОТРИТЕЛЬ: С. В. ОРЛОВА",
+              "ДОПУСК ПОДТВЕРЖДЁН",
+              "ПРЕЕМНИК АННУЛИРОВАН",
+              "ДАТА ЗАПИСИ: МИНУС 6 ЛЕТ",
+              "ОСНОВАНИЕ: КРОВНОЕ РОДСТВО НЕ УСТАНОВЛЕНО"
+            ],
+            "decaySeconds": 2.2,
+            "maxDecayFraction": 0.65,
+            "errorTimePenalty": 5,
+            "shuffleSeconds": 7,
+            "comboWindowSeconds": 4,
+            "comboBonusSeconds": 3
+          },
+          "failureNodeId": "CH08_WATCHERS_ARCHIVE_03_D_ASSEMBLE_FAIL"
+        },
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D002_OPEN"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D002_OPEN",
+        "speaker": "narrator",
+        "text": "Помимо истории аннулирования допуска, в файле — архивная оговорка «о допустимом кровном правопреемстве», бюрократическая страховка, которую Совет когда-то разрешил вписывать Смотрителям технического уровня, чтобы редкие навыки оставались в доверенных семьях без публичной проверки нового кандидата. В графе предполагаемого преемника отец вписал имя и биометрический идентификатор самого Макса — девять лет назад, задолго до того, как у него появилась хоть какая-то причина думать, что сын когда-нибудь найдёт этот файл.",
+        "effects": [
+          {
+            "type": "addStat",
+            "key": "H",
+            "value": 5
+          },
+          {
+            "type": "setFlag",
+            "key": "father_file_found",
+            "value": true
+          }
+        ],
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D003_OPEN"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D003_OPEN",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Отец вписал меня. Девять лет назад, не зная, встречу ли я вообще когда-нибудь этот файл, не зная даже, буду ли я жив к тому моменту, он оставил мне дверь, которую, возможно, никто другой в этой башне не мог открыть.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D004_OPEN"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D004_OPEN",
+        "speaker": "viktor_savchuk",
+        "text": "(surprised) Орлов… твой отец работал в рейтинговом контуре? Почему ты никогда не говорил?",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D005_OPEN"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D005_OPEN",
+        "speaker": "max_orlov",
+        "text": "(angry) Потому что я сам узнал об этом буквально сейчас, Виктор. Всю жизнь мне говорили, что он «ушёл на повышение» и пропал. Теперь я держу в руках файл, который говорит что-то совсем другое.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D006"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D002_LEAVE",
+        "speaker": "narrator",
+        "text": "Макс отводит взгляд от терминала, рука замирает в нескольких сантиметрах от экрана. Что бы там ни было, оно останется погребённым ещё немного — не из страха, а потому что сейчас есть дела важнее собственного прошлого.",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D006"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D_ASSEMBLE_FAIL",
+        "speaker": "viktor_savchuk",
+        "text": "(резко) Уходим, Орлов, сейчас здесь будет патруль!",
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D_ASSEMBLE_FAIL2"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D_ASSEMBLE_FAIL2",
+        "speaker": "narrator",
+        "text": "Экран рассыпается помехами раньше, чем Макс успевает собрать текст целиком — защитный протокол Архива стирает файл до того, как он может его увидеть. В руках у Макса остаются только обрывки повреждённых данных, из которых ничего не восстановить.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "father_file_found",
+            "value": false
+          }
+        ],
+        "nextNodeId": "CH08_WATCHERS_ARCHIVE_03_D006"
+      },
+      {
+        "nodeId": "CH08_WATCHERS_ARCHIVE_03_D006",
+        "speaker": "narrator",
+        "text": "(Без этого файла недоступны ветки C и D в Главе 10.)",
+        "nextSceneId": "CH09_DEBTOR_GAME"
+      }
+    ]
+  }
+]

@@ -1,0 +1,222 @@
+<UserControl x:Class="ZeroFloor.Views.Controls.DossierAssemblyOverlayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="1080" d:DesignWidth="1920"
+             Visibility="{Binding ActiveDossierAssembly, Converter={StaticResource NullToVisibilityConverter}}">
+    <UserControl.Resources>
+        <FontFamily x:Key="DaFont">Segoe UI Variable Display, Segoe UI</FontFamily>
+        <FontFamily x:Key="DaType">Consolas, Courier New</FontFamily>
+
+        <!-- бумага листа досье -->
+        <LinearGradientBrush x:Key="PaperBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#E9E1CC" Offset="0"/>
+            <GradientStop Color="#D9CFB4" Offset="0.6"/>
+            <GradientStop Color="#C9BC9C" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="ScrapBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#F1EAD6" Offset="0"/>
+            <GradientStop Color="#DCD1B6" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- рваный край обрывка -->
+        <Geometry x:Key="TornClip">M0,4 L18,0 L40,3 L70,0 L100,4 L130,1 L160,5 L200,0 L240,3 L280,0 L300,4 L300,58 L276,62 L250,58 L220,63 L190,59 L150,63 L120,58 L90,62 L60,59 L30,63 L0,59 Z</Geometry>
+
+        <Style x:Key="CardButton" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid DataContext="{Binding ActiveDossierAssembly}">
+        <!-- затемнение и «стол» -->
+        <Border>
+            <Border.Background>
+                <RadialGradientBrush RadiusX="0.85" RadiusY="0.9">
+                    <GradientStop Color="#EE14171C" Offset="0"/>
+                    <GradientStop Color="#FA06070A" Offset="1"/>
+                </RadialGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Grid Margin="80,56,80,48">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- заголовок, время, ошибки -->
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="АРХИВ СМОТРИТЕЛЕЙ · ТЕРМИНАЛ 8.2" FontFamily="{StaticResource DaFont}" FontSize="14" FontWeight="SemiBold" Foreground="#F2B347"/>
+                    <TextBlock Text="Сборка досье" FontFamily="{StaticResource DaFont}" FontSize="40" FontWeight="Bold" Foreground="#F2F5F8" Margin="0,2,0,0"/>
+                    <TextBlock Text="Разложите обрывки по полям — по смыслу: термины, даты, должности. Перетащите обрывок или выберите его и нажмите на поле."
+                               FontFamily="{StaticResource DaFont}" FontSize="16" Foreground="#9AA6B5" Margin="0,6,0,0"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="360">
+                    <Grid>
+                        <TextBlock Text="ДО ОЧИСТКИ ЗАПИСЕЙ" FontFamily="{StaticResource DaFont}" FontSize="13" FontWeight="SemiBold" Foreground="#9AA6B5"/>
+                        <TextBlock Text="{Binding TimeText}" FontFamily="{StaticResource DaFont}" FontSize="13" FontWeight="SemiBold" Foreground="#F2F5F8" HorizontalAlignment="Right"/>
+                    </Grid>
+                    <Grid Height="8" Margin="0,8,0,12">
+                        <Border Background="#22FFFFFF" CornerRadius="4"/>
+                        <Border x:Name="TimeFill" HorizontalAlignment="Left" CornerRadius="4" Background="#F2B347"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock FontFamily="{StaticResource DaFont}" FontSize="14" Foreground="#C9D2DC">
+                            <Run Text="Собрано "/><Run Text="{Binding PlacedCount, Mode=OneWay}" FontWeight="Bold" Foreground="#F2F5F8"/><Run Text=" из "/><Run Text="{Binding TotalCount, Mode=OneWay}"/>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Right" FontFamily="{StaticResource DaFont}" FontSize="14" Foreground="#C9D2DC">
+                            <Run Text="Права на ошибку: "/><Run Text="{Binding MistakesLeft, Mode=OneWay}" FontWeight="Bold" Foreground="#FF8A7A"/>
+                        </TextBlock>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <!-- листы досье + стол с обрывками -->
+            <Grid Grid.Row="1" Margin="0,28,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ItemsControl ItemsSource="{Binding Sheets}" Grid.ColumnSpan="3">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{StaticResource PaperBrush}" CornerRadius="4" Margin="20,0" Padding="28,22,28,26">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="30" ShadowDepth="8" Opacity="0.6"/>
+                                </Border.Effect>
+                                <StackPanel>
+                                    <Grid>
+                                        <TextBlock Text="ДОСЬЕ · ДОПУСК К КОНТУРУ РЕЙТИНГА" FontFamily="{StaticResource DaType}" FontSize="12" Foreground="#7A6A4E"/>
+                                        <Border HorizontalAlignment="Right" BorderBrush="#A3352A" BorderThickness="2" CornerRadius="3" Padding="6,1" RenderTransformOrigin="0.5,0.5">
+                                            <Border.RenderTransform>
+                                                <RotateTransform Angle="-8"/>
+                                            </Border.RenderTransform>
+                                            <TextBlock Text="СЕКРЕТНО" FontFamily="{StaticResource DaType}" FontSize="12" FontWeight="Bold" Foreground="#A3352A"/>
+                                        </Border>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Title}" FontFamily="{StaticResource DaType}" FontSize="26" FontWeight="Bold" Foreground="#2A2218" Margin="0,8,0,14"/>
+                                    <ItemsControl ItemsSource="{Binding Slots}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0,0,0,10">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="150"/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding Label}" FontFamily="{StaticResource DaType}" FontSize="14" Foreground="#5A4C38" VerticalAlignment="Center"/>
+                                                    <Button Grid.Column="1" Style="{StaticResource CardButton}" Click="OnSlotClick" Tag="{Binding}"
+                                                            AllowDrop="True" Drop="OnSlotDrop" DragEnter="OnSlotDragEnter" DragLeave="OnSlotDragLeave">
+                                                        <Border x:Name="SlotBorder" MinHeight="46" CornerRadius="3" BorderThickness="1.5" BorderBrush="#8A7A5C" Background="#22000000" Padding="12,8">
+                                                            <TextBlock x:Name="SlotText" Text="{Binding PlacedText}" FontFamily="{StaticResource DaType}" FontSize="15" Foreground="#1E1810" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </Button>
+                                                </Grid>
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding IsFilled}" Value="True">
+                                                        <Setter TargetName="SlotBorder" Property="Background" Value="{StaticResource ScrapBrush}"/>
+                                                        <Setter TargetName="SlotBorder" Property="BorderBrush" Value="#3F7A68"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsFilled}" Value="False">
+                                                        <Setter TargetName="SlotBorder" Property="BorderThickness" Value="1.5"/>
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- обрывки на столе -->
+                <ItemsControl Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Cards}" Margin="0,30,0,0" VerticalAlignment="Top">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource CardButton}" Margin="12,10" Click="OnCardClick" Tag="{Binding}"
+                                    PreviewMouseLeftButtonDown="OnCardMouseDown" PreviewMouseMove="OnCardMouseMove">
+                                <Grid x:Name="Card" Width="300" Height="64" RenderTransformOrigin="0.5,0.5">
+                                    <Grid.RenderTransform>
+                                        <TransformGroup>
+                                            <RotateTransform Angle="{Binding Tilt}"/>
+                                            <TranslateTransform x:Name="Shake"/>
+                                        </TransformGroup>
+                                    </Grid.RenderTransform>
+                                    <Path x:Name="Paper" Data="{StaticResource TornClip}" Fill="{StaticResource ScrapBrush}" Stretch="Fill" Stroke="#00000000">
+                                        <Path.Effect>
+                                            <DropShadowEffect BlurRadius="14" ShadowDepth="4" Opacity="0.55"/>
+                                        </Path.Effect>
+                                    </Path>
+                                    <TextBlock Text="{Binding Text}" FontFamily="{StaticResource DaType}" FontSize="14" Foreground="#231C12"
+                                               TextWrapping="Wrap" Margin="16,8" VerticalAlignment="Center" TextAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                    <Setter TargetName="Paper" Property="Stroke" Value="#F2B347"/>
+                                    <Setter TargetName="Paper" Property="StrokeThickness" Value="3"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsPlaced}" Value="True">
+                                    <Setter TargetName="Card" Property="Opacity" Value="0.12"/>
+                                    <Setter TargetName="Card" Property="IsHitTestVisible" Value="False"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+
+        <!-- итог -->
+        <Grid Visibility="{Binding IsFinished, Converter={StaticResource BoolToVisibilityConverter}}" Background="#B0060910">
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Background="#F20E131B"
+                    BorderBrush="#2EFFFFFF" BorderThickness="1" CornerRadius="18" Padding="40,34">
+                <StackPanel>
+                    <TextBlock Text="ИТОГ" FontFamily="{StaticResource DaFont}" FontSize="13" FontWeight="SemiBold" Foreground="#F2B347"/>
+                    <TextBlock Text="{Binding ResultTitle}" FontFamily="{StaticResource DaFont}" FontSize="32" FontWeight="Bold" Foreground="#F2F5F8" Margin="0,4,0,10"/>
+                    <TextBlock Text="{Binding ResultText}" FontFamily="{StaticResource DaFont}" FontSize="17" Foreground="#C9D2DC" TextWrapping="Wrap"/>
+                    <Button Content="Продолжить" Command="{Binding ContinueCommand}" Margin="0,26,0,0" Cursor="Hand" HorizontalAlignment="Left">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="Bd" Background="#F2B347" CornerRadius="10" Padding="26,12">
+                                    <TextBlock Text="{TemplateBinding Content}" FontFamily="Segoe UI" FontSize="18" FontWeight="SemiBold" Foreground="#1A1206"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="#FFC766"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

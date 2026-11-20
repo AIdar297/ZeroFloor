@@ -1,0 +1,161 @@
+[
+  {
+    "sceneId": "DEMO_ANIM_1_ARRIVAL",
+    "background": "demo_bg_dusk",
+    "backgroundTransition": { "durationMs": 1000, "enableParallax": true },
+    "ambientEffect": "Dust",
+    "music": "test_tone_music",
+    "ambience": "test_tone_ambience",
+    "nodes": [
+      {
+        "nodeId": "N001",
+        "speaker": "РАССКАЗЧИК",
+        "text": "[ДЕМО АУДИО+АНИМАЦИЙ] Фоновая музыка и шум окружения начались плавным нарастанием (requirement 5). Персонаж появляется за 700 мс (requirement №1).",
+        "characterCues": [
+          { "characterId": "max", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 700 }
+        ],
+        "nextNodeId": "N002"
+      },
+      {
+        "nodeId": "N002",
+        "speaker": "Макс",
+        "text": "[ДЕМО] Пока вы читаете, я едва заметно покачиваюсь вверх-вниз — requirement №6. Фон вокруг меня тоже чуть дрейфует (параллакс, №9). У этой реплики есть привязка к озвучке, но файла нет — это намеренно: проверка корректной работы без озвучки (см. CLAUDE.md).",
+        "voiceClip": "max/demo_arrival_n002",
+        "nextNodeId": "N003"
+      },
+      {
+        "nodeId": "N003",
+        "speaker": "Макс",
+        "text": "[ДЕМО] Экран выбора: отдельная панель вариантов, плавно появляющаяся (requirement №11). Переключайтесь стрелками или мышью. (Звук клика — requirement №3.)",
+        "soundEffects": [ "test_click" ],
+        "choices": [
+          {
+            "choiceId": "DEMO1_MOVE",
+            "text": "[Демо] Шагнуть влево (requirement №2 — перемещение)",
+            "nextNodeId": "N004_MOVE"
+          },
+          {
+            "choiceId": "DEMO1_SCALE",
+            "text": "[Демо] Стать крупнее (requirement №3 — масштаб)",
+            "nextNodeId": "N004_SCALE"
+          }
+        ]
+      },
+      {
+        "nodeId": "N004_MOVE",
+        "speaker": "Макс",
+        "text": "[ДЕМО] Плавно переместился влево — requirement №2. Дальше — смена фона с кроссфейдом (№8).",
+        "characterCues": [
+          { "characterId": "max", "kind": "MoveTo", "position": "Left", "durationMs": 900 }
+        ],
+        "nextSceneId": "DEMO_ANIM_2_CAMERA"
+      },
+      {
+        "nodeId": "N004_SCALE",
+        "speaker": "Макс",
+        "text": "[ДЕМО] Масштаб плавно увеличен — requirement №3. Дальше — смена фона с кроссфейдом (№8).",
+        "characterCues": [
+          { "characterId": "max", "kind": "ScaleTo", "scale": 1.15, "durationMs": 900 }
+        ],
+        "nextSceneId": "DEMO_ANIM_2_CAMERA"
+      }
+    ]
+  },
+  {
+    "sceneId": "DEMO_ANIM_2_CAMERA",
+    "background": "demo_bg_industrial",
+    "backgroundTransition": { "durationMs": 1100, "enableParallax": true },
+    "ambientEffect": "Haze",
+    "music": "test_tone_music_alt",
+    "nodes": [
+      {
+        "nodeId": "N001",
+        "speaker": "Макс",
+        "text": "[ДЕМО] Новый фон — кроссфейд (№8) и лёгкая дымка окружения (№12). Музыка плавно сменилась на другую тему (requirement №6), а шум окружения прежней сцены плавно затих, т.к. здесь он не задан. Теперь камера слегка приближается (requirement №4) под лёгкий свист (SFX).",
+        "cameraCue": { "kind": "ZoomIn", "amount": 1.08, "durationMs": 2200 },
+        "soundEffects": [ "test_whoosh" ],
+        "nextNodeId": "N002"
+      },
+      {
+        "nodeId": "N002",
+        "speaker": "Макс",
+        "text": "[ДЕМО] А теперь камера слегка отдаляется — requirement №5.",
+        "cameraCue": { "kind": "ZoomOut", "amount": 0.97, "durationMs": 2200 },
+        "nextNodeId": "N003"
+      },
+      {
+        "nodeId": "N003",
+        "speaker": "Макс",
+        "text": "[ДЕМО] И возвращается к обычному плану.",
+        "cameraCue": { "kind": "Reset", "durationMs": 1600 },
+        "nextNodeId": "N004"
+      },
+      {
+        "nodeId": "N004",
+        "speaker": "Макс",
+        "text": "[ДЕМО] Экран плавно затемняется — requirement №7.",
+        "screenFadeCue": { "kind": "FadeToBlack", "durationMs": 900 },
+        "nextNodeId": "N005"
+      },
+      {
+        "nodeId": "N005",
+        "speaker": "Макс",
+        "text": "[ДЕМО] ...и плавно осветляется обратно. Пока было темно, я незаметно ушёл со сцены (исчезновение, №1).",
+        "characterCues": [
+          { "characterId": "max", "kind": "Exit", "durationMs": 600 }
+        ],
+        "screenFadeCue": { "kind": "FadeFromBlack", "durationMs": 900 },
+        "nextSceneId": "DEMO_ANIM_3_FINALE"
+      }
+    ]
+  },
+  {
+    "sceneId": "DEMO_ANIM_3_FINALE",
+    "background": "demo_bg_dawn",
+    "backgroundTransition": { "durationMs": 1000, "enableParallax": false },
+    "ambientEffect": "Flicker",
+    "music": "test_tone_music",
+    "ambience": "test_tone_ambience",
+    "nodes": [
+      {
+        "nodeId": "N001",
+        "speaker": "РАССКАЗЧИК",
+        "text": "[ДЕМО] Последняя сцена: лёгкое мерцание освещения (requirement №12) и фон БЕЗ параллакса — параллакс уместен не всегда (requirement №9). Музыка и шум окружения снова плавно сменились.",
+        "characterCues": [
+          { "characterId": "ania", "kind": "Enter", "position": "CenterRight", "scale": 1.0, "durationMs": 700 }
+        ],
+        "nextNodeId": "N002"
+      },
+      {
+        "nodeId": "N002",
+        "speaker": "Аня",
+        "text": "[ДЕМО] Все эффекты показаны: музыка, окружение, звуковые эффекты и — по кнопке 🔊 рядом с именем — повтор озвучки реплики, если она привязана и файл существует. У этой реплики привязка тоже есть, но файла снова нет — специально, для проверки отсутствия ошибки.",
+        "voiceClip": "ania/demo_finale_n002",
+        "nextNodeId": "N003"
+      },
+      {
+        "nodeId": "N003",
+        "speaker": "Аня",
+        "text": "[ДЕМО] Что дальше?",
+        "choices": [
+          {
+            "choiceId": "DEMO3_RESTART",
+            "text": "[Демо] Начать демонстрацию заново",
+            "nextSceneId": "DEMO_ANIM_1_ARRIVAL"
+          },
+          {
+            "choiceId": "DEMO3_STAY",
+            "text": "[Демо] Задержаться ещё немного",
+            "nextNodeId": "N004"
+          }
+        ]
+      },
+      {
+        "nodeId": "N004",
+        "speaker": "Аня",
+        "text": "[ДЕМО] Хорошо. Нажмите «Продолжить», чтобы всё равно начать заново.",
+        "nextSceneId": "DEMO_ANIM_1_ARRIVAL"
+      }
+    ]
+  }
+]

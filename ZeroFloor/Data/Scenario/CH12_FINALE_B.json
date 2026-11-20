@@ -1,0 +1,208 @@
+[
+  {
+    "sceneId": "CH12_FINALE_B",
+    "title": "Глава 12.B. Финал — «Обрушение Вертикали» (END_01_COLLAPSE)",
+    "background": "server_cathedral",
+    "music": "mus_core_climax",
+    "ambience": "amb_core_cathedral",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_B_D001",
+        "speaker": "narrator",
+        "text": "Погружённая в темноту башня медленно, этаж за этажом, начинает зажигаться заново — без рейтинговых фильтров, впервые за историю Атласа, светом, который принадлежит просто людям, а не их коэффициентам.",
+        "nextNodeId": "CH12_FINALE_B_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_D002",
+        "speaker": "narrator",
+        "text": "Макс и Аня стоят на разрушенной смотровой площадке, смотрят на эту темноту, которая учится светиться по-новому, неравномерно, местами мигая, но настоящим светом.",
+        "nextNodeId": "CH12_FINALE_B_D003"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_D003",
+        "speaker": "ania_levitskaya",
+        "text": "(tired) Я больше никогда не подключусь ни к одному интерфейсу. Ни одному, ни разу, до конца жизни. Знаешь, странно — я думала, это будет чувствоваться как потеря. Чувствуется как ампутация боли, которая мне никогда не принадлежала, которую мне навязали в семь лет без единого вопроса.",
+        "nextNodeId": "CH12_FINALE_B_D004"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_D004",
+        "speaker": "max_orlov",
+        "text": "(sad) Ты в порядке?",
+        "nextNodeId": "CH12_FINALE_B_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_D005",
+        "speaker": "ania_levitskaya",
+        "text": "(soft) Жива. Свободна от роли, которую мне навязали в семь лет, задолго до того, как я вообще могла понимать, что значит слово «согласие». Это больше, чем «в порядке», Макс. Это первый день моей жизни, который принадлежит только мне.",
+        "nextSceneId": "CH12_FINALE_B_EPILOGUE"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH12_FINALE_B_EPILOGUE",
+    "title": "Глава 12.B. Финал — Эпилоговые карточки",
+    "background": "ending_b_collapse",
+    "music": "mus_finale_collapse",
+    "ambience": "amb_core_cathedral",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_VIKTOR_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12B_VIKTOR_EXPOSED_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "viktor_exposed_publicly",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_B_EPILOGUE_VIKTOR_EXPOSED"
+          },
+          {
+            "choiceId": "C12B_VIKTOR_HIDDEN_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "viktor_exposed_publicly",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_B_EPILOGUE_VIKTOR_PLAIN"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_VIKTOR_EXPOSED",
+        "speaker": "narrator",
+        "text": "Карточка 1. Виктор становится публичным лицом новой безрейтинговой башни, несёт вину открыто, рассказывая каждому, кто спросит, о коде, который он написал одиннадцать лет назад — но теряет лидерство ещё раньше, заменённый более радикальным голосом Корней, не готовым прощать прошлое так легко.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_VIKTOR_PLAIN",
+        "speaker": "narrator",
+        "text": "Карточка 1. Виктор становится публичным лицом новой безрейтинговой башни, несёт вину открыто, рассказывая каждому, кто спросит, о коде, который он написал одиннадцать лет назад.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_D002",
+        "speaker": "narrator",
+        "text": "Карточка 2. Вессель теряет всякую власть, попадает под суд новых районных советов, формирующихся стихийно на каждом этаже, который успел организоваться за первую неделю хаоса.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_D003"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_D003",
+        "speaker": "narrator",
+        "text": "Карточка 3. Гоша теряет монопольный рынок, но выживает, перестраивая бизнес на честную торговлю — впервые за много лет без необходимости оглядываться на субсидии сверху.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_D004"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_D004",
+        "speaker": "narrator",
+        "text": "Карточка 4. Леонид либо исчезает из вида, покидая башню вместе с остатками старой элиты, либо становится голосом примирения бывшей элиты с новым порядком.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_D005",
+        "speaker": "narrator",
+        "text": "Карточка 5. Соня уходит в тень, недовольная тем, что ключ использован так резко, без той тонкой, многолетней работы, которую она планировала провести сама.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_EVAC_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_EVAC_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12B_EVAC_TRUE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "evac_chosen",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_B_EPILOGUE_EVAC_SUCCESS"
+          },
+          {
+            "choiceId": "C12B_EVAC_FALSE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "evac_chosen",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_B_EPILOGUE_EVAC_CASUALTIES"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_EVAC_SUCCESS",
+        "speaker": "narrator",
+        "text": "Карточка 6. Лифты встают на несколько недель — не из-за отсутствия ключа, а из-за каскадного срабатывания аварийных автоматов питания, которые нужно вручную включать обратно, этаж за этажом, бригадами техников вроде того, кем Макс был ещё недавно. Удалось предупредить и эвакуировать большинство — хаос, но управляемый. Шлюзы Короны открываются физически впервые за десятилетия.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_D007"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_EVAC_CASUALTIES",
+        "speaker": "narrator",
+        "text": "Карточка 6. Лифты встают на несколько недель — не из-за отсутствия ключа, а из-за каскадного срабатывания аварийных автоматов питания, которые нужно вручную включать обратно, этаж за этажом, бригадами техников вроде того, кем Макс был ещё недавно. Пострадали те, кто не успел уйти — цена, которую никто не хотел платить, но заплатили. Шлюзы Короны открываются физически впервые за десятилетия.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_D007"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_D007",
+        "speaker": "narrator",
+        "text": "Часть элиты бежит на закрытые площадки снаружи башни, в непригодную для жизни зону, о которой никто ничего толком не знает — намёк на то, что история Атласа ещё не закончена. Часть остаётся и, болезненно, учится жить без привилегий, которые считала естественным порядком вещей. Тяжёлый, но свободный переходный период начинается, без гарантий, без расписания, составленного заранее кем-то другим.",
+        "nextNodeId": "CH12_FINALE_B_EPILOGUE_PRESS_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_PRESS_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12B_PRESS_TRUE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_B_EPILOGUE_PRESS"
+          },
+          {
+            "choiceId": "C12B_PRESS_FALSE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_B_TONE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_B_EPILOGUE_PRESS",
+        "speaker": "narrator",
+        "text": "Статья журналиста Средних этажей, вышедшая задолго до обрушения, теперь читается как раннее предупреждение, которое никто не услышал вовремя.",
+        "nextNodeId": "CH12_FINALE_B_TONE"
+      },
+      {
+        "nodeId": "CH12_FINALE_B_TONE",
+        "speaker": "max_orlov",
+        "text": "Выбор 12 — тон финальной реплики (флейвор, не ставит флагов, обращение к башне).",
+        "choices": [
+          {
+            "choiceId": "C12B_TONE_PUBLIC_STATEMENT",
+            "text": "Публичное заявление",
+            "endingId": "END_01_COLLAPSE"
+          },
+          {
+            "choiceId": "C12B_TONE_SILENT_DEPARTURE",
+            "text": "Молчаливый уход",
+            "endingId": "END_01_COLLAPSE"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZeroFloor\ZeroFloor.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Fixtures\**\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Реальный демонстрационный сценарий (не тестовая фикстура) — копируется сюда же,
+         чтобы AnimationShowcaseScenarioTests могли прогнать его тем же движком, не завися
+         от хрупких относительных путей вида "..\..\..\..\". -->
+    <None Include="..\ZeroFloor\Data\Demo\**\*.json" CopyToOutputDirectory="PreserveNewest">
+      <Link>DemoScenario\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Реальный реестр персонажей и их изображения (не тестовые фикстуры) — копируются сюда же,
+         чтобы AssetServiceTests могли проверить фактическое подключение изображений этой задачи,
+         а не выдуманный тестовый реестр. -->
+    <None Include="..\ZeroFloor\Data\Characters\characters.json" CopyToOutputDirectory="PreserveNewest">
+      <Link>ProjectData\Characters\characters.json</Link>
+    </None>
+    <None Include="..\ZeroFloor\Assets\Characters\**\*.png" CopyToOutputDirectory="PreserveNewest">
+      <Link>ProjectData\Assets\Characters\%(Filename)%(Extension)</Link>
+    </None>
+    <None Include="..\ZeroFloor\Data\Backgrounds\backgrounds.json" CopyToOutputDirectory="PreserveNewest">
+      <Link>ProjectData\Backgrounds\backgrounds.json</Link>
+    </None>
+    <None Include="..\ZeroFloor\Assets\Backgrounds\**\*.png" CopyToOutputDirectory="PreserveNewest">
+      <Link>ProjectData\Assets\Backgrounds\%(Filename)%(Extension)</Link>
+    </None>
+    <None Include="..\ZeroFloor\Assets\Backgrounds\**\*.jpg" CopyToOutputDirectory="PreserveNewest">
+      <Link>ProjectData\Assets\Backgrounds\%(Filename)%(Extension)</Link>
+    </None>
+  </ItemGroup>
+
+</Project>

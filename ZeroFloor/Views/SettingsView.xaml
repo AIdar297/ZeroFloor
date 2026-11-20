@@ -1,0 +1,82 @@
+<UserControl x:Class="ZeroFloor.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="1080" d:DesignWidth="1920"
+             Background="{StaticResource StageBackgroundBrush}">
+    <Grid Margin="140,90,140,70">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="НАСТРОЙКИ" Style="{StaticResource HeadingTextStyle}" FontSize="32"
+                   Margin="0,0,0,30"/>
+
+        <ScrollViewer Grid.Row="1" Style="{StaticResource ThemedScrollViewerStyle}" VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="640" HorizontalAlignment="Left">
+
+            <TextBlock Text="Общая громкость (Master)" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}"/>
+            <Slider Style="{StaticResource ThemedSliderStyle}" Minimum="0" Maximum="1" Value="{Binding MasterVolume}" Margin="0,8,0,24"/>
+
+            <TextBlock Text="Громкость музыки" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}"/>
+            <Slider Style="{StaticResource ThemedSliderStyle}" Minimum="0" Maximum="1" Value="{Binding MusicVolume}" Margin="0,8,0,24"/>
+
+            <TextBlock Text="Громкость звуковых эффектов" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}"/>
+            <Slider Style="{StaticResource ThemedSliderStyle}" Minimum="0" Maximum="1" Value="{Binding SfxVolume}" Margin="0,8,0,24"/>
+
+            <TextBlock Text="Громкость фоновых звуков (Ambience)" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}"/>
+            <Slider Style="{StaticResource ThemedSliderStyle}" Minimum="0" Maximum="1" Value="{Binding AmbienceVolume}" Margin="0,8,0,24"/>
+
+            <TextBlock Text="Громкость озвучки (Voice)" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}"/>
+            <Slider Style="{StaticResource ThemedSliderStyle}" Minimum="0" Maximum="1" Value="{Binding VoiceVolume}" Margin="0,8,0,24"/>
+
+            <TextBlock Text="Масштаб интерфейса" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}"/>
+            <Slider Style="{StaticResource ThemedSliderStyle}" Minimum="0.8" Maximum="1.3" Value="{Binding UiScale}" Margin="0,8,0,24"/>
+
+            <TextBlock Text="Скорость текста" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,8"/>
+            <ComboBox Style="{StaticResource ThemedComboBoxStyle}"
+                      ItemContainerStyle="{StaticResource ThemedComboBoxItemStyle}"
+                      ItemsSource="{Binding TextSpeedOptions}"
+                      SelectedItem="{Binding TextSpeed}"
+                      Width="220" HorizontalAlignment="Left" Margin="0,0,0,24"/>
+
+            <TextBlock Text="Анимации" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,8"/>
+            <ComboBox Style="{StaticResource ThemedComboBoxStyle}"
+                      ItemContainerStyle="{StaticResource ThemedComboBoxItemStyle}"
+                      ItemsSource="{Binding AnimationLevelOptions}"
+                      SelectedItem="{Binding AnimationLevel}"
+                      Width="220" HorizontalAlignment="Left" Margin="0,0,0,24"/>
+
+            <CheckBox Content="Автоматическое продолжение диалогов" Style="{StaticResource ThemedCheckBoxStyle}"
+                      IsChecked="{Binding AutoAdvanceEnabled}" Margin="0,0,0,8"/>
+
+            <TextBlock Text="Скорость автоматического режима" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}"/>
+            <Slider Style="{StaticResource ThemedSliderStyle}" Minimum="0.5" Maximum="8" Value="{Binding AutoAdvanceDelaySeconds}" Margin="0,8,0,24"/>
+
+            <CheckBox Content="Разрешить пропуск непрочитанного текста" Style="{StaticResource ThemedCheckBoxStyle}"
+                      IsChecked="{Binding AllowSkipUnread}" Margin="0,0,0,8"/>
+
+            <CheckBox Content="Отключить таймер ответа на допросе" Style="{StaticResource ThemedCheckBoxStyle}"
+                      IsChecked="{Binding DisableChoiceTimers}" Margin="0,0,0,24"/>
+
+            <CheckBox Content="Полноэкранный режим" Style="{StaticResource ThemedCheckBoxStyle}"
+                      IsChecked="{Binding IsFullscreen}" Margin="0,0,0,8"/>
+
+            <TextBlock Text="Разрешение окна" Style="{StaticResource BodyTextStyle}" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,8"
+                       Visibility="{Binding IsFullscreen, Converter={StaticResource InverseBoolToVisibilityConverter}}"/>
+            <ComboBox Style="{StaticResource ThemedComboBoxStyle}"
+                      ItemContainerStyle="{StaticResource ThemedComboBoxItemStyle}"
+                      ItemsSource="{Binding WindowResolutionOptions}"
+                      SelectedItem="{Binding WindowResolution}"
+                      Visibility="{Binding IsFullscreen, Converter={StaticResource InverseBoolToVisibilityConverter}}"
+                      Width="220" HorizontalAlignment="Left" Margin="0,0,0,8"/>
+        </StackPanel>
+        </ScrollViewer>
+
+        <Button Grid.Row="2" Content="Назад" Style="{StaticResource SecondaryButtonStyle}" Command="{Binding BackCommand}"
+                HorizontalAlignment="Left" Margin="0,24,0,0"/>
+    </Grid>
+</UserControl>

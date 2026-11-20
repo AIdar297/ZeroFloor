@@ -1,0 +1,134 @@
+[
+  {
+    "sceneId": "DEMO_CHAR_1_GALLERY",
+    "background": "demo_bg_dusk",
+    "backgroundTransition": { "durationMs": 600, "enableParallax": false },
+    "nodes": [
+      {
+        "nodeId": "N01",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 1/9 — Макс Орлов. id: max_orlov",
+        "characterCues": [
+          { "characterId": "max_orlov", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N02"
+      },
+      {
+        "nodeId": "N02",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 2/9 — Аня Левицкая. id: ania_levitskaya",
+        "characterCues": [
+          { "characterId": "max_orlov", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "ania_levitskaya", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N03"
+      },
+      {
+        "nodeId": "N03",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 3/9 — Виктор Савчук «Корень». id: viktor_savchuk (у исходника нет альфа-канала — фон будет непрозрачным, это ожидаемо)",
+        "characterCues": [
+          { "characterId": "ania_levitskaya", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "viktor_savchuk", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N04"
+      },
+      {
+        "nodeId": "N04",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 4/9 — Ирина Вессель. id: irina_wessel",
+        "characterCues": [
+          { "characterId": "viktor_savchuk", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "irina_wessel", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N05"
+      },
+      {
+        "nodeId": "N05",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 5/9 — Гоша «Хром» Ковальчук. id: gosha_kovalchuk",
+        "characterCues": [
+          { "characterId": "irina_wessel", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "gosha_kovalchuk", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N06"
+      },
+      {
+        "nodeId": "N06",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 6/9 — Дэн Ковальски. id: dan_kovalski",
+        "characterCues": [
+          { "characterId": "gosha_kovalchuk", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "dan_kovalski", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N07"
+      },
+      {
+        "nodeId": "N07",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 7/9 — Леонид Арсеньев-Крон. id: leonid_arsenev_kron",
+        "characterCues": [
+          { "characterId": "dan_kovalski", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "leonid_arsenev_kron", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N08"
+      },
+      {
+        "nodeId": "N08",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 8/9 — Соня Рейс. id: sonya_reis",
+        "characterCues": [
+          { "characterId": "leonid_arsenev_kron", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "sonya_reis", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N09"
+      },
+      {
+        "nodeId": "N09",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПРОВЕРКА ПЕРСОНАЖЕЙ] 9/9 — Орлов-старший (Смотритель Крайнев). id: orlov_senior",
+        "characterCues": [
+          { "characterId": "sonya_reis", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "orlov_senior", "kind": "Enter", "position": "Center", "scale": 1.0, "durationMs": 300 }
+        ],
+        "nextNodeId": "N10"
+      },
+      {
+        "nodeId": "N10",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ОДНОВРЕМЕННЫЙ ПОКАЗ] Три персонажа сразу, разный масштаб/положение/порядок отрисовки: Макс (слева, масштаб 0.85), Аня (центр, масштаб 1.15, рисуется поверх остальных), Виктор (справа, смещён ниже базовой линии на 40px, масштаб 0.9).",
+        "characterCues": [
+          { "characterId": "orlov_senior", "kind": "Exit", "durationMs": 200 },
+          { "characterId": "max_orlov", "kind": "Enter", "position": "Left", "scale": 0.85, "zIndex": 0, "durationMs": 400 },
+          { "characterId": "ania_levitskaya", "kind": "Enter", "position": "Center", "scale": 1.15, "zIndex": 2, "durationMs": 400 },
+          { "characterId": "viktor_savchuk", "kind": "Enter", "position": "Right", "scale": 0.9, "verticalOffset": 40, "zIndex": 0, "durationMs": 400 }
+        ],
+        "nextNodeId": "N11"
+      },
+      {
+        "nodeId": "N11",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО: ПЕРЕМЕЩЕНИЕ] Макс и Аня меняются местами (MoveTo), Виктор увеличивается (ScaleTo) — проверка, что положение и масштаб можно менять уже после появления.",
+        "characterCues": [
+          { "characterId": "max_orlov", "kind": "MoveTo", "position": "CenterRight", "durationMs": 700 },
+          { "characterId": "ania_levitskaya", "kind": "MoveTo", "position": "CenterLeft", "durationMs": 700 },
+          { "characterId": "viktor_savchuk", "kind": "ScaleTo", "scale": 1.1, "durationMs": 700 }
+        ],
+        "nextNodeId": "N12"
+      },
+      {
+        "nodeId": "N12",
+        "speaker": "ПРОВЕРКА СПРАЙТОВ",
+        "text": "[ДЕМО] Проверка окончена.",
+        "characterCues": [
+          { "characterId": "max_orlov", "kind": "Exit", "durationMs": 300 },
+          { "characterId": "ania_levitskaya", "kind": "Exit", "durationMs": 300 },
+          { "characterId": "viktor_savchuk", "kind": "Exit", "durationMs": 300 }
+        ],
+        "choices": [
+          { "choiceId": "CHAR_DEMO_RESTART", "text": "[Демо] Начать заново", "nextNodeId": "N01" }
+        ]
+      }
+    ]
+  }
+]

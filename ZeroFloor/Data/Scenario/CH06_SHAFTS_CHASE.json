@@ -1,0 +1,227 @@
+[
+  {
+    "sceneId": "CH06_SHAFTS_CHASE",
+    "title": "Глава 6. «Шахты» — Погоня через технические стволы 140–160 этажей",
+    "background": "technical_shafts",
+    "music": "mus_stealth_tension",
+    "ambience": "amb_tech_shafts",
+    "nodes": [
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D001",
+        "speaker": "narrator",
+        "text": "После допроса на Макса навешан статус «объект наблюдения» — формулировка, звучащая канцелярски сухо для того, что на деле означает: за ним следят постоянно, а не выборочно. Стандартные лифты блокированы для его бейджа — панель просто мигает красным и выдаёт вежливый отказ голосом ВЕРТИКАЛИ. Единственный путь вниз — технические стволы, которые Макс знает лучше, чем собственную квартиру, потому что провёл в них половину взрослой жизни.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Center",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH06_SHAFTS_CHASE_D002"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D002",
+        "speaker": "narrator",
+        "text": "Патрули перекрывают стандартные лифты один за другим — Макс слышит щелчки реле где-то над головой, будто башня сама захлопывает двери перед ним. Слышны шаги, лязг решёток, где-то обрушивается секция настила — звук, который Макс различает даже сквозь гул крови в ушах, потому что он слышал его раньше, на этой же работе, только тогда речь шла о безопасности пассажиров, а не о его собственной.",
+        "nextNodeId": "CH06_SHAFTS_CHASE_D003"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D003",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Он бежит не от людей — он бежит от системы, которая впервые смотрит прямо на него, а не сквозь него, как смотрела всю жизнь.",
+        "nextNodeId": "CH06_SHAFTS_CHASE_D003B_STEALTH"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D003B_STEALTH",
+        "speaker": "narrator",
+        "text": "Патрульные дроны перекрывают ствол впереди, разворачивая поисковые прожекторы веером по полу — Максу нужно проскочить между их маршрутами, прячась за грузовыми ящиками и трубами, и добраться до служебного люка на той стороне.",
+        "nextNodeId": "CH06_SHAFTS_CHASE_D004"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D004",
+        "speaker": "narrator",
+        "text": "Два пути вниз расходятся перед ним — решать нужно сейчас, на бегу, без времени на вторые мысли.",
+        "minigameCue": {
+          "kind": "ShaftsChase3D",
+          "episode3D": {
+            "routeChoiceIds": {
+              "residential": "C06_ROUTE_RESIDENTIAL",
+              "ventilation": "C06_ROUTE_VENTILATION"
+            },
+            "commitRouteOnEntry": true,
+            "outcomeEffects": {
+              "PERFECT": [
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch6_chase_result",
+                  "value": "PERFECT"
+                },
+                {
+                  "type": "addStat",
+                  "key": "K",
+                  "value": 3
+                }
+              ],
+              "NORMAL": [
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch6_chase_result",
+                  "value": "NORMAL"
+                }
+              ],
+              "ROUGH": [
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch6_chase_result",
+                  "value": "ROUGH"
+                },
+                {
+                  "type": "addStat",
+                  "key": "L",
+                  "value": -5
+                }
+              ]
+            }
+          }
+        },
+        "choices": [
+          {
+            "choiceId": "C06_ROUTE_RESIDENTIAL",
+            "text": "Направить погоню через жилой сектор",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -10
+              }
+            ],
+            "nextNodeId": "CH06_SHAFTS_CHASE_D005_RESIDENTIAL"
+          },
+          {
+            "choiceId": "C06_ROUTE_VENTILATION",
+            "text": "Выбрать более долгий путь через вентиляцию",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 10
+              },
+              {
+                "type": "setFlag",
+                "key": "tool_lost",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH06_SHAFTS_CHASE_D005_VENTILATION"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D005_RESIDENTIAL",
+        "speaker": "narrator",
+        "text": "Макс сворачивает в жилой коридор, забитый людьми, возвращающимися со смены. Чтобы не сбавлять скорость, он отшвыривает лоток уличного торговца с пути — связки проводов и батареек рассыпаются по полу, люди шарахаются в стороны, кто-то кричит ему вслед что-то злое и справедливое. Путь свободен. Цена — не физическая, но вполне реальная: ещё один человек в Низах, у которого теперь есть причина думать о Максе плохо.",
+        "nextNodeId": "CH06_SHAFTS_CHASE_D006"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D005_VENTILATION",
+        "speaker": "narrator",
+        "text": "Макс протискивается в узкий вентиляционный проход, царапая локти о ржавые швы, двигаясь медленнее, тише, безопаснее для всех, кроме него самого. Дольше, теснее — и где-то в темноте из кармана выскальзывает старый гаечный ключ, тот самый, с которым Дэн вечно шутил. Мелочь. Пока мелочь.",
+        "nextNodeId": "CH06_SHAFTS_CHASE_D006"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_D006",
+        "speaker": "narrator",
+        "text": "Погоня продолжается ещё несколько минут — патрульные голоса эхом разносятся по стволам, кто-то отдаёт команды перекрыть ещё один выход, но постепенно звуки удаляются, теряют направление, растворяются в гуле самой башни.",
+        "nextSceneId": "CH06_SHAFTS_CHASE_02"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH06_SHAFTS_CHASE_02",
+    "title": "Глава 6. «Шахты» — Выход",
+    "background": "dark_technical_corridor",
+    "music": "mus_stealth_tension",
+    "ambience": "amb_tech_shafts",
+    "nodes": [
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_02_D001",
+        "speaker": "narrator",
+        "text": "Тёмный коридор, тишина после грохота погони — такая плотная, что звенит в ушах сама по себе. Макс прислоняется спиной к холодному металлу, переводит дыхание, чувствуя, как колотится сердце где-то в горле.",
+        "nextNodeId": "CH06_SHAFTS_CHASE_02_D002"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_02_D002",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Он в безопасности. Пока. «Пока» — слово, которое теперь будет сопровождать каждое его решение до конца этой истории, он это чувствует так же ясно, как чувствует ссадину на локте.",
+        "nextNodeId": "CH06_SHAFTS_CHASE_02_D003_RESULT_GATE"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_02_D003_RESULT_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C06_RESULT_PERFECT_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "mg_ch6_chase_result",
+              "value": "PERFECT"
+            },
+            "nextNodeId": "CH06_SHAFTS_CHASE_02_D004_PERFECT"
+          },
+          {
+            "choiceId": "C06_RESULT_ROUGH_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "mg_ch6_chase_result",
+              "value": "ROUGH"
+            },
+            "nextNodeId": "CH06_SHAFTS_CHASE_02_D004_ROUGH"
+          },
+          {
+            "choiceId": "C06_RESULT_NORMAL_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "and",
+              "children": [
+                {
+                  "type": "not",
+                  "child": {
+                    "type": "flagEquals",
+                    "flagKey": "mg_ch6_chase_result",
+                    "value": "PERFECT"
+                  }
+                },
+                {
+                  "type": "not",
+                  "child": {
+                    "type": "flagEquals",
+                    "flagKey": "mg_ch6_chase_result",
+                    "value": "ROUGH"
+                  }
+                }
+              ]
+            },
+            "nextSceneId": "CH07_MEDALLION"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_02_D004_PERFECT",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Ни одного неверного шага. Ни одного лишнего звука. Шахты всё ещё помнят его — и, кажется, всё ещё на его стороне.",
+        "nextSceneId": "CH07_MEDALLION"
+      },
+      {
+        "nodeId": "CH06_SHAFTS_CHASE_02_D004_ROUGH",
+        "speaker": "narrator",
+        "text": "Только сейчас Макс замечает, что рукав комбинезона разодран, а ладони сбиты в кровь о ржавые поручни. Патруль был в паре шагов — ещё один неверный прыжок, и бежать было бы уже некуда.",
+        "nextSceneId": "CH07_MEDALLION"
+      }
+    ]
+  }
+]

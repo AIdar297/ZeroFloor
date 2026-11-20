@@ -1,0 +1,56 @@
+[
+  {
+    "characterId": "max_orlov",
+    "displayName": "Макс Орлов",
+    "imagePath": "Assets/Characters/max_orlov.png",
+    "defaultPosition": "CenterLeft"
+  },
+  {
+    "characterId": "ania_levitskaya",
+    "displayName": "Аня Левицкая",
+    "imagePath": "Assets/Characters/ania_levitskaya.png",
+    "defaultPosition": "CenterRight"
+  },
+  {
+    "characterId": "viktor_savchuk",
+    "displayName": "Виктор Савчук «Корень»",
+    "imagePath": "Assets/Characters/viktor_savchuk.png",
+    "defaultPosition": "CenterRight"
+  },
+  {
+    "characterId": "irina_wessel",
+    "displayName": "Ирина Вессель",
+    "imagePath": "Assets/Characters/irina_wessel.png",
+    "defaultPosition": "CenterRight"
+  },
+  {
+    "characterId": "gosha_kovalchuk",
+    "displayName": "Гоша «Хром» Ковальчук",
+    "imagePath": "Assets/Characters/gosha_kovalchuk.png",
+    "defaultPosition": "CenterRight"
+  },
+  {
+    "characterId": "dan_kovalski",
+    "displayName": "Дэн Ковальски",
+    "imagePath": "Assets/Characters/dan_kovalski.png",
+    "defaultPosition": "CenterRight"
+  },
+  {
+    "characterId": "leonid_arsenev_kron",
+    "displayName": "Леонид Арсеньев-Крон",
+    "imagePath": "Assets/Characters/leonid_arsenev_kron.png",
+    "defaultPosition": "CenterRight"
+  },
+  {
+    "characterId": "sonya_reis",
+    "displayName": "Соня Рейс",
+    "imagePath": "Assets/Characters/sonya_reis.png",
+    "defaultPosition": "CenterRight"
+  },
+  {
+    "characterId": "orlov_senior",
+    "displayName": "Орлов-старший (Смотритель Крайнев)",
+    "imagePath": "Assets/Characters/orlov_senior.png",
+    "defaultPosition": "CenterRight"
+  }
+]

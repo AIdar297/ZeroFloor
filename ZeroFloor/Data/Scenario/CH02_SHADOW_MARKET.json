@@ -1,0 +1,601 @@
+[
+  {
+    "sceneId": "CH02_SC01",
+    "title": "Глава 2. «Ярмарка теней» — Подход к рынку",
+    "background": "shadow_market_approach",
+    "music": "mus_market_theme",
+    "ambience": "amb_market_crowd",
+    "nodes": [
+      {
+        "nodeId": "CH02_SC01_D001",
+        "speaker": "narrator",
+        "text": "Узкий переход между этажами забит прилавками: контрабандные батарейки, перепрошитые бейджи, еда без этикеток, одежда, снятая с кого-то, кто в ней уже не нуждается. Крики торговцев сливаются в общий гул, похожий на шум воды в трубах — такой же постоянный, такой же безличный. Над толпой, лениво покачиваясь, висит патрульный дрон Администрации — больше для вида, чем для дела: за последний месяц он ни разу никого не задержал, но исправно мигает синим, напоминая, что порядок где-то рядом, пусть и не вмешивается.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Center",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "choices": [
+          {
+            "choiceId": "CH02_SC01_C_KLAVDIA_A",
+            "text": "Продолжить",
+            "condition": {
+              "type": "statCompare",
+              "stat": "H",
+              "operator": "<=",
+              "value": 55
+            },
+            "nextNodeId": "CH02_SC01_D001B_KLAVDIA"
+          },
+          {
+            "choiceId": "CH02_SC01_C_KLAVDIA_B",
+            "text": "Продолжить",
+            "condition": {
+              "type": "statCompare",
+              "stat": "H",
+              "operator": ">=",
+              "value": 65
+            },
+            "nextNodeId": "CH02_SC01_D002"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC01_D001B_KLAVDIA",
+        "speaker": "narrator",
+        "text": "Сообщение от тётки Клавдии приходит снова, короче прежнего: «Ей хуже. Поторопись». Макс стискивает зубы и ускоряет шаг.",
+        "nextNodeId": "CH02_SC01_D002"
+      },
+      {
+        "nodeId": "CH02_SC01_D002",
+        "speaker": "narrator",
+        "text": "Можно обойти дрона по длинному маршруту — или рискнуть и пройти напрямую.",
+        "minigameCue": {
+          "kind": "MarketStealth3D",
+          "episode3D": {
+            "routeChoiceIds": {
+              "detour": "CH02_SC01_C001_A",
+              "direct": "CH02_SC01_C001_B"
+            },
+            "commitRouteOnEntry": false,
+            "outcomeEffects": {
+              "CLEAN": [
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch2_drone_result",
+                  "value": "CLEAN"
+                },
+                {
+                  "type": "addStat",
+                  "key": "R",
+                  "value": 3
+                }
+              ],
+              "DETECTED": [
+                {
+                  "type": "setFlag",
+                  "key": "mg_ch2_drone_result",
+                  "value": "DETECTED"
+                },
+                {
+                  "type": "addStat",
+                  "key": "L",
+                  "value": -5
+                }
+              ]
+            },
+            "outcomeNodeIds": {
+              "DETECTED": "CH02_SC01_D003_ALARM"
+            }
+          }
+        },
+        "choices": [
+          {
+            "choiceId": "CH02_SC01_C001_A",
+            "text": "Обойти дрона по длинному маршруту",
+            "nextNodeId": "CH02_SC01_D003_DETOUR"
+          },
+          {
+            "choiceId": "CH02_SC01_C001_B",
+            "text": "Рискнуть и пройти напрямую",
+            "nextNodeId": "CH02_SC01_D003_RISK"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC01_D003_DETOUR",
+        "speaker": "narrator",
+        "text": "Макс петляет по служебным коридорам, пока дрон не уходит с маршрута, лениво сканируя прилавки где-то в стороне. Дольше, но спокойнее — время, которое он мог бы сэкономить, он тратит на уверенность.",
+        "nextNodeId": "CH02_SC01_D004"
+      },
+      {
+        "nodeId": "CH02_SC01_D003_RISK",
+        "speaker": "narrator",
+        "text": "Дрон проходит в двух метрах, лениво сканируя толпу бесстрастным объективом; Макс замирает между двух прилавков, прикрываясь чужим телом, как щитом — обошлось.",
+        "nextNodeId": "CH02_SC01_D004"
+      },
+      {
+        "nodeId": "CH02_SC01_D003_ALARM",
+        "speaker": "narrator",
+        "text": "Красный луч дрона упирается Максу в спину — над рядами взвывает сирена, торговцы торопливо набрасывают брезент на товар. Макс ныряет под навесы, петляет между прилавками и ящиками, пока гул винтов не глохнет где-то позади, в толпе. Ушёл — но теперь рынок знает его в лицо.",
+        "nextNodeId": "CH02_SC01_D004"
+      },
+      {
+        "nodeId": "CH02_SC01_D004",
+        "speaker": "narrator",
+        "text": "Так или иначе, Макс выходит к сердцу рынка — туда, где под криво висящей вывеской «Ремонт и обмен» сидит человек с золотой коронкой и перчатками без пальцев, скрывающими самодельные контактные чипы-считыватели.",
+        "nextSceneId": "CH02_SC02"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH02_SC02",
+    "title": "Глава 2. «Ярмарка теней» — Прилавок Гоши",
+    "background": "gosha_stall",
+    "music": "mus_market_theme",
+    "ambience": "amb_market_crowd",
+    "nodes": [
+      {
+        "nodeId": "CH02_SC02_D001",
+        "speaker": "gosha_kovalchuk",
+        "text": "Орлов. Какая редкая радость. Обычно ты заходишь, только когда у тебя кто-то умирает или вот-вот умрёт. У меня даже статистика есть: раз в полгода, плюс-минус две недели.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "gosha_kovalchuk",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH02_SC02_D002"
+      },
+      {
+        "nodeId": "CH02_SC02_D002",
+        "speaker": "max_orlov",
+        "text": "У тебя потрясающая память на клиентов, Гоша.",
+        "nextNodeId": "CH02_SC02_D003"
+      },
+      {
+        "nodeId": "CH02_SC02_D003",
+        "speaker": "gosha_kovalchuk",
+        "text": "У меня потрясающая память на долги — это разные вещи, но в твоём случае они как-то совпадают. Так что тебе нужно на этот раз? Судя по лицу, снова что-то срочное.",
+        "nextNodeId": "CH02_SC02_D004"
+      },
+      {
+        "nodeId": "CH02_SC02_D004",
+        "speaker": "max_orlov",
+        "text": "Обходчик для рейтинговой панели. Калибровка под лифтовой узел, свежая прошивка.",
+        "nextNodeId": "CH02_SC02_D005"
+      },
+      {
+        "nodeId": "CH02_SC02_D005",
+        "speaker": "gosha_kovalchuk",
+        "text": "Обходчик для лифтового узла. Гарантия — ноль, потому что гарантий в этом деле не бывает в принципе: прошьёшь не ту панель, и система узнает о тебе раньше, чем ты узнаешь о последствиях. Цена — три месячных пайка или эквивалент. Это не жадность, Орлов, это риск моей собственной шеи — за такие штуки меня закроют быстрее, чем тебя.",
+        "choices": [
+          {
+            "choiceId": "CH02_SC02_C001_A",
+            "text": "Согласиться",
+            "nextNodeId": "CH02_SC02_D_R3_DIRECT_SETUP"
+          },
+          {
+            "choiceId": "CH02_SC02_C001_B",
+            "text": "Сбить цену аргументом",
+            "nextNodeId": "CH02_SC02_D_R1_HAGGLE_LINE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC02_D_R1_HAGGLE_LINE",
+        "speaker": "max_orlov",
+        "text": "Три пайка за прошивку, которую ты сам не тестировал на этой конкретной модели панели? Половина будет честной ценой, Гоша. Ты продаёшь риск, а не гарантию — так и цени его как риск, а не как чудо.",
+        "nextNodeId": "CH02_SC02_D_R2_REACT"
+      },
+      {
+        "nodeId": "CH02_SC02_D_R2_REACT",
+        "speaker": "gosha_kovalchuk",
+        "text": "Щурится, перекатывая во рту что-то — жвачку, а может, только привычку жевать, когда думает. Хм. Для диспетчерского техника ты неплохо торгуешься, Орлов. Где ты этому научился — у матери на рынке, или само пришло вместе с отчаянием? Ладно — два с половиной пайка. Больше не уступлю, и даже не пытайся снова давить на «риск моей шеи», я сам это придумал.",
+        "choices": [
+          {
+            "choiceId": "CH02_SC02_C002_A",
+            "text": "Сбить ещё раз",
+            "nextNodeId": "CH02_SC02_D_R2_HAGGLE_AGAIN_LINE"
+          },
+          {
+            "choiceId": "CH02_SC02_C002_B",
+            "text": "Согласиться",
+            "nextNodeId": "CH02_SC02_D_R3_HAGGLE_ONCE_SETUP"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC02_D_R2_HAGGLE_AGAIN_LINE",
+        "speaker": "max_orlov",
+        "text": "Полтора. И я забуду, что слышал, как ты сам признал, что прошивка не тестирована.",
+        "nextNodeId": "CH02_SC02_D_R2B_ANGRY"
+      },
+      {
+        "nodeId": "CH02_SC02_D_R2B_ANGRY",
+        "speaker": "gosha_kovalchuk",
+        "text": "Ты либо очень отчаянный, либо очень наглый, Орлов, и я пока не решил, какое из двух раздражает меня больше. Два пайка — финальная цена, и это последнее, на что я соглашусь сегодня, даже если ты приведёшь сюда саму Вессель с рекомендательным письмом.",
+        "nextNodeId": "CH02_SC02_D_R3_HAGGLE_TWICE_SETUP"
+      },
+      {
+        "nodeId": "CH02_SC02_D_R3_DIRECT_SETUP",
+        "speaker": "gosha_kovalchuk",
+        "text": "Итоговая цена озвучена. Берёшь или нет? Время — тоже товар, Орлов, а у меня его не вагон.",
+        "choices": [
+          {
+            "choiceId": "CH02_SC02_C003D_PAY",
+            "text": "Заплатить честно",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              },
+              {
+                "type": "setFlag",
+                "key": "gosha_trust",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH02_SC02_D_PAY_OUTCOME"
+          },
+          {
+            "choiceId": "CH02_SC02_C003D_STEAL",
+            "text": "Украсть чип",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "R",
+                "value": 15
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -10
+              },
+              {
+                "type": "setFlag",
+                "key": "gosha_trust",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH02_SC02_D_STEAL_ATTEMPT"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC02_D_R3_HAGGLE_ONCE_SETUP",
+        "speaker": "gosha_kovalchuk",
+        "text": "Итоговая цена озвучена. Берёшь или нет? Время — тоже товар, Орлов, а у меня его не вагон.",
+        "choices": [
+          {
+            "choiceId": "CH02_SC02_C003O_PAY",
+            "text": "Заплатить честно",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              },
+              {
+                "type": "setFlag",
+                "key": "gosha_trust",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH02_SC02_D_PAY_OUTCOME"
+          },
+          {
+            "choiceId": "CH02_SC02_C003O_STEAL",
+            "text": "Украсть чип",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "R",
+                "value": 15
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -10
+              },
+              {
+                "type": "setFlag",
+                "key": "gosha_trust",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH02_SC02_D_STEAL_ATTEMPT"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC02_D_R3_HAGGLE_TWICE_SETUP",
+        "speaker": "gosha_kovalchuk",
+        "text": "Итоговая цена озвучена. Берёшь или нет? Время — тоже товар, Орлов, а у меня его не вагон.",
+        "choices": [
+          {
+            "choiceId": "CH02_SC02_C003T_PAY",
+            "text": "Заплатить честно",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              },
+              {
+                "type": "setFlag",
+                "key": "gosha_trust",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH02_SC02_D_PAY_OUTCOME"
+          },
+          {
+            "choiceId": "CH02_SC02_C003T_STEAL",
+            "text": "Украсть чип",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "R",
+                "value": 15
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -10
+              },
+              {
+                "type": "setFlag",
+                "key": "gosha_trust",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH02_SC02_D_STEAL_ATTEMPT"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC02_D_PAY_OUTCOME",
+        "speaker": "narrator",
+        "text": "Макс отсчитывает пайки, один за другим, стараясь не показать, насколько это чувствительная для него сумма. Гоша придирчиво проверяет каждый на подлинность — щёлкает по краю, смотрит на просвет, — потом коротко кивает, почти с уважением. «Приятно иметь дело с тем, кто не ворует у своих. Редкость на этом этаже».",
+        "nextNodeId": "CH02_SC02_D_GOSHA_WARN"
+      },
+      {
+        "nodeId": "CH02_SC02_D_GOSHA_WARN",
+        "speaker": "gosha_kovalchuk",
+        "text": "Будь осторожен с этой штукой, Орлов. ВЕРТИКАЛЬ не любит, когда её читают без спроса — и у неё долгая память, подлиннее даже моей.",
+        "nextSceneId": "CH02_SC03"
+      },
+      {
+        "nodeId": "CH02_SC02_D_STEAL_ATTEMPT",
+        "speaker": "narrator",
+        "text": "Гоша отвлекается на другого покупателя — громкого, скандального, требующего скидку на что-то совершенно не связанное с обходчиками. Пальцы Макса зависают над прилавком: нужно поймать момент, когда внимание Гоши действительно уходит в сторону, а не просто притворяется, что уходит.",
+        "minigameCue": {
+          "kind": "TimingBar",
+          "timingBarGreenZoneWidth": 0.16,
+          "timingBarSweepSeconds": 0.9,
+          "failureNodeId": "CH02_SC02_D_STEAL_CAUGHT"
+        },
+        "nextNodeId": "CH02_SC02_D_STEAL_OUTCOME"
+      },
+      {
+        "nodeId": "CH02_SC02_D_STEAL_OUTCOME",
+        "speaker": "narrator",
+        "text": "Макс ювелирно прячет чип в рукав — быстро, грязно, эффективно, и совсем не похоже на него прежнего, того, кто чинит тросы, потому что «трос не выдержит — значит, не выдержит», а не потому что цель оправдывает средства.",
+        "nextNodeId": "CH02_SC02_D_GOSHA_STEAL_REACT"
+      },
+      {
+        "nodeId": "CH02_SC02_D_GOSHA_STEAL_REACT",
+        "speaker": "gosha_kovalchuk",
+        "text": "(спустя пару секунд, вполголоса, не глядя на Макса) Я видел, Орлов. Я всегда вижу. Просто сегодня мне лень было устраивать сцену из-за одного обходчика. В следующий раз — не советую проверять мою терпимость.",
+        "nextSceneId": "CH02_SC03"
+      },
+      {
+        "nodeId": "CH02_SC02_D_STEAL_CAUGHT",
+        "speaker": "gosha_kovalchuk",
+        "text": "Гоша перехватывает руку Макса за запястье — хватка жёсткая, без намёка на прежнюю шутливость. Никакой игры во внимательного покупателя больше нет.",
+        "nextNodeId": "CH02_SC02_D_STEAL_BEATEN"
+      },
+      {
+        "nodeId": "CH02_SC02_D_STEAL_BEATEN",
+        "speaker": "narrator",
+        "text": "Гоша не убивает Макса — просто коротко кивает своей охране. Удар приходит быстро, без предупреждения. Экран темнеет.",
+        "screenFadeCue": {
+          "kind": "FadeToBlack",
+          "durationMs": 700
+        },
+        "nextNodeId": "CH02_SC02_D_STEAL_ALLEY_WAKE"
+      },
+      {
+        "nodeId": "CH02_SC02_D_STEAL_ALLEY_WAKE",
+        "speaker": "narrator",
+        "text": "Макс приходит в себя в подворотне, в стороне от людного прохода. Обходчик валяется рядом на полу — Гоша швырнул его как подачку, не из милосердия, а потому что ворованный чип ему самому ни к чему. Пайков и инструментов, которые Макс носил с собой, при нём больше нет.",
+        "screenFadeCue": {
+          "kind": "FadeFromBlack",
+          "durationMs": 900
+        },
+        "nextSceneId": "CH02_SC03"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH02_SC03",
+    "title": "Глава 2. «Ярмарка теней» — Выход с рынка",
+    "background": "shadow_market_approach",
+    "music": "mus_market_theme",
+    "ambience": "amb_market_crowd",
+    "nodes": [
+      {
+        "nodeId": "CH02_SC03_D001",
+        "speaker": "narrator",
+        "text": "У выхода с рынка Макса ждёт Дэн — он договорился встретиться здесь после смены, чтобы вместе спуститься обратно, да и просто не любит, когда Макс ходит на Ярмарку один.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "dan_kovalski",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH02_SC03_D002"
+      },
+      {
+        "nodeId": "CH02_SC03_D002",
+        "speaker": "dan_kovalski",
+        "text": "Слышал, администрация в последнее время жёстче шерстит панели. Новый протокол проверки, говорят, спустили сверху после какого-то инцидента на Средних этажах. Будь аккуратнее с тем, что несёшь в кармане, Макс. Серьёзно.",
+        "nextNodeId": "CH02_SC03_D003"
+      },
+      {
+        "nodeId": "CH02_SC03_D003",
+        "speaker": "max_orlov",
+        "text": "Когда это я был неаккуратным?",
+        "nextNodeId": "CH02_SC03_D004"
+      },
+      {
+        "nodeId": "CH02_SC03_D004",
+        "speaker": "dan_kovalski",
+        "text": "Каждый второй раз за последние два года, если считать честно. Просто в этот раз ставки выше, чем обычно — ты идёшь не ради мелкой подработки, а ради Ани. А когда ставки выше, люди торопятся. А когда торопятся — ошибаются.",
+        "choices": [
+          {
+            "choiceId": "CH02_SC03_C001_A",
+            "text": "Буду осторожнее",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "dan_warned_heeded",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH02_SC03_D005_HEEDED"
+          },
+          {
+            "choiceId": "CH02_SC03_C001_B",
+            "text": "Отмахнуться шуткой",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "dan_warned_heeded",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH02_SC03_D005_WAVE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC03_D005_HEEDED",
+        "speaker": "max_orlov",
+        "text": "Хорошо. Буду.",
+        "nextNodeId": "CH02_SC03_D006_HEEDED"
+      },
+      {
+        "nodeId": "CH02_SC03_D006_HEEDED",
+        "speaker": "dan_kovalski",
+        "text": "Вот и хорошо. Я один раз уже подвёл тебя мелочью — сдал кое-что по мелочи, когда прижали. Больше не хочу повторять эту ошибку, даже с другой стороны.",
+        "nextSceneId": "CH02_SC_SIDE01"
+      },
+      {
+        "nodeId": "CH02_SC03_D005_WAVE",
+        "speaker": "max_orlov",
+        "text": "Дэн, ты это говоришь каждую неделю уже два года. Если бы я слушал тебя буквально, я бы вообще не выходил из диспетчерской.",
+        "nextNodeId": "CH02_SC03_D005B_WAVE"
+      },
+      {
+        "nodeId": "CH02_SC03_D005B_WAVE",
+        "speaker": "narrator",
+        "text": "Дэн не смеётся.",
+        "nextNodeId": "CH02_SC03_D006_WAVE"
+      },
+      {
+        "nodeId": "CH02_SC03_D006_WAVE",
+        "speaker": "dan_kovalski",
+        "text": "Ладно, смейся. Просто помни, что я предупреждал, когда будет не до смеха. Я не всегда буду рядом, чтобы подхватить тебя, если оступишься.",
+        "nextSceneId": "CH02_SC_SIDE01"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH02_SC_SIDE01",
+    "title": "Побочное событие 1. Лекарства соседу",
+    "background": "shadow_market_approach",
+    "music": "mus_market_theme",
+    "ambience": "amb_market_crowd",
+    "nodes": [
+      {
+        "nodeId": "CH02_SC_SIDE01_D001",
+        "speaker": "narrator",
+        "text": "На обратном пути, в переходе между этажами, Макс замечает пожилого соседа — тот с трудом тащит сумку с лекарствами, явно купленными втридорога на этом же рынке, потому что официальные аптеки давно не держат то, что ему нужно по доступной цене.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "npc_neighbor",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "choices": [
+          {
+            "choiceId": "CH02_SC_SIDE01_C001_A",
+            "text": "Помочь",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              }
+            ],
+            "nextNodeId": "CH02_SC_SIDE01_D002_HELP"
+          },
+          {
+            "choiceId": "CH02_SC_SIDE01_C001_B",
+            "text": "Пройти мимо",
+            "nextNodeId": "CH02_SC_SIDE01_D002_PASS"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH02_SC_SIDE01_D002_HELP",
+        "speaker": "narrator",
+        "text": "Макс забирает сумку и доносит до лифта соседа. По дороге старик рассказывает обрывок истории довоенных Низов — когда башню ещё называли просто «новым домом», а не тюрьмой с видом наверх, когда лифты ходили по расписанию, которое составляли люди, а не алгоритм, подрезанный чьей-то невидимой рукой.",
+        "nextSceneId": "CH03_SC01"
+      },
+      {
+        "nodeId": "CH02_SC_SIDE01_D002_PASS",
+        "speaker": "narrator",
+        "text": "Макс торопится, у него своя беда, своя срочность. Старик справляется сам, медленно, тяжело дыша на каждой ступеньке.",
+        "nextSceneId": "CH03_SC01"
+      }
+    ]
+  }
+]

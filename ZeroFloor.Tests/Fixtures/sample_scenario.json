@@ -1,0 +1,80 @@
+[
+  {
+    "sceneId": "TEST_SCENE_1",
+    "background": "test_background_1",
+    "nodes": [
+      {
+        "nodeId": "N001",
+        "speaker": "narrator",
+        "text": "[ТЕСТОВЫЙ СЦЕНАРИЙ] Вступительная реплика без выбора.",
+        "nextNodeId": "N002"
+      },
+      {
+        "nodeId": "N002",
+        "speaker": "max",
+        "text": "[ТЕСТОВЫЙ СЦЕНАРИЙ] Реплика с выбором.",
+        "choices": [
+          {
+            "choiceId": "C001_BRAVE",
+            "text": "[Тест] Рискованный вариант",
+            "effects": [
+              { "type": "addStat", "key": "H", "value": 5 },
+              { "type": "setFlag", "key": "test_brave_chosen", "value": true }
+            ],
+            "nextNodeId": "N003"
+          },
+          {
+            "choiceId": "C001_CAUTIOUS",
+            "text": "[Тест] Осторожный вариант",
+            "effects": [
+              { "type": "addStat", "key": "H", "value": -5 }
+            ],
+            "nextNodeId": "N003"
+          }
+        ]
+      },
+      {
+        "nodeId": "N003",
+        "speaker": "narrator",
+        "text": "[ТЕСТОВЫЙ СЦЕНАРИЙ] Переход в следующую сцену.",
+        "nextSceneId": "TEST_SCENE_2"
+      }
+    ]
+  },
+  {
+    "sceneId": "TEST_SCENE_2",
+    "background": "test_background_2",
+    "nodes": [
+      {
+        "nodeId": "N001",
+        "speaker": "ania",
+        "text": "[ТЕСТОВЫЙ СЦЕНАРИЙ] Узел с условным выбором (скрытая проверка флага).",
+        "choices": [
+          {
+            "choiceId": "C002_ONLY_IF_BRAVE",
+            "text": "[Тест] Доступно только если выбран рискованный вариант",
+            "condition": { "type": "flagEquals", "flagKey": "test_brave_chosen", "value": true },
+            "effects": [
+              { "type": "setFlag", "key": "test_scene2_done", "value": true }
+            ],
+            "nextNodeId": "N002"
+          },
+          {
+            "choiceId": "C002_ALWAYS",
+            "text": "[Тест] Доступно всегда",
+            "effects": [
+              { "type": "setFlag", "key": "test_scene2_done", "value": true }
+            ],
+            "nextNodeId": "N002"
+          }
+        ]
+      },
+      {
+        "nodeId": "N002",
+        "speaker": "narrator",
+        "text": "[ТЕСТОВЫЙ СЦЕНАРИЙ] Финальная реплика тестового сценария.",
+        "nextNodeId": "N002"
+      }
+    ]
+  }
+]

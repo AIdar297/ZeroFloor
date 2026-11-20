@@ -1,0 +1,184 @@
+[
+  {
+    "backgroundId": "main_menu",
+    "title": "Главное меню",
+    "imagePath": "Assets/Backgrounds/main_menu.png",
+    "description": "Вид на Вертикаль с крыши — фон главного меню.",
+    "chapters": []
+  },
+  {
+    "backgroundId": "dispatch_room_6",
+    "title": "Диспетчерская №6",
+    "imagePath": "Assets/Backgrounds/dispatch_room_6.png",
+    "description": "Диспетчерская №6, Низы.",
+    "chapters": [1]
+  },
+  {
+    "backgroundId": "shadow_market_approach",
+    "title": "Переход к Ярмарке теней",
+    "imagePath": "Assets/Backgrounds/shadow_market_approach.png",
+    "description": "Подход к Ярмарке теней, граница Низов/Средних.",
+    "chapters": [2]
+  },
+  {
+    "backgroundId": "gosha_stall",
+    "title": "Прилавок Гоши",
+    "imagePath": "Assets/Backgrounds/gosha_stall.png",
+    "description": "Прилавок Гоши «Хрома» на Ярмарке теней.",
+    "chapters": [2]
+  },
+  {
+    "backgroundId": "elevator_shaft",
+    "title": "Лифтовая шахта",
+    "imagePath": "Assets/Backgrounds/elevator_shaft.png",
+    "description": "Лифтовая шахта.",
+    "chapters": [3]
+  },
+  {
+    "backgroundId": "ventilation_station",
+    "title": "Вентиляционная станция",
+    "imagePath": "Assets/Backgrounds/ventilation_station.png",
+    "description": "Заброшенная вентиляционная станция, Низы, 47-й этаж — штаб «Корней» (Глава 4).",
+    "chapters": [4]
+  },
+  {
+    "backgroundId": "administration_corridor",
+    "title": "Коридор Администрации",
+    "imagePath": "Assets/Backgrounds/administration_corridor.png",
+    "description": "Коридор Администрации, 150-й этаж.",
+    "chapters": [5]
+  },
+  {
+    "backgroundId": "interrogation_hall",
+    "title": "Зал профилактических бесед",
+    "imagePath": "Assets/Backgrounds/interrogation_hall.png",
+    "description": "Зал допроса/профилактических бесед Администрации.",
+    "chapters": [5]
+  },
+  {
+    "backgroundId": "technical_shafts",
+    "title": "Технические стволы",
+    "imagePath": "Assets/Backgrounds/technical_shafts.jpg",
+    "description": "Технические стволы 140-160 этажей.",
+    "chapters": [6]
+  },
+  {
+    "backgroundId": "dark_technical_corridor",
+    "title": "Тёмный технический коридор",
+    "imagePath": "Assets/Backgrounds/dark_technical_corridor.jpg",
+    "description": "Тёмный технический коридор.",
+    "chapters": [6]
+  },
+  {
+    "backgroundId": "ania_apartment",
+    "title": "Квартира Ани",
+    "imagePath": "Assets/Backgrounds/ania_apartment.png",
+    "description": "Квартира Ани Левицкой.",
+    "chapters": [7]
+  },
+  {
+    "backgroundId": "keepers_archive",
+    "title": "Архив Смотрителей",
+    "imagePath": "Assets/Backgrounds/keepers_archive.jpg",
+    "description": "Архив Смотрителей, 110-й этаж.",
+    "chapters": [8]
+  },
+  {
+    "backgroundId": "archive_terminal",
+    "title": "Архивный терминал",
+    "imagePath": "Assets/Backgrounds/archive_terminal.jpg",
+    "description": "Терминал внутри Архива Смотрителей.",
+    "chapters": [8]
+  },
+  {
+    "backgroundId": "shadow_market_after_raid",
+    "title": "Ярмарка теней после операции",
+    "imagePath": "Assets/Backgrounds/shadow_market_after_raid.png",
+    "description": "Ярмарка теней в Главе 9 («Должник»).",
+    "chapters": [9]
+  },
+  {
+    "backgroundId": "wessel_office",
+    "title": "Кабинет Вессель",
+    "imagePath": "Assets/Backgrounds/wessel_office.jpg",
+    "description": "Кабинет Ирины Вессель, 195-й этаж.",
+    "chapters": [10]
+  },
+  {
+    "backgroundId": "crown_corridors",
+    "title": "Коридоры Короны",
+    "imagePath": "Assets/Backgrounds/crown_corridors.jpg",
+    "description": "Коридоры Короны (201+ этаж) — подход к ветке 11.A.",
+    "chapters": [11]
+  },
+  {
+    "backgroundId": "crown_reception",
+    "title": "Приёмная Короны",
+    "imagePath": "Assets/Backgrounds/crown_reception.jpg",
+    "description": "Приёмная Короны — локация ветки 11.A («Побег наверх»).",
+    "chapters": [11]
+  },
+  {
+    "backgroundId": "server_cathedral",
+    "title": "Сервер-собор",
+    "imagePath": "Assets/Backgrounds/server_cathedral.png",
+    "description": "Ядро ВЕРТИКАЛИ — локация веток 11.B/11.D.",
+    "chapters": [11]
+  },
+  {
+    "backgroundId": "core_hidden_corridor",
+    "title": "Скрытый коридор ядра",
+    "imagePath": "Assets/Backgrounds/core_hidden_corridor.jpg",
+    "description": "Скрытый коридор к ядру ВЕРТИКАЛИ — ветки 11.B/11.D.",
+    "chapters": [11]
+  },
+  {
+    "backgroundId": "keeper_post",
+    "title": "Пост Смотрителя",
+    "imagePath": "Assets/Backgrounds/keeper_post.jpg",
+    "description": "Пост Смотрителя (не ядро) — локация ветки 11.C («Новый Смотритель»).",
+    "chapters": [11]
+  },
+  {
+    "backgroundId": "core_corridors",
+    "title": "Коридоры ядра",
+    "imagePath": "Assets/Backgrounds/core_corridors.jpg",
+    "description": "Коридоры ядра ВЕРТИКАЛИ — ветки 11.B/11.D.",
+    "chapters": [11]
+  },
+  {
+    "backgroundId": "three_terminals_hall",
+    "title": "Зал трёх терминалов",
+    "imagePath": "Assets/Backgrounds/three_terminals_hall.png",
+    "description": "Зал трёх терминалов — ветка 11.D («Баланс»).",
+    "chapters": [11]
+  },
+  {
+    "backgroundId": "ending_a_escape",
+    "title": "Концовка A — «Побег наверх»",
+    "imagePath": "Assets/Backgrounds/ending_a_escape.jpg",
+    "description": "Эпилог ветки A, END_03_ESCAPE.",
+    "chapters": [12]
+  },
+  {
+    "backgroundId": "ending_b_collapse",
+    "title": "Концовка B — «Обрушение Вертикали»",
+    "imagePath": "Assets/Backgrounds/ending_b_collapse.jpg",
+    "description": "Эпилог ветки B, END_01_COLLAPSE.",
+    "chapters": [12]
+  },
+  {
+    "backgroundId": "ending_c_successor",
+    "title": "Концовка C — «Новый Смотритель»",
+    "imagePath": "Assets/Backgrounds/ending_c_successor.jpg",
+    "description": "Эпилог ветки C, END_02_SUCCESSOR.",
+    "chapters": [12]
+  },
+  {
+    "backgroundId": "ending_d_balance",
+    "title": "Концовка D — «Баланс»",
+    "imagePath": "Assets/Backgrounds/ending_d_balance.jpg",
+    "description": "Эпилог ветки D (скрытая), END_04_BALANCE.",
+    "chapters": [12]
+  }
+]

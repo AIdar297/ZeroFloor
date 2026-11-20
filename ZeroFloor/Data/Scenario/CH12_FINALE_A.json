@@ -1,0 +1,198 @@
+[
+  {
+    "sceneId": "CH12_FINALE_A",
+    "title": "Глава 12.A. Финал — «Побег наверх» (END_03_ESCAPE)",
+    "background": "elevator_shaft",
+    "music": "mus_finale_escape",
+    "ambience": "amb_tech_shafts",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_A_D001",
+        "speaker": "narrator",
+        "text": "(Неинтерактивная текстовая сцена.) Макс стоит в кабине экспресс-лифта, поднимающегося в Корону в последний раз в рамках этой истории. За стеклом — Низы, уходящие вниз в дымку, всё меньше, всё тише, пока не превращаются в размытое пятно огней, неотличимое от звёзд, которых в небе над Атласом никто давно не видел. Сцена молчания, без триумфа, без музыки победы.",
+        "nextNodeId": "CH12_FINALE_A_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_D002",
+        "speaker": "ania_levitskaya",
+        "text": "(sad) Ты получил, что хотел. Теперь живи с этим.",
+        "nextNodeId": "CH12_FINALE_A_D003_TRUTH_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_D003_TRUTH_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12A_TOLD_TRUTH_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "told_ania_truth",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_A_D004_TRUTH"
+          },
+          {
+            "choiceId": "C12A_SOFTENED_TRUTH_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "told_ania_truth",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_A_D004_SOFT"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_A_D004_TRUTH",
+        "speaker": "narrator",
+        "text": "Аня произносит это, уже зная цену полностью — каждое слово звучит как приговор, вынесенный с любовью, а не со злостью, что почему-то тяжелее любой злости.",
+        "nextNodeId": "CH12_FINALE_A_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_D004_SOFT",
+        "speaker": "narrator",
+        "text": "Аня произносит ту же фразу, не зная всех деталей — и от этого Максу почему-то ещё тяжелее, потому что он единственный, кто несёт полный вес этих слов.",
+        "nextNodeId": "CH12_FINALE_A_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_D005",
+        "speaker": "narrator",
+        "text": "Аня уходит в свою новую комнату на 85-м этаже одна, не оборачиваясь. Дверь закрывается с тихим, почти вежливым щелчком — звук, который в Короне заменяет крик.",
+        "nextSceneId": "CH12_FINALE_A_EPILOGUE"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH12_FINALE_A_EPILOGUE",
+    "title": "Глава 12.A. Финал — Эпилоговые карточки",
+    "background": "ending_a_escape",
+    "music": "mus_finale_escape",
+    "ambience": "amb_crown_airy",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_D001",
+        "speaker": "narrator",
+        "text": "Карточка 1. Виктор и «Корни» разгромлены патрулями, используя переданную Максом информацию. Штаб на 47-м этаже опустошён за одну ночь.",
+        "nextNodeId": "CH12_FINALE_A_EPILOGUE_DAN_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_DAN_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12A_DAN_ALIVE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "not",
+              "child": {
+                "type": "flagEquals",
+                "flagKey": "dan_status",
+                "value": "dead"
+              }
+            },
+            "nextNodeId": "CH12_FINALE_A_EPILOGUE_D002_DAN"
+          },
+          {
+            "choiceId": "C12A_DAN_DEAD_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_status",
+              "value": "dead"
+            },
+            "nextNodeId": "CH12_FINALE_A_EPILOGUE_D003"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_D002_DAN",
+        "speaker": "narrator",
+        "text": "Карточка 2. Дэн, если жив, не прощает предательства и исчезает из жизни Макса — ни письма, ни звонка, только тишина там, где раньше была братская преданность.",
+        "nextNodeId": "CH12_FINALE_A_EPILOGUE_D003"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_D003",
+        "speaker": "narrator",
+        "text": "Карточка 3. Гоша теряет канал и либо закрывается, либо начинает охотиться на Макса за старые долги — в зависимости от уровня R и личного доверия, набранного в Главе 2.",
+        "nextNodeId": "CH12_FINALE_A_EPILOGUE_D004"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_D004",
+        "speaker": "narrator",
+        "text": "Карточка 4. Соня уходит глубже в тень, окончательно теряя Макса как кандидата на роль, которую она берегла для него годами.",
+        "nextNodeId": "CH12_FINALE_A_EPILOGUE_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_D005",
+        "speaker": "narrator",
+        "text": "Карточка 5. Леонид становится формальным покровителем Макса в Короне — холодная, функциональная дружба, построенная на взаимной пользе, а не на тепле.",
+        "nextNodeId": "CH12_FINALE_A_EPILOGUE_D006"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_D006",
+        "speaker": "narrator",
+        "text": "Карточка 6. Витринные карточки успеха ВЕРТИКАЛИ с лицом Макса расходятся по башне как пропаганда — «ещё один, кто доказал, что система работает, если постараться». Низы ничего не выигрывают — коэффициент стабилизации работает как прежде, возможно, усиливается после разгрома Корней, лишившихся лидера и документации.",
+        "nextNodeId": "CH12_FINALE_A_EPILOGUE_PRESS_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_PRESS_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12A_EPILOGUE_WITH_JOURNALIST",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_A_EPILOGUE_PRESS"
+          },
+          {
+            "choiceId": "C12A_EPILOGUE_WITHOUT_JOURNALIST",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_A_TONE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_A_EPILOGUE_PRESS",
+        "speaker": "narrator",
+        "text": "Короткая заметка о странностях лифтовых панелей так и не была опубликована — редакцию тихо прикрыли через месяц после разгрома Корней, слишком удобное совпадение, чтобы быть случайностью.",
+        "nextNodeId": "CH12_FINALE_A_TONE"
+      },
+      {
+        "nodeId": "CH12_FINALE_A_TONE",
+        "speaker": "max_orlov",
+        "text": "Выбор 12 — тон финальной реплики (флейвор, не ставит флагов, обращение к башне или к тому, кто рядом).",
+        "choices": [
+          {
+            "choiceId": "C12A_TONE_PUBLIC_STATEMENT",
+            "text": "Публичное заявление",
+            "endingId": "END_03_ESCAPE"
+          },
+          {
+            "choiceId": "C12A_TONE_SILENT_DEPARTURE",
+            "text": "Молчаливый уход",
+            "endingId": "END_03_ESCAPE"
+          },
+          {
+            "choiceId": "C12A_TONE_QUIET_ARRANGEMENT",
+            "text": "Тихий договор",
+            "endingId": "END_03_ESCAPE"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ZeroFloor/ZeroFloor.csproj" />
+  <Project Path="ZeroFloor.Tests/ZeroFloor.Tests.csproj" />
+</Solution>

@@ -1,0 +1,195 @@
+[
+  {
+    "sceneId": "CH12_FINALE_D",
+    "title": "Глава 12.D. Финал — «Баланс», скрытая концовка (END_04_BALANCE)",
+    "background": "server_cathedral",
+    "music": "mus_core_climax",
+    "ambience": "amb_core_cathedral",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_D_D001",
+        "speaker": "narrator",
+        "text": "Единственная концовка, где все три сюжетные линии — Аня, Корни, отец — закрываются целиком и непротиворечиво, без недосказанностей, без цены, спрятанной в мелком шрифте.",
+        "nextNodeId": "CH12_FINALE_D_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_D002",
+        "speaker": "orlov_senior",
+        "text": "(soft) Я молчал, чтобы выжить. Ты заговорил, чтобы жить.",
+        "nextNodeId": "CH12_FINALE_D_D003"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_D003",
+        "speaker": "narrator",
+        "text": "Макс и Аня вместе смотрят на башню, где лифты теперь ходят по новым правилам — не идеальным, но прозрачным, видимым каждому, кто захочет проверить.",
+        "nextNodeId": "CH12_FINALE_D_D004"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_D004",
+        "speaker": "ania_levitskaya",
+        "text": "(soft) Знаешь, что самое странное? Я впервые за шестнадцать лет не чувствую себя чьим-то инструментом. Даже твоим, Макс, хотя ты, видит бог, никогда не заставлял меня чувствовать себя так.",
+        "nextNodeId": "CH12_FINALE_D_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_D005",
+        "speaker": "max_orlov",
+        "text": "(soft) Ты никогда не была моим инструментом, Аня. Ни разу. Ты была тем, ради чего я всё это начал — а это совсем другое.",
+        "nextNodeId": "CH12_FINALE_D_D006"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_D006",
+        "speaker": "ania_levitskaya",
+        "text": "Знаю. Но хорошо, когда это говорят вслух, а не держат где-то внутри, как мы оба привыкли делать годами.",
+        "nextNodeId": "CH12_FINALE_D_D007"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_D007",
+        "speaker": "sonya_reis",
+        "text": "(подходя, soft) Архитектор нового контура — звучит громче, чем ощущается на самом деле. По большей части это будет означать бесконечные комитеты и объяснения людям, почему перемены идут медленнее, чем им хотелось бы.",
+        "nextNodeId": "CH12_FINALE_D_D008"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_D008",
+        "speaker": "max_orlov",
+        "text": "(soft) Зато честно. Впервые за долгое время — просто честно.",
+        "nextSceneId": "CH12_FINALE_D_EPILOGUE"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH12_FINALE_D_EPILOGUE",
+    "title": "Глава 12.D. Финал — Эпилоговые карточки",
+    "background": "ending_d_balance",
+    "music": "mus_finale_balance",
+    "ambience": "amb_core_cathedral",
+    "nodes": [
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_D001",
+        "speaker": "narrator",
+        "text": "Карточка 1. Виктор получает официальное, хоть и тихое прощение, становится консультантом переходного комитета — не героем, не злодеем, а просто человеком, которому дали шанс искупить код, написанный одиннадцать лет назад, реальной работой, а не публичным покаянием.",
+        "nextNodeId": "CH12_FINALE_D_EPILOGUE_D002"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_D002",
+        "speaker": "narrator",
+        "text": "Карточка 2. Вессель впервые за карьеру публично признаёт манипуляцию и возглавляет реформу легально, обменяв удобную ложь на неудобную, но настоящую роль.",
+        "nextNodeId": "CH12_FINALE_D_EPILOGUE_D003"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_D003",
+        "speaker": "narrator",
+        "text": "Карточка 3. Гоша легализует часть сети как службу перераспределения ресурсов — «Ярмарка теней» становится просто «Ярмаркой», без тени, без субсидий сверху, без двойного дна.",
+        "nextNodeId": "CH12_FINALE_D_EPILOGUE_D004"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_D004",
+        "speaker": "narrator",
+        "text": "Карточка 4. Леонид становится реальным, не декоративным куратором социальных программ, впервые в жизни делая что-то, что не является витриной для чужого удобства.",
+        "nextNodeId": "CH12_FINALE_D_EPILOGUE_D005"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_D005",
+        "speaker": "narrator",
+        "text": "Карточка 5. Соня наконец выходит из тени и получает официальную должность архитектора нового контура — девять лет ожидания заканчиваются не триумфом, а тихой, заслуженной работой.",
+        "nextNodeId": "CH12_FINALE_D_EPILOGUE_DAN_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_DAN_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12D_DAN_ALIVE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "not",
+              "child": {
+                "type": "flagEquals",
+                "flagKey": "dan_status",
+                "value": "dead"
+              }
+            },
+            "nextNodeId": "CH12_FINALE_D_EPILOGUE_D006_DAN"
+          },
+          {
+            "choiceId": "C12D_DAN_DEAD_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_status",
+              "value": "dead"
+            },
+            "nextNodeId": "CH12_FINALE_D_EPILOGUE_D007"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_D006_DAN",
+        "speaker": "narrator",
+        "text": "Карточка 6. Дэн возвращается к обычной жизни, свободной от долгов перед Гошей и от вины, которую носил годами.",
+        "nextNodeId": "CH12_FINALE_D_EPILOGUE_D007"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_D007",
+        "speaker": "narrator",
+        "text": "Аня технически отвязана от роли ключа навсегда через безопасную процедуру переноса калибровки на синтетический профиль, полностью свободна физически и эмоционально — впервые без оговорок. Совет Смотрителей не уничтожен, но впервые публично назван и ограничен новым наблюдательным комитетом с представителями всех трёх зон Атласа. Низы получают постепенный, но настоящий и прозрачный рост мобильности между этажами — не утопия, не внезапное равенство, а измеримый, подотчётный прогресс, который можно проверить, а не просто обещают.",
+        "nextNodeId": "CH12_FINALE_D_EPILOGUE_PRESS_GATE"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_PRESS_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C12D_EPILOGUE_WITH_JOURNALIST",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": true
+            },
+            "nextNodeId": "CH12_FINALE_D_EPILOGUE_PRESS"
+          },
+          {
+            "choiceId": "C12D_EPILOGUE_WITHOUT_JOURNALIST",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "journalist_shown",
+              "value": false
+            },
+            "nextNodeId": "CH12_FINALE_D_TONE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH12_FINALE_D_EPILOGUE_PRESS",
+        "speaker": "narrator",
+        "text": "Статья журналиста Средних этажей, вышедшая месяцы назад, теперь цитируется как одно из первых открытых свидетельств манипуляций.",
+        "nextNodeId": "CH12_FINALE_D_TONE"
+      },
+      {
+        "nodeId": "CH12_FINALE_D_TONE",
+        "speaker": "max_orlov",
+        "text": "Выбор 12 — тон финальной реплики (флейвор, не ставит флагов, обращение к башне или к тому, кто рядом).",
+        "choices": [
+          {
+            "choiceId": "C12D_TONE_PUBLIC_STATEMENT",
+            "text": "Публичное заявление",
+            "endingId": "END_04_BALANCE"
+          },
+          {
+            "choiceId": "C12D_TONE_SILENT_DEPARTURE",
+            "text": "Молчаливый уход",
+            "endingId": "END_04_BALANCE"
+          },
+          {
+            "choiceId": "C12D_TONE_QUIET_ARRANGEMENT",
+            "text": "Тихий договор",
+            "endingId": "END_04_BALANCE"
+          }
+        ]
+      }
+    ]
+  }
+]

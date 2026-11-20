@@ -1,0 +1,142 @@
+<UserControl x:Class="ZeroFloor.Views.Controls.StealthGridOverlayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="1080" d:DesignWidth="1920"
+             Visibility="{Binding ActiveStealthGrid, Converter={StaticResource NullToVisibilityConverter}}"
+             Focusable="True">
+    <UserControl.Resources>
+        <!-- Клетка: пол — тёмная плитка, укрытие — «ящик», выход — светится зелёным;
+             IsLit (луч дрона) — последний триггер и перекрывает остальные. -->
+        <Style x:Key="CellStyle" TargetType="Border">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="#141A22"/>
+            <Setter Property="BorderBrush" Value="#1FFFFFFF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="Cover">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#5A4630" Offset="0"/>
+                                <GradientStop Color="#3A2C1E" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="#668A6A44"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="Exit">
+                    <Setter Property="Background" Value="#334FD1A6"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource MgGreen}"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="18" ShadowDepth="0" Color="#4FD1A6" Opacity="0.9"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsLit}" Value="True">
+                    <Setter Property="Background" Value="#66FF3B30"/>
+                    <Setter Property="BorderBrush" Value="#AAFF5A4A"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource MgScrim}" DataContext="{Binding ActiveStealthGrid}">
+        <Border Style="{StaticResource MgCard}">
+            <StackPanel>
+                <TextBlock Text="ТЕХНИЧЕСКИЙ СТВОЛ" Style="{StaticResource MgEyebrow}"/>
+                <TextBlock Text="Синхронизация слепых зон" Style="{StaticResource MgTitle}"/>
+                <TextBlock Style="{StaticResource MgBody}" Margin="0,8,0,0" MaxWidth="900" HorizontalAlignment="Left"
+                           Text="Доберитесь до зелёного люка. Ящики перекрывают луч дрона — переждите за ними, пока прожектор уйдёт в сторону."/>
+                <Border Style="{StaticResource MgDivider}"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Style="{StaticResource MgInsetPanel}" Padding="14">
+                        <ItemsControl ItemsSource="{Binding Cells}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="{Binding Rows}" Columns="{Binding Cols}"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Width="60" Height="60" Style="{StaticResource CellStyle}">
+                                        <Grid>
+                                            <!-- дрон -->
+                                            <Grid Visibility="{Binding HasDrone, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                <Ellipse Width="40" Height="40" Stroke="#AAFF5A4A" StrokeThickness="2"/>
+                                                <Ellipse Width="20" Height="20" Fill="#FF5A4A">
+                                                    <Ellipse.Effect>
+                                                        <DropShadowEffect BlurRadius="18" ShadowDepth="0" Color="#FF3B30" Opacity="1"/>
+                                                    </Ellipse.Effect>
+                                                </Ellipse>
+                                            </Grid>
+                                            <!-- Макс -->
+                                            <Ellipse Width="24" Height="24" Fill="{StaticResource MgAccentGradient}"
+                                                     Visibility="{Binding HasPlayer, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                <Ellipse.Effect>
+                                                    <DropShadowEffect BlurRadius="18" ShadowDepth="0" Color="#F2B347" Opacity="1"/>
+                                                </Ellipse.Effect>
+                                            </Ellipse>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+
+                    <StackPanel Grid.Column="1" Margin="32,0,0,0" VerticalAlignment="Center" Width="230">
+                        <TextBlock Text="ЛЕГЕНДА" Style="{StaticResource MgLabel}" Margin="0,0,0,12"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Ellipse Width="16" Height="16" Fill="{StaticResource MgAccent}" Margin="0,0,12,0"/>
+                            <TextBlock Text="Макс" Style="{StaticResource MgHint}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Ellipse Width="16" Height="16" Fill="{StaticResource MgRed}" Margin="0,0,12,0"/>
+                            <TextBlock Text="Дрон и его луч" Style="{StaticResource MgHint}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Border Width="16" Height="16" CornerRadius="4" Background="#5A4630" Margin="0,0,12,0"/>
+                            <TextBlock Text="Укрытие" Style="{StaticResource MgHint}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,26">
+                            <Border Width="16" Height="16" CornerRadius="4" BorderBrush="{StaticResource MgGreen}" BorderThickness="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Люк — выход" Style="{StaticResource MgHint}"/>
+                        </StackPanel>
+
+                        <!-- крестовина для мыши; WASD/стрелки обрабатывает NovelView -->
+                        <Grid Width="180" Height="180" HorizontalAlignment="Left">
+                            <Button Content="▲" Style="{StaticResource MgRoundButton}" Command="{Binding MoveUpCommand}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                            <Button Content="◀" Style="{StaticResource MgRoundButton}" Command="{Binding MoveLeftCommand}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Button Content="▶" Style="{StaticResource MgRoundButton}" Command="{Binding MoveRightCommand}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <Button Content="▼" Style="{StaticResource MgRoundButton}" Command="{Binding MoveDownCommand}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                            <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="WASD" Style="{StaticResource MgKeyText}"/></Border>
+                            <TextBlock Text="или стрелки" Style="{StaticResource MgHint}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- провал: повтор с начала -->
+        <Grid Background="#E6120708" Visibility="{Binding IsGameOverVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border Style="{StaticResource MgCard}" Width="720" BorderBrush="#66FF5A4A">
+                <StackPanel>
+                    <TextBlock Text="ВАС ЗАМЕТИЛИ" Style="{StaticResource MgEyebrow}" Foreground="#FF8A7A" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding GameOverMessage}" Style="{StaticResource MgFailTitle}" Margin="0,10,0,26"/>
+                    <Button Content="Повторить с начала" Style="{StaticResource MgPrimaryButton}" Command="{Binding RetryCommand}" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

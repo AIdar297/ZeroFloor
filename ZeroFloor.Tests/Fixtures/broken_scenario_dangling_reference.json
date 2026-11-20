@@ -1,0 +1,13 @@
+[
+  {
+    "sceneId": "TEST_BROKEN_SCENE",
+    "nodes": [
+      {
+        "nodeId": "N001",
+        "speaker": "narrator",
+        "text": "[ТЕСТ] Узел, ссылающийся на несуществующий следующий узел.",
+        "nextNodeId": "N999_DOES_NOT_EXIST"
+      }
+    ]
+  }
+]

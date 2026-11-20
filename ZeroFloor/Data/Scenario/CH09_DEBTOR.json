@@ -1,0 +1,788 @@
+[
+  {
+    "sceneId": "CH09_DEBTOR_GAME",
+    "title": "Побочное событие 4. Подпольная игра на Ярмарке теней (между Главами 2 и 9)",
+    "background": "gosha_stall",
+    "music": "mus_market_theme",
+    "ambience": "amb_market_crowd",
+    "nodes": [
+      {
+        "nodeId": "CH09_DEBTOR_GAME_D001",
+        "speaker": "gosha_kovalchuk",
+        "text": "О, снова ты. Слушай, если скучно — у нас сегодня подпольная игра на ставки, в заднем ряду, подальше от дрона. Вход недорогой, выигрыш приличный. Рискнёшь, Орлов? Или ты только с ВЕРТИКАЛЬЮ рискуешь, а в карты играть боишься?",
+        "choices": [
+          {
+            "choiceId": "C09_GAME_PLAY",
+            "text": "Сыграть",
+            "nextNodeId": "CH09_DEBTOR_GAME_D002_PLAY"
+          },
+          {
+            "choiceId": "C09_GAME_SKIP",
+            "text": "Не играть",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "underground_game_outcome",
+                "value": "declined"
+              },
+              {
+                "type": "setFlag",
+                "key": "market_debt",
+                "value": 0
+              }
+            ],
+            "nextNodeId": "CH09_DEBTOR_GAME_D002_SKIP"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_GAME_D002_SKIP",
+        "speaker": "narrator",
+        "text": "Макс вежливо отказывается: «Не сегодня, Гоша». Тот пожимает плечами: «Твоё дело, Орлов. Не все рождены для риска».",
+        "nextNodeId": "CH09_DEBTOR_GAME_D004_TOOL_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_GAME_D002_PLAY",
+        "speaker": "narrator",
+        "text": "Макс садится за самодельный стол, собранный из поддонов, и играет — исход определяется скрытой проверкой R на момент начала игры: при R ≥ 60 Макс выигрывает, при R < 60 проигрывает и получает небольшой долг Гоше; в любом случае репутация Макса на рынке заметно меняется, пусть по-разному в зависимости от итога.",
+        "choices": [
+          {
+            "choiceId": "C09_GAME_RESULT_WIN_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "statCompare",
+              "stat": "R",
+              "operator": ">=",
+              "value": 60
+            },
+            "nextNodeId": "CH09_DEBTOR_GAME_D003_WIN"
+          },
+          {
+            "choiceId": "C09_GAME_RESULT_LOSS_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "statCompare",
+              "stat": "R",
+              "operator": "<",
+              "value": 60
+            },
+            "nextNodeId": "CH09_DEBTOR_GAME_D003_LOSS"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_GAME_D003_WIN",
+        "speaker": "narrator",
+        "text": "Рынок сегодня благосклонен к Максу — он выигрывает, и за столом из поддонов его репутация заметно растёт.",
+        "effects": [
+          {
+            "type": "addStat",
+            "key": "R",
+            "value": 10
+          },
+          {
+            "type": "setFlag",
+            "key": "underground_game_outcome",
+            "value": "win"
+          },
+          {
+            "type": "setFlag",
+            "key": "market_debt",
+            "value": 0
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_GAME_D004_TOOL_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_GAME_D003_LOSS",
+        "speaker": "narrator",
+        "text": "Удача не на стороне Макса — он проигрывает и получает небольшой долг Гоше, хотя кое-какая репутация на рынке у него всё равно прибавляется за сам факт участия.",
+        "effects": [
+          {
+            "type": "addStat",
+            "key": "R",
+            "value": 5
+          },
+          {
+            "type": "setFlag",
+            "key": "underground_game_outcome",
+            "value": "loss_debt"
+          },
+          {
+            "type": "setFlag",
+            "key": "market_debt",
+            "value": 1
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_GAME_D004_TOOL_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_GAME_D004_TOOL_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_TOOL_LOST_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "tool_lost",
+              "value": true
+            },
+            "nextSceneId": "CH09_DEBTOR"
+          },
+          {
+            "choiceId": "C09_TOOL_KEPT_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "not",
+              "child": {
+                "type": "flagEquals",
+                "flagKey": "tool_lost",
+                "value": true
+              }
+            },
+            "nextNodeId": "CH09_DEBTOR_GAME_D005_TOOL_LINE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_GAME_D005_TOOL_LINE",
+        "speaker": "gosha_kovalchuk",
+        "text": "(кивает на гаечный ключ, торчащий из кармана Макса) Всё таскаешь эту железку, Орлов? Дэн мне как-то хвастался, что это он тебе её подсунул — «на счастье». Береги. В Низах хороший инструмент держится дольше, чем хорошие обещания.",
+        "nextSceneId": "CH09_DEBTOR"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH09_DEBTOR",
+    "title": "Глава 9. «Должник» — Ярмарка теней и примыкающие коридоры",
+    "background": "shadow_market_after_raid",
+    "music": "mus_market_theme",
+    "ambience": "amb_market_crowd",
+    "nodes": [
+      {
+        "nodeId": "CH09_DEBTOR_D001",
+        "speaker": "narrator",
+        "text": "(Эта глава происходит всегда, независимо от Выбора 5.) Дэна забирает патруль Администрации по пути с рынка. Прилавки опрокинуты, кто-то из торговцев тихо собирает рассыпанный товар, стараясь не привлекать внимания.",
+        "nextNodeId": "CH09_DEBTOR_D002_LEAK_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D002_LEAK_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_LEAK_TRUE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_flagged_by_leak",
+              "value": true
+            },
+            "nextNodeId": "CH09_DEBTOR_D003_LEAK_TRUE"
+          },
+          {
+            "choiceId": "C09_LEAK_FALSE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_flagged_by_leak",
+              "value": false
+            },
+            "nextNodeId": "CH09_DEBTOR_D003_LEAK_FALSE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D003_LEAK_TRUE",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Это моя информация привела их туда. Я сдал маршрут, чтобы спасти себя пятнадцатью минутами раньше — и вот цена, которую платит не он сам, а Дэн.",
+        "nextNodeId": "CH09_DEBTOR_D004"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D003_LEAK_FALSE",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Рутинная облава. Не моя вина напрямую — но от этого не легче смотреть на опрокинутые прилавки и думать о том, что Дэн мог оказаться в любом другом месте, если бы не пришёл встречать меня с рынка в тот день.",
+        "nextNodeId": "CH09_DEBTOR_D004"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D004",
+        "speaker": "narrator",
+        "text": "На месте — двое свидетелей, видевших задержание, жмущихся к стене, явно не горящих желанием привлекать внимание.",
+        "choices": [
+          {
+            "choiceId": "C09_PRESS_WITNESS",
+            "text": "Надавить на свидетеля",
+            "nextNodeId": "CH09_DEBTOR_D005_PRESS"
+          },
+          {
+            "choiceId": "C09_ASK_GENTLY",
+            "text": "Спросить мягко",
+            "nextNodeId": "CH09_DEBTOR_D005_GENTLE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D005_PRESS",
+        "speaker": "max_orlov",
+        "text": "Мне нужны детали, и мне нужны они сейчас. Куда его повели?",
+        "nextNodeId": "CH09_DEBTOR_D006_WITNESS"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D005_GENTLE",
+        "speaker": "max_orlov",
+        "text": "Пожалуйста. Это мой друг. Вы можете хоть что-то сказать?",
+        "nextNodeId": "CH09_DEBTOR_D006_WITNESS"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D006_WITNESS",
+        "speaker": "npc_witness",
+        "text": "Его повели в сторону складов Гоши. Конвой был маленький — трое, может четверо. Больше ничего не видел, и видеть не хочу, у меня своя семья, понимаете?",
+        "nextNodeId": "CH09_DEBTOR_D007_PATHS"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_D007_PATHS",
+        "speaker": "narrator",
+        "text": "Три пути. Доступность каждого рассчитывается один раз, до показа вариантов — силовой путь показывается всегда (проверка K≥30 признана фиктивной и удалена в редакции 2.1, минимум достижимого K к этому моменту — 40). Доступны только те, что реально возможны прямо сейчас.",
+        "choices": [
+          {
+            "choiceId": "C09_PATH_FORCE",
+            "text": "Спасти Дэна силой с помощью Корней",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "K",
+                "value": 10
+              },
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": -10
+              }
+            ],
+            "nextNodeId": "CH09_DEBTOR_N_F01"
+          },
+          {
+            "choiceId": "C09_PATH_RANSOM",
+            "text": "Выкупить Дэна у Гоши, отдав шард с уликой",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "shard_obtained",
+              "value": true
+            },
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              },
+              {
+                "type": "setFlag",
+                "key": "shard_spent",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH09_DEBTOR_N_R01"
+          },
+          {
+            "choiceId": "C09_PATH_TRUCE",
+            "text": "Договориться с Гошей на отсрочку долга без траты улики",
+            "condition": {
+              "type": "and",
+              "children": [
+                {
+                  "type": "statCompare",
+                  "stat": "R",
+                  "operator": ">=",
+                  "value": 55
+                },
+                {
+                  "type": "flagEquals",
+                  "flagKey": "gosha_trust",
+                  "value": true
+                }
+              ]
+            },
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "R",
+                "value": 5
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": 5
+              }
+            ],
+            "nextNodeId": "CH09_DEBTOR_N_T01"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F01",
+        "speaker": "viktor_savchuk",
+        "text": "Виктор выделяет людей без колебаний, когда Макс просит. «Дэн свой — для нас это не обсуждается». Штурм короткий, жёсткий, эффективный — Корни знают эти коридоры не хуже самого Макса.",
+        "nextNodeId": "CH09_DEBTOR_N_F02_TWIST"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F02_TWIST",
+        "speaker": "narrator",
+        "text": "[Твист №6] После успеха штурма доступно текстовое действие «обыскать планшет старшего конвоира» → та же накладная о субсидировании «Ярмарки теней» Администрацией, только на этот раз добытая силой, а не признанием.",
+        "nextNodeId": "CH09_DEBTOR_N_F03_REVEAL"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F03_REVEAL",
+        "speaker": "narrator",
+        "text": "Субсидии. От самой Администрации, через три подставных счёта, но следы ведут именно туда. «Ярмарка» — их клапан для спуска пара, чтобы Низы не взорвались все разом от злости.",
+        "nextNodeId": "CH09_DEBTOR_N_F04_MONOLOGUE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F04_MONOLOGUE",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Чёрный рынок — не угроза порядку, как твердят на каждом углу. Он часть порядка. Администрация держит Низы на коротком поводке, выпуская пар ровно настолько, чтобы никто не бунтовал по-настоящему, никогда не доходя до точки, где это стало бы неудобно.",
+        "nextNodeId": "CH09_DEBTOR_N_F05_CELLMATE_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F05_CELLMATE_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_CELLMATE_CONFIRMATION_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "cellmate_helped",
+              "value": true
+            },
+            "nextNodeId": "CH09_DEBTOR_N_F06_CELLMATE"
+          },
+          {
+            "choiceId": "C09_NO_CELLMATE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "cellmate_helped",
+              "value": false
+            },
+            "nextNodeId": "CH09_DEBTOR_N_F07_DAN_FATE_GATE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F06_CELLMATE",
+        "speaker": "narrator",
+        "text": "Твист подтверждается третьим, независимым источником — дублированной накладной от благодарного сокамерника, уже полученной ранее в Акте 2.",
+        "nextNodeId": "CH09_DEBTOR_N_F07_DAN_FATE_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F07_DAN_FATE_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_DAN_FATE_HEEDED_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_warned_heeded",
+              "value": true
+            },
+            "nextNodeId": "CH09_DEBTOR_N_F08_HEEDED"
+          },
+          {
+            "choiceId": "C09_DAN_FATE_IGNORED_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_warned_heeded",
+              "value": false
+            },
+            "nextNodeId": "CH09_DEBTOR_N_F08_IGNORED_ALT_GATE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F08_HEEDED",
+        "speaker": "narrator",
+        "text": "Макс помнит предупреждение Дэна из Главы 2 и действует осторожнее. При силовом спасении Дэн получает лишь лёгкое ранение.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "dan_status",
+            "value": "alive"
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_01"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F08_IGNORED_ALT_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_FORCE_ALT_AVAILABLE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "or",
+              "children": [
+                {
+                  "type": "flagEquals",
+                  "flagKey": "shard_obtained",
+                  "value": true
+                },
+                {
+                  "type": "and",
+                  "children": [
+                    {
+                      "type": "statCompare",
+                      "stat": "R",
+                      "operator": ">=",
+                      "value": 55
+                    },
+                    {
+                      "type": "flagEquals",
+                      "flagKey": "gosha_trust",
+                      "value": true
+                    }
+                  ]
+                }
+              ]
+            },
+            "nextNodeId": "CH09_DEBTOR_N_F09_MEDIUM_WOUND"
+          },
+          {
+            "choiceId": "C09_FORCE_NO_ALT_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "not",
+              "child": {
+                "type": "or",
+                "children": [
+                  {
+                    "type": "flagEquals",
+                    "flagKey": "shard_obtained",
+                    "value": true
+                  },
+                  {
+                    "type": "and",
+                    "children": [
+                      {
+                        "type": "statCompare",
+                        "stat": "R",
+                        "operator": ">=",
+                        "value": 55
+                      },
+                      {
+                        "type": "flagEquals",
+                        "flagKey": "gosha_trust",
+                        "value": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "nextNodeId": "CH09_DEBTOR_N_F09_DAN_DIES"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F09_MEDIUM_WOUND",
+        "speaker": "narrator",
+        "text": "Макс действует без подготовки, о которой предупреждал Дэн — хотя альтернативный путь спасения был доступен, он всё равно выбрал силовой. Дэн получает ранение средней тяжести, но спасён.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "dan_status",
+            "value": "alive"
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_01"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_F09_DAN_DIES",
+        "speaker": "narrator",
+        "text": "Макс действует без подготовки — и ни одна альтернативная возможность спасения не была доступна. Худшее сочетание: силовой путь, непринятое предупреждение, никакого запасного варианта.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "dan_status",
+            "value": "dead"
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_DEAD_01"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R01",
+        "speaker": "max_orlov",
+        "text": "Макс кладёт шард на прилавок Гоши — единственное, что у него осталось в качестве рычага против целой системы. «Этого хватит за должника».",
+        "nextNodeId": "CH09_DEBTOR_N_R02"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R02",
+        "speaker": "narrator",
+        "text": "Гоша долго смотрит на модуль памяти, взвешивает его на ладони, будто это физически что-то весит, потом коротко кивает.",
+        "nextNodeId": "CH09_DEBTOR_N_R03_TWIST"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R03_TWIST",
+        "speaker": "gosha_kovalchuk",
+        "text": "(в раздражении) Да что вы все ко мне лезете! Думаете, я тут один такой плохой, единственный торговец совестью на весь Атлас? Вот, смотри! (швыряет планшет с документами на прилавок) Субсидии. От самой Администрации, через три подставных счёта, но следы ведут именно туда. Моя «Ярмарка» — их клапан для спуска пара, чтобы Низы не взорвались все разом от злости. Я просто управляю их же собственным давлением, и мне за это ещё и платят — удобно устроились, правда?",
+        "nextNodeId": "CH09_DEBTOR_N_R04_MONOLOGUE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R04_MONOLOGUE",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Чёрный рынок — не угроза порядку, как твердят на каждом углу. Он часть порядка. Администрация держит Низы на коротком поводке, выпуская пар ровно настолько, чтобы никто не бунтовал по-настоящему, никогда не доходя до точки, где это стало бы неудобно.",
+        "nextNodeId": "CH09_DEBTOR_N_R05_CELLMATE_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R05_CELLMATE_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_CELLMATE_CONFIRMATION_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "cellmate_helped",
+              "value": true
+            },
+            "nextNodeId": "CH09_DEBTOR_N_R06_CELLMATE"
+          },
+          {
+            "choiceId": "C09_NO_CELLMATE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "cellmate_helped",
+              "value": false
+            },
+            "nextNodeId": "CH09_DEBTOR_N_R07_DAN_FATE_GATE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R06_CELLMATE",
+        "speaker": "narrator",
+        "text": "Твист подтверждается третьим, независимым источником — дублированной накладной от благодарного сокамерника, уже полученной ранее в Акте 2.",
+        "nextNodeId": "CH09_DEBTOR_N_R07_DAN_FATE_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R07_DAN_FATE_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_DAN_FATE_HEEDED_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_warned_heeded",
+              "value": true
+            },
+            "nextNodeId": "CH09_DEBTOR_N_R08_HEEDED"
+          },
+          {
+            "choiceId": "C09_DAN_FATE_IGNORED_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_warned_heeded",
+              "value": false
+            },
+            "nextNodeId": "CH09_DEBTOR_N_R08_IGNORED"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R08_HEEDED",
+        "speaker": "narrator",
+        "text": "Шард — единственный физический рычаг Макса — ложится на прилавок, и Дэн выходит из-за складов спасённым, невредимым.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "dan_status",
+            "value": "alive"
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_01"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_R08_IGNORED",
+        "speaker": "narrator",
+        "text": "Дэн выходит из-за складов спасённым, невредимым — но замечает, что Макс действовал на пределе риска, разом поставив на стол единственную улику, которая у него была.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "dan_status",
+            "value": "alive"
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_01"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T01",
+        "speaker": "narrator",
+        "text": "Единственный бескровный и «бесплатный» по уликам путь — Гоша соглашается на отсрочку, помня честность Макса на рынке в Главе 2.",
+        "nextNodeId": "CH09_DEBTOR_N_T02"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T02",
+        "speaker": "gosha_kovalchuk",
+        "text": "Ты платил мне честно, Орлов. Такое не забывается на этом рынке, даже если здесь многие уверены в обратном.",
+        "nextNodeId": "CH09_DEBTOR_N_T03_TWIST"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T03_TWIST",
+        "speaker": "gosha_kovalchuk",
+        "text": "(в раздражении) Да что вы все ко мне лезете! Думаете, я тут один такой плохой, единственный торговец совестью на весь Атлас? Вот, смотри! (швыряет планшет с документами на прилавок) Субсидии. От самой Администрации, через три подставных счёта, но следы ведут именно туда. Моя «Ярмарка» — их клапан для спуска пара, чтобы Низы не взорвались все разом от злости. Я просто управляю их же собственным давлением, и мне за это ещё и платят — удобно устроились, правда?",
+        "nextNodeId": "CH09_DEBTOR_N_T04_MONOLOGUE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T04_MONOLOGUE",
+        "speaker": "max_orlov",
+        "text": "(вн. монолог) Чёрный рынок — не угроза порядку, как твердят на каждом углу. Он часть порядка. Администрация держит Низы на коротком поводке, выпуская пар ровно настолько, чтобы никто не бунтовал по-настоящему, никогда не доходя до точки, где это стало бы неудобно.",
+        "nextNodeId": "CH09_DEBTOR_N_T05_CELLMATE_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T05_CELLMATE_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_CELLMATE_CONFIRMATION_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "cellmate_helped",
+              "value": true
+            },
+            "nextNodeId": "CH09_DEBTOR_N_T06_CELLMATE"
+          },
+          {
+            "choiceId": "C09_NO_CELLMATE_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "cellmate_helped",
+              "value": false
+            },
+            "nextNodeId": "CH09_DEBTOR_N_T07_DAN_FATE_GATE"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T06_CELLMATE",
+        "speaker": "narrator",
+        "text": "Твист подтверждается третьим, независимым источником — дублированной накладной от благодарного сокамерника, уже полученной ранее в Акте 2.",
+        "nextNodeId": "CH09_DEBTOR_N_T07_DAN_FATE_GATE"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T07_DAN_FATE_GATE",
+        "speaker": "narrator",
+        "text": "Продолжить.",
+        "choices": [
+          {
+            "choiceId": "C09_DAN_FATE_HEEDED_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_warned_heeded",
+              "value": true
+            },
+            "nextNodeId": "CH09_DEBTOR_N_T08_HEEDED"
+          },
+          {
+            "choiceId": "C09_DAN_FATE_IGNORED_GATE",
+            "text": "Продолжить",
+            "condition": {
+              "type": "flagEquals",
+              "flagKey": "dan_warned_heeded",
+              "value": false
+            },
+            "nextNodeId": "CH09_DEBTOR_N_T08_IGNORED"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T08_HEEDED",
+        "speaker": "narrator",
+        "text": "Гоша соглашается на отсрочку долга, и Дэн возвращается домой спасённым, невредимым.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "dan_status",
+            "value": "alive"
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_01"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_N_T08_IGNORED",
+        "speaker": "narrator",
+        "text": "Дэн возвращается домой спасённым, невредимым — но отношения между ним и Максом остаются напряжёнными ещё долго после этого дня.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "dan_status",
+            "value": "alive"
+          }
+        ],
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_01"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_DEAD_01",
+        "speaker": "narrator",
+        "text": "Макс видит, что Дэн не отвечает. Шум рынка отступает, оставляя только короткую, невозможную тишину.",
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_DEAD_02"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_DEAD_02",
+        "speaker": "viktor_savchuk",
+        "text": "(опускает голову) Спасательная операция закончилась, но спасти удалось не всех.",
+        "nextSceneId": "CH10_SHADOW_COUNCIL"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_01",
+        "speaker": "dan_kovalski",
+        "text": "Ты псих, Орлов. Полный, законченный псих. Но ты псих, который пришёл, хотя мог бы просто доложить кому надо и остаться чистым. Спасибо.",
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_02"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_02",
+        "speaker": "max_orlov",
+        "text": "Своих не бросают. Даже если «свой» один раз меня сдал по мелочи Гоше, когда прижали.",
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_03"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_03",
+        "speaker": "dan_kovalski",
+        "text": "Ты знал? Всё это время знал и ни разу не сказал ни слова?",
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_04"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_04",
+        "speaker": "max_orlov",
+        "text": "Знал. Довольно давно. И всё равно пришёл — потому что одно не отменяет другого, Дэн. Ты человек, который ошибся один раз под давлением. Это не делает тебя кем-то, кого стоит бросать в шахте.",
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_05"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_05",
+        "speaker": "dan_kovalski",
+        "text": "Я должен был сказать сам. Не ждать, пока ты узнаешь откуда-то ещё.",
+        "nextNodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_06"
+      },
+      {
+        "nodeId": "CH09_DEBTOR_RESOLUTION_ALIVE_06",
+        "speaker": "max_orlov",
+        "text": "Должен был. Но сказал бы — я бы, наверное, разозлился сильнее, чем сегодня, когда узнал молча. Иногда правда, сказанная не вовремя, бьёт больнее, чем правда, узнанная случайно.",
+        "nextSceneId": "CH10_SHADOW_COUNCIL"
+      }
+    ]
+  }
+]

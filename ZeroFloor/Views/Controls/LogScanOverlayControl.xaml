@@ -1,0 +1,135 @@
+<UserControl x:Class="ZeroFloor.Views.Controls.LogScanOverlayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="1080" d:DesignWidth="1920"
+             Visibility="{Binding ActiveLogScan, Converter={StaticResource NullToVisibilityConverter}}"
+             Focusable="True">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TermGreen" Color="#5CF29A"/>
+        <SolidColorBrush x:Key="TermDim" Color="#2F7A4E"/>
+        <SolidColorBrush x:Key="TermBright" Color="#C8FFE0"/>
+
+        <!-- строки ЭЛТ-развёртки поверх экрана -->
+        <DrawingBrush x:Key="ScanlinesBrush" TileMode="Tile" Viewport="0,0,4,4" ViewportUnits="Absolute">
+            <DrawingBrush.Drawing>
+                <GeometryDrawing Brush="#22000000">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,4,2"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <Style x:Key="LogLineTextStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource MgMono}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="{StaticResource TermDim}"/>
+            <Setter Property="Padding" Value="14,5"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource TermGreen}"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#5CF29A" Opacity="0.7"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsTarget}" Value="True"/>
+                        <Condition Binding="{Binding IsActive}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Foreground" Value="{StaticResource TermBright}"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- едва заметная подсветка целевой строки — намёк, а не подсказка -->
+        <Style x:Key="LogLineRowStyle" TargetType="Border">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsTarget}" Value="True"/>
+                        <Condition Binding="{Binding IsActive}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#262E7A4C"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource MgScrim}" DataContext="{Binding ActiveLogScan}">
+        <Border Style="{StaticResource MgCard}" Width="980">
+            <StackPanel>
+                <TextBlock Text="ГЛАВА 3 · ВСКРЫТАЯ ПАНЕЛЬ" Style="{StaticResource MgEyebrow}"/>
+                <TextBlock Text="Скан журнала событий" Style="{StaticResource MgTitle}"/>
+                <TextBlock Style="{StaticResource MgBody}" Margin="0,8,0,0"
+                           Text="Лог бежит вверх. Поймайте строку «коэффициент стабилизации: активен», пока она ещё на экране — у вас два окна реакции."/>
+                <Border Style="{StaticResource MgDivider}" Margin="0,22,0,24"/>
+
+                <!-- корпус монитора -->
+                <Border CornerRadius="22" Padding="18" BorderBrush="#33FFFFFF" BorderThickness="1">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#232A33" Offset="0"/>
+                            <GradientStop Color="#14181E" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <Grid Margin="6,0,6,12">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="9" Height="9" Fill="{StaticResource TermGreen}" Margin="0,0,10,0" VerticalAlignment="Center">
+                                    <Ellipse.Effect>
+                                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#5CF29A" Opacity="1"/>
+                                    </Ellipse.Effect>
+                                </Ellipse>
+                                <TextBlock Text="ТЕРМИНАЛ ПАНЕЛИ · ЖУРНАЛ СОБЫТИЙ" Style="{StaticResource MgLabel}" Foreground="#7FA090"/>
+                            </StackPanel>
+                            <TextBlock Text="LIVE ▲" Style="{StaticResource MgLabel}" Foreground="{StaticResource TermGreen}" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Border CornerRadius="12" Height="340" ClipToBounds="True" BorderBrush="#2A2E7A4C" BorderThickness="1">
+                            <Border.Background>
+                                <RadialGradientBrush RadiusX="0.8" RadiusY="0.9">
+                                    <GradientStop Color="#0B2216" Offset="0"/>
+                                    <GradientStop Color="#030A06" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <Grid>
+                                <ItemsControl ItemsSource="{Binding Lines}" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Style="{StaticResource LogLineRowStyle}">
+                                                <TextBlock Text="{Binding Text}" Style="{StaticResource LogLineTextStyle}"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <Border Background="{StaticResource ScanlinesBrush}" IsHitTestVisible="False"/>
+                                <Border IsHitTestVisible="False">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#E6030A06" Offset="0"/>
+                                            <GradientStop Color="#00030A06" Offset="0.3"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Grid Margin="0,26,0,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="Пробел" Style="{StaticResource MgKeyText}"/></Border>
+                        <Border Style="{StaticResource MgKeyCap}"><TextBlock Text="Enter" Style="{StaticResource MgKeyText}"/></Border>
+                        <TextBlock Text="поймать текущую строку" Style="{StaticResource MgHint}"/>
+                    </StackPanel>
+                    <Button Content="Поймать строку" Style="{StaticResource MgPrimaryButton}" Command="{Binding ConfirmCommand}" HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

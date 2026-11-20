@@ -1,0 +1,19 @@
+﻿<Application x:Class="ZeroFloor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ZeroFloor">
+    <!--
+        StartupUri намеренно не используется: окно создаётся и получает DataContext
+        вручную в App.xaml.cs (OnStartup), чтобы к моменту показа окна навигация
+        и композиционный корень уже были настроены.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Theme.xaml"/>
+                <ResourceDictionary Source="Styles/MinigameTheme.xaml"/>
+                <ResourceDictionary Source="Views/ViewTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

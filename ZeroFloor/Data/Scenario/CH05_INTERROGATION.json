@@ -1,0 +1,868 @@
+[
+  {
+    "sceneId": "CH05_SC01",
+    "title": "Глава 5. «Допрос» — Коридор ожидания",
+    "background": "administration_corridor",
+    "music": "mus_interrogation_dread",
+    "ambience": "amb_admin_sterile",
+    "nodes": [
+      {
+        "nodeId": "CH05_SC01_D001",
+        "speaker": "narrator",
+        "text": "Стерильный коридор без единого пятна на стенах — настолько чистый, что это само по себе тревожит после хаоса Низов. Конвоир в форме Администрации ведёт Макса мимо рядов одинаковых дверей, каждая без таблички, каждая с крошечной зелёной лампой над косяком, которая, вероятно, означает что-то важное для тех, кто здесь работает. Активность на панели лифтового узла была зафиксирована — и теперь у Макса «профилактическая беседа», термин, за которым прячется куда более прямое слово.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Center",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "choices": [
+          {
+            "choiceId": "CH05_SC01_C001_A",
+            "text": "Осмотреть комнату ожидания",
+            "nextNodeId": "CH05_SC01_D002_EXAMINE"
+          },
+          {
+            "choiceId": "CH05_SC01_C001_B",
+            "text": "Сидеть молча",
+            "nextNodeId": "CH05_SC01_D002_SILENT"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC01_D002_EXAMINE",
+        "speaker": "narrator",
+        "text": "Три детали выдают методику допроса — одностороннее зеркало на дальней стене, слишком удобное для «случайности» кресло, стоящее ровно в фокусе этого зеркала, и микрофон, грубовато замаскированный под вентиляционную решётку, из-под которой торчит едва заметный проводок.",
+        "nextSceneId": "CH05_SC02"
+      },
+      {
+        "nodeId": "CH05_SC01_D002_SILENT",
+        "speaker": "narrator",
+        "text": "Макс смотрит в одну точку на полу, экономя силы на то, что будет дальше, стараясь не думать ни об Ане, ни о шарде во внутреннем кармане.",
+        "nextSceneId": "CH05_SC02"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH05_SC02",
+    "title": "Глава 5. «Допрос» — Сокамерник",
+    "background": "administration_corridor",
+    "music": "mus_interrogation_dread",
+    "ambience": "amb_admin_sterile",
+    "nodes": [
+      {
+        "nodeId": "CH05_SC02_D001",
+        "speaker": "narrator",
+        "text": "Рядом с Максом на скамье — мелкий логист со Средних этажей, такой же «гость» зала профилактических бесед. У него трясутся руки, и он явно не привык к этому месту так, как привыкают завсегдатаи.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "npc_cellmate",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH05_SC02_D002"
+      },
+      {
+        "nodeId": "CH05_SC02_D002",
+        "speaker": "npc_cellmate",
+        "text": "(шёпотом, не поворачивая головы) Не смотри на меня. Просто… если выберешься раньше — скажи кому-нибудь, что я тут. У меня семья на 110-м, они не знают, где я уже второй день. Больше мне не к кому обратиться, вы же, низовские, хотя бы друг друга не бросаете, так ведь?",
+        "choices": [
+          {
+            "choiceId": "CH05_SC02_C001_A",
+            "text": "Незаметно передать записку",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "cellmate_helped",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH05_SC02_D003_HELP"
+          },
+          {
+            "choiceId": "CH05_SC02_C001_B",
+            "text": "Не рисковать",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "cellmate_helped",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH05_SC02_D003_SKIP"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC02_D003_HELP",
+        "speaker": "narrator",
+        "text": "Макс роняет сложенную в несколько раз записку у ног сокамерника; тот подбирает её, не глядя, одним отработанным движением человека, который давно привык работать с бумагами, не привлекая внимания.",
+        "nextSceneId": "CH05_SC03"
+      },
+      {
+        "nodeId": "CH05_SC02_D003_SKIP",
+        "speaker": "narrator",
+        "text": "Макс качает головой едва заметно — слишком высоки ставки сегодня, чтобы тратить риск на чужую просьбу. Сокамерник не настаивает, только отворачивается, разочарованный, но не удивлённый.",
+        "nextSceneId": "CH05_SC03"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH05_SC03",
+    "title": "Глава 5. «Допрос» — Зал профилактических бесед",
+    "background": "interrogation_hall",
+    "music": "mus_interrogation_dread",
+    "ambience": "amb_admin_sterile",
+    "nodes": [
+      {
+        "nodeId": "CH05_SC03_D001",
+        "speaker": "narrator",
+        "text": "Зал допроса. Металлический стол, яркий свет сверху, представитель Вессель — сухая женщина средних лет в безукоризненной форме администратора — листает планшет с логами лифтового узла. На экране перед ней — скрытый от игрока индикатор подозрения, который меняется после каждого ответа; сама Вессель ни разу не повышает голос: вся угроза здесь — в спокойствии.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "npc_official",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "suspicion",
+            "value": 3
+          }
+        ],
+        "suspicionMeterCue": {
+          "kind": "Show",
+          "flagKey": "suspicion",
+          "minValue": -5,
+          "maxValue": 10,
+          "yellowThreshold": 4,
+          "redThreshold": 6
+        },
+        "nextNodeId": "CH05_SC03_D002"
+      },
+      {
+        "nodeId": "CH05_SC03_D002",
+        "speaker": "npc_official",
+        "text": "Техник Орлов. Панель лифтового узла 29–30 зафиксировала несанкционированное подключение в ночь на вторник. Ваш пропуск отмечен в том же секторе за сорок минут до инцидента. Совпадение?",
+        "choiceTimerCue": {
+          "timeoutSeconds": 7,
+          "timeoutChoiceId": "CH05_SC03_C001_B"
+        },
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C001_A",
+            "text": "«Я обслуживал соседний узел по плановому наряду №4471 — можете проверить журнал смен за ту ночь»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 2
+              }
+            ],
+            "nextNodeId": "CH05_SC03_D003_Q1_LOG"
+          },
+          {
+            "choiceId": "CH05_SC03_C001_B",
+            "text": "«Я вообще не знаю, о чём вы»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 5
+              }
+            ],
+            "nextNodeId": "CH05_SC03_D003_Q1_ILLOG"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_D003_Q1_LOG",
+        "speaker": "npc_official",
+        "text": "Интересно. Проверим наряд — если он действительно существует, мы это быстро выясним. А пока ответьте ещё на один вопрос: с кем вы контактировали на Ярмарке теней за последний месяц?",
+        "nextNodeId": "CH05_SC03_D_Q2_FROM2"
+      },
+      {
+        "nodeId": "CH05_SC03_D003_Q1_ILLOG",
+        "speaker": "npc_official",
+        "text": "Любопытный провал памяти для техника с семилетним стажем. Хорошо, попробуем иначе: с кем вы контактировали на Ярмарке теней за последний месяц?",
+        "nextNodeId": "CH05_SC03_D_Q2_FROM5"
+      },
+      {
+        "nodeId": "CH05_SC03_D_Q2_FROM2",
+        "speaker": "npc_official",
+        "text": "(ожидает ответа)",
+        "choiceTimerCue": {
+          "timeoutSeconds": 7,
+          "timeoutChoiceId": "CH05_SC03_C002_B1"
+        },
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C002_A1",
+            "text": "«У меня нет постоянных контактов на рынке, я хожу туда редко и за обычными вещами»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 1
+              }
+            ],
+            "nextNodeId": "CH05_SC03_D_Q3_FROM1"
+          },
+          {
+            "choiceId": "CH05_SC03_C002_B1",
+            "text": "«Это что, допрос с пристрастием?»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 4
+              }
+            ],
+            "nextNodeId": "CH05_SC03_D_Q3_FROM4"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_D_Q2_FROM5",
+        "speaker": "npc_official",
+        "text": "(ожидает ответа)",
+        "choiceTimerCue": {
+          "timeoutSeconds": 7,
+          "timeoutChoiceId": "CH05_SC03_C002_B2"
+        },
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C002_A2",
+            "text": "«У меня нет постоянных контактов на рынке, я хожу туда редко и за обычными вещами»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 4
+              }
+            ],
+            "nextNodeId": "CH05_SC03_D_Q3_FROM4"
+          },
+          {
+            "choiceId": "CH05_SC03_C002_B2",
+            "text": "«Это что, допрос с пристрастием?»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 7
+              }
+            ],
+            "nextNodeId": "CH05_SC03_D_Q3_FROM7"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_D_Q3_FROM1",
+        "speaker": "npc_official",
+        "text": "Последний вопрос перед тем, как мы перейдём к формальностям. Откуда у вас сведения о контуре под названием «коэффициент стабилизации» — термин, который вы, насколько нам известно, упомянули в разговоре, перехваченном позавчера?",
+        "choiceTimerCue": {
+          "timeoutSeconds": 7,
+          "timeoutChoiceId": "CH05_SC03_C003_B1"
+        },
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C003_A1",
+            "text": "«Я ничего не упоминал. Если у вас есть запись — предъявите её, а не пересказ»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 0
+              }
+            ],
+            "nextNodeId": "CH05_SC03_OUT_LOG_SUM0"
+          },
+          {
+            "choiceId": "CH05_SC03_C003_B1",
+            "text": "«Понятия не имею, о чём вы говорите, честное слово»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 3
+              }
+            ],
+            "nextNodeId": "CH05_SC03_OUT_ILLOG_SUM3A"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_D_Q3_FROM4",
+        "speaker": "npc_official",
+        "text": "Последний вопрос перед тем, как мы перейдём к формальностям. Откуда у вас сведения о контуре под названием «коэффициент стабилизации» — термин, который вы, насколько нам известно, упомянули в разговоре, перехваченном позавчера?",
+        "choiceTimerCue": {
+          "timeoutSeconds": 7,
+          "timeoutChoiceId": "CH05_SC03_C003_B2"
+        },
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C003_A2",
+            "text": "«Я ничего не упоминал. Если у вас есть запись — предъявите её, а не пересказ»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 3
+              }
+            ],
+            "nextNodeId": "CH05_SC03_OUT_LOG_SUM3B"
+          },
+          {
+            "choiceId": "CH05_SC03_C003_B2",
+            "text": "«Понятия не имею, о чём вы говорите, честное слово»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 6
+              }
+            ],
+            "nextNodeId": "CH05_SC03_OUT_ILLOG_SUM6A"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_D_Q3_FROM7",
+        "speaker": "npc_official",
+        "text": "Последний вопрос перед тем, как мы перейдём к формальностям. Откуда у вас сведения о контуре под названием «коэффициент стабилизации» — термин, который вы, насколько нам известно, упомянули в разговоре, перехваченном позавчера?",
+        "choiceTimerCue": {
+          "timeoutSeconds": 7,
+          "timeoutChoiceId": "CH05_SC03_C003_B3"
+        },
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C003_A3",
+            "text": "«Я ничего не упоминал. Если у вас есть запись — предъявите её, а не пересказ»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 6
+              }
+            ],
+            "nextNodeId": "CH05_SC03_OUT_LOG_SUM6B"
+          },
+          {
+            "choiceId": "CH05_SC03_C003_B3",
+            "text": "«Понятия не имею, о чём вы говорите, честное слово»",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 9
+              }
+            ],
+            "nextNodeId": "CH05_SC03_OUT_ILLOG_SUM9"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_OUT_LOG_SUM0",
+        "speaker": "narrator",
+        "text": "Подозрение снижается, представитель хмурится — у неё, похоже, нет прямой записи, только пересказ.",
+        "nextNodeId": "CH05_SC03_V5_SUM0"
+      },
+      {
+        "nodeId": "CH05_SC03_OUT_ILLOG_SUM3A",
+        "speaker": "narrator",
+        "text": "Слишком явная, слишком быстрая реакция для человека, который якобы не понимает вопроса — подозрение растёт заметно.",
+        "nextNodeId": "CH05_SC03_V5_SUM3"
+      },
+      {
+        "nodeId": "CH05_SC03_OUT_LOG_SUM3B",
+        "speaker": "narrator",
+        "text": "Подозрение снижается, представитель хмурится — у неё, похоже, нет прямой записи, только пересказ.",
+        "nextNodeId": "CH05_SC03_V5_SUM3"
+      },
+      {
+        "nodeId": "CH05_SC03_OUT_ILLOG_SUM6A",
+        "speaker": "narrator",
+        "text": "Слишком явная, слишком быстрая реакция для человека, который якобы не понимает вопроса — подозрение растёт заметно.",
+        "nextNodeId": "CH05_SC03_V5_SUM6"
+      },
+      {
+        "nodeId": "CH05_SC03_OUT_LOG_SUM6B",
+        "speaker": "narrator",
+        "text": "Подозрение снижается, представитель хмурится — у неё, похоже, нет прямой записи, только пересказ.",
+        "nextNodeId": "CH05_SC03_V5_SUM6"
+      },
+      {
+        "nodeId": "CH05_SC03_OUT_ILLOG_SUM9",
+        "speaker": "narrator",
+        "text": "Слишком явная, слишком быстрая реакция для человека, который якобы не понимает вопроса — подозрение растёт заметно.",
+        "nextNodeId": "CH05_SC03_V5_SUM9"
+      },
+      {
+        "nodeId": "CH05_SC03_V5_SUM0",
+        "speaker": "npc_official",
+        "text": "Хорошо, техник Орлов. У вас есть выбор: либо мы продолжаем ходить кругами, пока я не найду то, что ищу сама, — а я найду, — либо вы облегчаете жизнь нам обоим прямо сейчас.",
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C004_DENY_0",
+            "text": "Отрицать всё",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": false
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 1
+              }
+            ],
+            "nextNodeId": "CH05_SC03_DENY_OUTCOME_SKIP_A"
+          },
+          {
+            "choiceId": "CH05_SC03_C004_PARTIAL_0",
+            "text": "Частично сотрудничать",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": 20
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": true
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": -2
+              }
+            ],
+            "nextNodeId": "CH05_SC03_PARTIAL_OUTCOME_SKIP_A"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_V5_SUM3",
+        "speaker": "npc_official",
+        "text": "Хорошо, техник Орлов. У вас есть выбор: либо мы продолжаем ходить кругами, пока я не найду то, что ищу сама, — а я найду, — либо вы облегчаете жизнь нам обоим прямо сейчас.",
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C004_DENY_3",
+            "text": "Отрицать всё",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": false
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 4
+              }
+            ],
+            "nextNodeId": "CH05_SC03_DENY_OUTCOME_SKIP_B"
+          },
+          {
+            "choiceId": "CH05_SC03_C004_PARTIAL_3",
+            "text": "Частично сотрудничать",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": 20
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": true
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 1
+              }
+            ],
+            "nextNodeId": "CH05_SC03_PARTIAL_OUTCOME_SKIP_B"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_V5_SUM6",
+        "speaker": "npc_official",
+        "text": "Хорошо, техник Орлов. У вас есть выбор: либо мы продолжаем ходить кругами, пока я не найду то, что ищу сама, — а я найду, — либо вы облегчаете жизнь нам обоим прямо сейчас.",
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C004_DENY_6",
+            "text": "Отрицать всё",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": false
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 7
+              }
+            ],
+            "nextNodeId": "CH05_SC03_DENY_OUTCOME_SHOW"
+          },
+          {
+            "choiceId": "CH05_SC03_C004_PARTIAL_6",
+            "text": "Частично сотрудничать",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": 20
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": true
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 4
+              }
+            ],
+            "nextNodeId": "CH05_SC03_PARTIAL_OUTCOME_SKIP_C"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_V5_SUM9",
+        "speaker": "npc_official",
+        "text": "Хорошо, техник Орлов. У вас есть выбор: либо мы продолжаем ходить кругами, пока я не найду то, что ищу сама, — а я найду, — либо вы облегчаете жизнь нам обоим прямо сейчас.",
+        "choices": [
+          {
+            "choiceId": "CH05_SC03_C004_DENY_9",
+            "text": "Отрицать всё",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": false
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 10
+              }
+            ],
+            "nextNodeId": "CH05_SC03_DENY_OUTCOME_SHOW2"
+          },
+          {
+            "choiceId": "CH05_SC03_C004_PARTIAL_9",
+            "text": "Частично сотрудничать",
+            "effects": [
+              {
+                "type": "addStat",
+                "key": "L",
+                "value": 20
+              },
+              {
+                "type": "addStat",
+                "key": "H",
+                "value": -5
+              },
+              {
+                "type": "setFlag",
+                "key": "dan_flagged_by_leak",
+                "value": true
+              },
+              {
+                "type": "setFlag",
+                "key": "suspicion",
+                "value": 7
+              }
+            ],
+            "nextNodeId": "CH05_SC03_PARTIAL_OUTCOME_SHOW"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC03_DENY_OUTCOME_SKIP_A",
+        "speaker": "narrator",
+        "text": "Макс держит лицо ровным, голос — нейтральным. «Я не имею отношения ни к какому несанкционированному подключению, и у меня нет контактов, о которых стоило бы вам докладывать». Подозрение растёт — но никто из близких не подставлен его словами, и это единственное, что он может контролировать в этой комнате.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "SUCCESS"
+          }
+        ],
+        "nextNodeId": "CH05_SC03_WRAPUP_SKIP"
+      },
+      {
+        "nodeId": "CH05_SC03_DENY_OUTCOME_SKIP_B",
+        "speaker": "narrator",
+        "text": "Макс держит лицо ровным, голос — нейтральным. «Я не имею отношения ни к какому несанкционированному подключению, и у меня нет контактов, о которых стоило бы вам докладывать». Подозрение растёт — но никто из близких не подставлен его словами, и это единственное, что он может контролировать в этой комнате.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "PARTIAL"
+          }
+        ],
+        "nextNodeId": "CH05_SC03_WRAPUP_SKIP"
+      },
+      {
+        "nodeId": "CH05_SC03_DENY_OUTCOME_SHOW",
+        "speaker": "narrator",
+        "text": "Макс держит лицо ровным, голос — нейтральным. «Я не имею отношения ни к какому несанкционированному подключению, и у меня нет контактов, о которых стоило бы вам докладывать». Подозрение растёт — но никто из близких не подставлен его словами, и это единственное, что он может контролировать в этой комнате.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "FAILURE"
+          }
+        ],
+        "nextSceneId": "CH05_SC05"
+      },
+      {
+        "nodeId": "CH05_SC03_DENY_OUTCOME_SHOW2",
+        "speaker": "narrator",
+        "text": "Макс держит лицо ровным, голос — нейтральным. «Я не имею отношения ни к какому несанкционированному подключению, и у меня нет контактов, о которых стоило бы вам докладывать». Подозрение растёт — но никто из близких не подставлен его словами, и это единственное, что он может контролировать в этой комнате.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "FAILURE"
+          }
+        ],
+        "nextSceneId": "CH05_SC05"
+      },
+      {
+        "nodeId": "CH05_SC03_PARTIAL_OUTCOME_SKIP_A",
+        "speaker": "narrator",
+        "text": "Макс сдаёт маршрут и примерное время визитов к Гоше — не называя имени напрямую, но достаточно конкретно, чтобы это читалось как сотрудничество — в обмен на обещание ускорить очередь для Ани на 85-й этаж. Подозрение падает прямо сейчас, лицо представителя впервые теплеет на долю градуса. Цена обнаружится позже, и Макс это знает уже в момент, когда произносит слова.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "SUCCESS"
+          }
+        ],
+        "nextNodeId": "CH05_SC03_WRAPUP_SKIP"
+      },
+      {
+        "nodeId": "CH05_SC03_PARTIAL_OUTCOME_SKIP_B",
+        "speaker": "narrator",
+        "text": "Макс сдаёт маршрут и примерное время визитов к Гоше — не называя имени напрямую, но достаточно конкретно, чтобы это читалось как сотрудничество — в обмен на обещание ускорить очередь для Ани на 85-й этаж. Подозрение падает прямо сейчас, лицо представителя впервые теплеет на долю градуса. Цена обнаружится позже, и Макс это знает уже в момент, когда произносит слова.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "SUCCESS"
+          }
+        ],
+        "nextNodeId": "CH05_SC03_WRAPUP_SKIP"
+      },
+      {
+        "nodeId": "CH05_SC03_PARTIAL_OUTCOME_SKIP_C",
+        "speaker": "narrator",
+        "text": "Макс сдаёт маршрут и примерное время визитов к Гоше — не называя имени напрямую, но достаточно конкретно, чтобы это читалось как сотрудничество — в обмен на обещание ускорить очередь для Ани на 85-й этаж. Подозрение падает прямо сейчас, лицо представителя впервые теплеет на долю градуса. Цена обнаружится позже, и Макс это знает уже в момент, когда произносит слова.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "PARTIAL"
+          }
+        ],
+        "nextNodeId": "CH05_SC03_WRAPUP_SKIP"
+      },
+      {
+        "nodeId": "CH05_SC03_PARTIAL_OUTCOME_SHOW",
+        "speaker": "narrator",
+        "text": "Макс сдаёт маршрут и примерное время визитов к Гоше — не называя имени напрямую, но достаточно конкретно, чтобы это читалось как сотрудничество — в обмен на обещание ускорить очередь для Ани на 85-й этаж. Подозрение падает прямо сейчас, лицо представителя впервые теплеет на долю градуса. Цена обнаружится позже, и Макс это знает уже в момент, когда произносит слова.",
+        "effects": [
+          {
+            "type": "setFlag",
+            "key": "mg_ch05_interrogation_result",
+            "value": "FAILURE"
+          }
+        ],
+        "nextSceneId": "CH05_SC05"
+      },
+      {
+        "nodeId": "CH05_SC03_WRAPUP_SKIP",
+        "speaker": "narrator",
+        "text": "Беседа заканчивается так же сухо, как началась. Конвоир провожает Макса обратно к лифту, не говоря ни слова, будто всё, что должно было произойти в этой комнате, уже произошло — и часть решена, часть отложена.",
+        "suspicionMeterCue": {
+          "kind": "Hide"
+        },
+        "nextSceneId": "CH06_SHAFTS_CHASE"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH05_SC05",
+    "title": "Глава 5. «Допрос» — Дополнительная реплика под давлением",
+    "background": "interrogation_hall",
+    "music": "mus_interrogation_dread",
+    "ambience": "amb_admin_sterile",
+    "nodes": [
+      {
+        "nodeId": "CH05_SC05_D001",
+        "speaker": "npc_official",
+        "text": "Техник Орлов, у меня есть основания полагать, что вы получали наводки не из собственной головы — слишком точные, слишком своевременные для случайного стечения обстоятельств. Назовите источник — и беседа закончится прямо сейчас, без дальнейших формальностей и без записи в вашем деле.",
+        "choices": [
+          {
+            "choiceId": "CH05_SC05_C001_A",
+            "text": "Назвать информатора по имени",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "sonya_exposed",
+                "value": true
+              }
+            ],
+            "nextNodeId": "CH05_SC05_D002_NAMED"
+          },
+          {
+            "choiceId": "CH05_SC05_C001_B",
+            "text": "Промолчать",
+            "effects": [
+              {
+                "type": "setFlag",
+                "key": "sonya_exposed",
+                "value": false
+              }
+            ],
+            "nextNodeId": "CH05_SC05_D002_SILENT"
+          }
+        ]
+      },
+      {
+        "nodeId": "CH05_SC05_D002_NAMED",
+        "speaker": "narrator",
+        "text": "Макс называет имя — ощущение, будто он продаёт кого-то, кого даже не видел в лицо, кого знает только как «анонимного информатора Корней». Представитель удовлетворённо кивает и делает пометку в планшете.",
+        "nextNodeId": "CH05_SC05_D003"
+      },
+      {
+        "nodeId": "CH05_SC05_D002_SILENT",
+        "speaker": "narrator",
+        "text": "Макс выдерживает паузу длиной в вечность, зная, что молчание само по себе выглядит подозрительно. «Источника нет. Есть только я и мои собственные ошибки». Представитель хмурится, но давит не до конца — то ли время поджимает, то ли инструкция не позволяет давить сильнее без санкции сверху.",
+        "nextNodeId": "CH05_SC05_D003"
+      },
+      {
+        "nodeId": "CH05_SC05_D003",
+        "speaker": "narrator",
+        "text": "Беседа заканчивается так же сухо, как началась. Конвоир провожает Макса обратно к лифту, не говоря ни слова, будто всё, что должно было произойти в этой комнате, уже произошло — и часть решена, часть отложена.",
+        "suspicionMeterCue": {
+          "kind": "Hide"
+        },
+        "nextSceneId": "CH06_SHAFTS_CHASE"
+      }
+    ]
+  },
+  {
+    "sceneId": "CH05_SC_SIDE02",
+    "title": "Побочное событие 2. Благодарность сокамерника (срабатывает позже, перед Главой 9 или 10, если cellmate_helped = true)",
+    "background": "shadow_market_after_raid",
+    "music": "mus_market_theme",
+    "ambience": "amb_market_crowd",
+    "nodes": [
+      {
+        "nodeId": "CH05_SC_SIDE02_D001",
+        "speaker": "narrator",
+        "text": "Сокамерник находит Макса в коридоре рынка, спустя какое-то время после допроса. Он выглядит иначе — спокойнее, будто с него сняли невидимый груз, который он таскал годами, а не только последние два дня.",
+        "characterCues": [
+          {
+            "characterId": "max_orlov",
+            "kind": "Enter",
+            "position": "Left",
+            "scale": 1.0,
+            "durationMs": 700
+          },
+          {
+            "characterId": "npc_cellmate",
+            "kind": "Enter",
+            "position": "Right",
+            "scale": 1.0,
+            "durationMs": 700
+          }
+        ],
+        "nextNodeId": "CH05_SC_SIDE02_D002"
+      },
+      {
+        "nodeId": "CH05_SC_SIDE02_D002",
+        "speaker": "npc_cellmate",
+        "text": "Ты не обязан был рисковать той запиской. Многие бы не рискнули — и были бы правы, по-своему. Но ты рискнул, и моя семья узнала, где я, на день раньше, чем узнала бы иначе. Вот — держи. Дублированная накладная на нерегулярные поставки «Ярмарке теней». Я скопировал, пока работал с логистикой — часть моей обычной работы, просто в этот раз я заметил то, чего раньше не замечал. Понятия не имею, зачем тебе это, но чувствую, что тебе нужно.",
+        "nextNodeId": "CH05_SC_SIDE02_D003"
+      },
+      {
+        "nodeId": "CH05_SC_SIDE02_D003",
+        "speaker": "max_orlov",
+        "text": "Второй, независимый источник. Кто-то наверху финансирует чёрный рынок, который Администрация якобы искореняет на каждом втором публичном выступлении. Совпадения такого масштаба не бывают случайными.",
+        "nextSceneId": "CH06_SHAFTS_CHASE"
+      }
+    ]
+  }
+]
